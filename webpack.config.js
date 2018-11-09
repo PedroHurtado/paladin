@@ -11,9 +11,10 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
+        publicPath: "/dist/",
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js',
-        library: "MyLibrary",
+        library: "Paladin",
         libraryTarget: "umd",
     },
     devtool: "source-map",

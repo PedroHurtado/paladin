@@ -1,4 +1,4 @@
-(window.webpackJsonpMyLibrary=window.webpackJsonpMyLibrary||[]).push([[1],{9:function(e,t){
+(window.webpackJsonpPaladin=window.webpackJsonpPaladin||[]).push([[1],{9:function(e,t){
 /*!
  * AngularJS Material Design
  * https://github.com/angular/material
