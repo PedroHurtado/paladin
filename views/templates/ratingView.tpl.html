@@ -1,0 +1,16 @@
+<div layout="row rating-view-wrapper">
+    <jk-rating-stars 
+        class="{{readOnly? 'rating-stars' : 'rating-stars-editable'}}" 
+        max-rating="5" 
+        rating="rating" 
+        read-only="readOnly" 
+        reset-allowed="false"
+        on-rating="onRatingSet(rating)" >
+    </jk-rating-stars>
+
+    <span class="ratings-counter"
+          md-colors="::{color: 'default-primary-A300'}"
+          ng-if="::count != undefined">
+        ({{::count}})
+    </span>
+</div>

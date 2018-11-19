@@ -1,0 +1,23 @@
+<div flex="100" layout="row" layout-align="start center">
+    <loader-container flex="100" layout="row" layout-align="start center" is-loading="isLoading">
+        <md-list flex="100" layout-align="start start" layout-wrap>
+            <md-list-item
+                    class="md-3-line"
+                    flex="100" ng-repeat="product in userProducts" layout="row" ng-click="listItemClick(product)">
+                <user-listings-list-item
+                        is-minified="isMinified"
+                        product="product"
+                        flex="100"></user-listings-list-item>
+                <md-divider
+                        flex="90"
+                        style="height: 1px;"
+                        md-inset="5"
+                        ng-if="!$last"
+                            md-colors="::{backgroundColor:'default-primary-A200'}"></md-divider>
+            </md-list-item>
+            <md-list-item flex="100" class="md-padding" ng-if="userProducts.length == 0">
+                <span>{{"NO_LISTINGS_MESSAGE" | translate}}</span>
+            </md-list-item>
+        </md-list>
+    </loader-container>
+</div>

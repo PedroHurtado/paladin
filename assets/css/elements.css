@@ -1,0 +1,1079 @@
+/*
+ * Plugin: Playne Shortcodes
+ * Author: Playnethemes
+*/
+
+/*-----------------------------------------------------------------------------------*/
+/*	1.	CLEAR FLOATS
+/*-----------------------------------------------------------------------------------*/
+
+.clear-floats {
+	clear: both;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	2.	INTRO MESSAGE
+/*-----------------------------------------------------------------------------------*/
+
+.playne_intro {
+	text-align: justify;
+	font-size: 18px;
+	line-height: 1.8333em;
+	text-transform: none;
+	letter-spacing: 1px;
+	color: #999;
+	margin: 0px 0 30px 0;
+	padding: 20px 0;
+	padding-top:0px;
+	padding-bottom: 0px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	3.	BLOCKQUOTE
+/*-----------------------------------------------------------------------------------*/
+
+.playne_blockquote {
+	position: relative;
+	margin: 30px 0px;
+	padding-left: 20px;
+	padding-top:10px;
+	padding-right:0px !important;
+	padding-bottom:10px;
+	margin-left:0px;
+	padding:10px;
+	color:#999;
+	font-size:18px;
+	text-align:left;
+	font-style: normal;
+	border-left:4px solid #EEE;
+}
+
+.playne_blockquote p:last-child {
+	margin: 0;
+}
+
+.playne_blockquote p {
+	padding-left:40px;
+       margin-bottom:0px !important;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	4.	CODE BOX
+/*-----------------------------------------------------------------------------------*/
+
+.playne_code {
+	position: relative;
+	margin: 30px 0px;
+       font-family: 'Open Sans', sans serif;
+	padding-left: 40px;
+	padding:30px 30px 30px 70px;
+	display:block;
+        word-wrap: break-word;
+	font-style: normal;
+	background: #F7F7F7 url(images/icons/code.png) no-repeat 20px 35px;
+}
+
+.playne_code p {
+	padding-left:0px !important;
+	margin-bottom:0px !important;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	5.	DROPCAP
+/*-----------------------------------------------------------------------------------*/
+
+.playne_dropcap {
+	display: inline-block;
+	float: left;
+	text-transform:uppercase;
+	font-size: 40px;
+	vertical-align:middle;
+	font-weight: 200;
+	line-height: 40px;
+	margin:5px 15px 0px 0px;
+	text-align: left;
+	padding:0px 5px 0px 0;
+	-webkit-box-sizing: border-box;
+  	-moz-box-sizing: border-box;
+  	box-sizing: border-box;
+}
+
+.boxed-dropcap {
+	padding:5px 10px;
+	text-align:center;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	6.	SKILLBARS
+/*-----------------------------------------------------------------------------------*/
+
+.playne_skillbar {
+	position: relative;
+	display: block;
+	margin-bottom: 20px;
+	width:100%;
+	background: #eee;
+	-webkit-transition: 0.4s linear;
+	-moz-transition: 0.4s linear;
+	-ms-transition: 0.4s linear;
+	-o-transition: 0.4s linear;
+	transition: 0.4s linear;
+	-webkit-transition-property: width, background-color;
+	-moz-transition-property: width, background-color;
+	-ms-transition-property: width, background-color;
+	-o-transition-property: width, background-color;
+	transition-property: width, background-color;
+}
+
+.playne_skillbar-title {
+	margin-bottom:5px;
+	padding:0px;
+	position: relative;
+}
+
+.playne_skillbar-bar {
+	height: 20px;
+	width: 0px;
+	background: #6adcfa;
+}
+
+.playne_skill-bar-percent {
+	position: relative;
+	float:right;
+	font-size: 11px;
+	color: #444;
+}
+
+.percentage-right {
+	float:right;
+}
+
+.title-left {
+	float:left;
+}
+
+@-webkit-keyframes progress-bar-stripes{from{background-position:40px 0}to{background-position:0 0}}@-moz-keyframes progress-bar-stripes{from{background-position:40px 0}to{background-position:0 0}}@-ms-keyframes progress-bar-stripes{from{background-position:40px 0}to{background-position:0 0}}@-o-keyframes progress-bar-stripes{from{background-position:0 0}to{background-position:40px 0}}@keyframes progress-bar-stripes{from{background-position:40px 0}to{background-position:0 0}}
+
+.bar_animated {
+  	-webkit-animation: progress-bar-stripes 2s linear infinite;
+  	-moz-animation: progress-bar-stripes 2s linear infinite;
+  	-ms-animation: progress-bar-stripes 2s linear infinite;
+  	-o-animation: progress-bar-stripes 2s linear infinite;
+  	animation: progress-bar-stripes 2s linear infinite;
+}
+
+.bar_striped {  
+	background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+  	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  	background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  	background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  	background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  	-webkit-background-size: 40px 40px;
+  	-moz-background-size: 40px 40px;
+  	-o-background-size: 40px 40px;
+  	background-size: 40px 40px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	7.	COLUMNS
+/*-----------------------------------------------------------------------------------*/
+
+.playne_one-half {
+	width: 48%;
+}
+
+.playne_one-third {
+	width: 30.66%;
+}
+
+.playne_two-third {
+	width: 65.33%;
+}
+
+.playne_one-fourth {
+	width: 22%;
+}
+
+.playne_three-fourth {
+	width: 74%;
+}
+
+.playne_one-fifth {
+	width: 16.8%;
+}
+
+.playne_two-fifth {
+	width: 37.6%;
+}
+
+.playne_three-fifth {
+	width: 58.4%;
+}
+
+.playne_four-fifth {
+	width: 79.2%;
+}
+
+.playne_one-sixth {
+	width: 13.33%;
+}
+
+.playne_five-sixth {
+	width: 82.67%;
+}
+
+.playne_one-half, .playne_one-third, .playne_two-third, .playne_three-fourth, .playne_one-fourth, .playne_one-fifth, .playne_two-fifth, .playne_three-fifth, .playne_four-fifth, .playne_one-sixth, .playne_five-sixth {
+	position: relative;
+	display:block;
+	margin-right: 4%;
+	margin-bottom: 30px;
+	float: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.column-last:after { 
+	content: "."; 
+	display: block; 
+	clear: both; 
+	visibility: hidden;
+	line-height: 0; 
+	height: 0; 
+}
+
+.column-last {
+	margin-right: 0!important;
+	clear: right;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	8.	BUTTONS
+/*-----------------------------------------------------------------------------------*/
+
+.playne_button .left-icon {
+	padding-right:5px;
+}
+
+.playne_button .right-icon {
+	padding-left:5px;
+}
+
+.playne_button {
+	padding: 15px 18px;
+	display: inline-block;
+	margin:0;
+	border:0px;
+	font-size:12px;
+	line-height:1;
+	text-transform: none;
+	cursor: pointer;
+	width: auto;
+	color:#fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.playne_button.yellow {background-color: #fdebae; color: #E2BF4B;}
+.playne_button.yellow:hover{color:#fdebae;background:#E2BF4B;}
+
+.playne_button.blue {background-color: #c2ddf9; color: #4783b7;}
+.playne_button.blue:hover{color:#c2ddf9;background:#4783b7;}
+
+.playne_button.red {background-color: #ffcccc; color: #D03C25;}
+.playne_button.red:hover{color:#ffcccc; background:#D03C25;}
+
+.playne_button.green {background-color: #d1f7b6;color: #5e9537;}
+.playne_button.green:hover{color:#d1f7b6; background:#5e9537;}
+
+
+.playne_button.large {padding: 20px 23px;}
+.playne_button.small {padding: 10px 12px;}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	9.	HIGHLIGHTS
+/*-----------------------------------------------------------------------------------*/
+
+.playne_highlight {
+	padding-left:3px;padding-right:3px;
+}
+
+.playne_highlight-black,
+.playne_highlight-black a {
+	background-color: #000;color: #FFF; 
+}
+
+.playne_highlight-gray,
+.playne_highlight-gray a {
+	background-color: #222;color: #999; 
+}
+
+.playne_highlight-yellow,
+.playne_highlight-yellow a {
+	background-color: #FFF7A8;color: #695D43;
+}
+
+.playne_highlight-blue,
+.playne_highlight-blue a {
+	color: #2d98bd;background: #d6eff8;
+}
+
+.playne_highlight-green,
+.playne_highlight-green a {
+	color: #509640;background: #ecffe7;
+}
+
+.playne_highlight-red,
+.playne_highlight-red a {
+	color: #ca3436;background: #ffe4e5;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	10.	GOOGLE MAPS
+/*-----------------------------------------------------------------------------------*/
+
+.playne_googlemap { 
+	position: relative; 
+	max-width: inherit; 
+}
+
+.playne_googlemap .map_canvas { 
+	width: 100%; 
+	height: 100%; 
+}
+
+.playne_googlemap .map_canvas h3 { 
+	margin: 0 0 10px; 
+	font-size: 14px; 
+}
+
+.playne_googlemap .map_canvas img { 
+	max-width: none !important;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	11.	MESSAGE BOXES
+/*-----------------------------------------------------------------------------------*/
+
+.playne_message_box-none { 
+	margin-top: 30px; 
+	margin-bottom: 30px; 
+	padding: 30px;
+}
+
+.playne_message_box-gray { 
+	margin-top: 30px; 
+	margin-bottom: 30px; 
+	background-color: #EEE;
+	padding: 30px;
+}
+
+.playne_message_box-red { 
+	color: #ca3436;
+	background: #ffe4e5;
+	padding: 30px;
+	margin-top: 30px; 
+	margin-bottom: 30px; 
+}
+
+.playne_message_box-blue { 
+	color: #2d98bd;
+	background: #d6eff8;
+	padding: 30px;
+	margin-top: 30px; 
+	margin-bottom: 30px;   
+}
+
+.playne_message_box-yellow { 
+	background-color: #FFF7A8; 
+	color: #695D43;  
+	padding: 30px;
+	margin-top: 30px; 
+	margin-bottom: 30px;  
+}
+
+.playne_message_box-green { 
+	color: #509640;
+	background: #ecffe7;
+	padding: 30px;
+	margin-top: 30px; 
+	margin-bottom: 30px;  
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	12.	DIVIDER
+/*-----------------------------------------------------------------------------------*/
+
+.playne_divider-line {
+	content: "";
+	width: 100%;
+	height: 1px;
+	margin:30px auto;
+	background:#EEE;
+	left: 0;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	13.	TABS
+/*-----------------------------------------------------------------------------------*/
+
+.playne_tabs ul.ui-tabs-nav {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.playne_tabs ul {
+	margin: 0 !important;
+}
+
+
+.playne_tabs ul.ui-tabs-nav ul {
+	margin: 0 !important;
+}
+
+
+.playne_tabs ul.ui-tabs-nav li {
+	display: block;
+	width: auto;
+	height: 40px;
+	padding: 0 !important;
+	float: left !important;
+	margin: 0 !important;
+	outline: none;
+}
+
+.playne_tabs ul.ui-tabs-nav li a {
+	display: block;
+	text-decoration: none;
+	width: auto;
+	height: 39px;
+	padding: 0px 15px;
+	line-height: 40px;
+	margin: 0;
+	background-color: #4d515c;
+	font-size: 1em;
+	color: #FFF;
+	outline: none;
+}
+
+.playne_tabs ul.ui-tabs-nav .ui-state-active a {
+	background: #F8F9FB;
+	color:#87909b;
+	height: 40px;
+	position: relative;
+	padding-top: 0px;
+	margin: 0 0 0 0px;
+}
+
+.playne_tabs ul.ui-tabs-nav .ui-state-active a:hover {
+	background: #F8F9FB;
+}
+
+.playne_tabs ul.ui-tabs-nav li:first-child .ui-state-active a {
+	margin-left: 0;
+}
+
+.playne_tabs .tab-content {
+	background: #F8F9FB;
+	padding: 30px 15px;
+}
+
+.playne_tabs ul.tabs:after {
+	clear: both;
+}
+
+.playne_tabs ul.tabs {
+	zoom: 1;
+}
+
+.playne_tabs .ui-tabs-hide {
+	display: none;
+}
+
+
+.playne_tabs:after {
+	clear: both;
+}
+
+.playne_tabs {
+	zoom: 1;
+	margin-bottom:30px;
+}
+
+.playne_tabs .ui-tabs-hide {
+	display: none;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	14.	TOGGLES
+/*-----------------------------------------------------------------------------------*/
+
+.playne_toggle {
+	margin-bottom:30px;
+	background:#4d515c;
+}
+
+.playne_toggle .toggle-trigger {
+	display: block;
+	color: #FFF;
+	display: block;
+	font-size:12px;
+	padding: 15px;
+	outline: 0;
+	line-height: 1.5em;
+	margin: 0;
+	cursor: pointer;
+  	-webkit-touch-callout: none;
+ 	-webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+}
+
+.playne_toggle .toggle-container {
+	display: none;
+	overflow: hidden;
+	padding: 30px 15px;
+	background:#FFF;
+	border-top: 0px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	15.	PRICING TABLES
+/*-----------------------------------------------------------------------------------*/
+
+.pricing-column-last {
+	margin-right:0 !important;
+}
+
+.playne_pricing-table { 
+	list-style: none; 
+	margin: 0; 
+	padding: 0; 
+	font-size: 16px; 
+	margin-top:50px; 
+}
+
+.playne_pricing-table div { 
+	list-style: none; 
+	position:relative; 
+	display:block; 
+}
+
+.playne_pricing-table .pricing-header { 
+	background: #4d515c; 
+	text-align: center; 
+	padding-bottom: 20px; 
+}
+
+.playne_pricing-table .pricing-header h5 { 
+	color: #fff; 
+	font-size:13px; 
+	margin: 0; 
+	padding: 20px 0px; 
+	border-bottom: none; 
+	background:rgba(0,0,0,0.05); 
+}
+
+.playne_pricing-table .pricing-cost { 
+	color: #fff; 
+	font-size: 1.500em; 
+	line-height: 1em; 
+	padding-top: 20px; 
+}
+
+.playne_pricing-table .featured .pricing-header { 
+	background: #e6ae48; 
+	color: #fff;  
+}
+
+.playne_pricing-table .featured .pricing-header h5 { 
+	color: #fff; 
+	border-bottom: none; 
+	font-size:13px; 
+}
+
+.playne_pricing-table .featured .pricing-cost { 
+	border-top: 1px solid rgba(0,0,0,0.03); 
+}
+
+.playne_pricing-table .pricing-per { 
+	font-size: 0.786em; 
+	color: #fff; 
+}
+
+.playne_pricing-table .pricing-content { 
+	background: #f7f7f7; 
+	font-size: 0.857em; 
+	text-align: center; 
+}
+
+.playne_pricing-table .pricing-content ul { 
+	padding:0 !important; 
+	margin: 0 !important; 
+	list-style: none !important; 
+}
+
+.playne_pricing-table .pricing-content ul li { 
+	margin: 0 !important; 
+	padding: 10px 20px !important; 
+	list-style: none !important; 
+}
+
+.playne_pricing-table .pricing-content ul li:nth-child(2n+2) { 
+	background: rgba(0,0,0,0.02); 
+}
+
+.playne_pricing-table .pricing-button { 
+	background: #f7f7f7; 
+	text-align: center; 
+	padding: 20px; }
+
+.playne_pricing-table .pricing-button .button { 
+	float: none; 
+	margin: 0 auto; 
+}
+
+.playne_pricing-button-inner {
+	margin:0px;
+	padding: 12px 30px;
+	background: #4d515c;
+	display: inline-block;
+	font-weight: bold;
+	letter-spacing:0px;
+	line-height: 20px;
+	cursor: pointer;
+	width: auto;
+	color: #fff;
+	text-transform:uppercase;
+	font-size:10px;	
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	transition: all 0.3s;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.playne_pricing-button-inner:hover {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	16.	COUNTERS
+/*-----------------------------------------------------------------------------------*/
+
+.playne_counter {
+	display:block;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	17.	TESTIMONIAL SLIDER
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * BxSlider v4.1.2 - Fully loaded, responsive content slider
+ * http://bxslider.com
+ *
+ * Written by: Steven Wanderski, 2014
+ * http://stevenwanderski.com
+ * (while drinking Belgian ales and listening to jazz)
+ *
+ * CEO and founder of bxCreative, LTD
+ * http://bxcreative.com
+ */
+
+/** RESET AND LAYOUT
+===================================*/
+
+.bx-wrapper {
+	position: relative;
+	margin: 0 auto 60px;
+	padding: 0;
+	*zoom: 1;
+	clear:both;
+  	-webkit-touch-callout: none;
+ 	-webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+}
+
+.bx-wrapper img {
+	max-width: 100%;
+	display: block;
+}
+
+/** THEME
+===================================*/
+
+.playne_bxslide {
+	text-align:center;
+}
+
+.playne_bxslide h5 {
+	font-size:15px;
+}
+
+.playne_bxslide blockquote {
+	font-size:16px;
+	font-style:italic;
+	border:none;
+	text-align:center;
+	padding:0;
+	margin:0;
+	padding-bottom:15px;
+}
+
+.playne_bxslide p {
+	padding-bottom:20px;
+}
+
+.playne_bxslide .quote-image img {
+	border-radius: 50%;
+	position: relative;
+  	max-width: 80px;
+  	height: auto;
+  	margin: 0 auto 30px;
+}
+
+.bx-wrapper .bx-viewport {
+	/*fix other elements on the page moving (on Chrome)*/
+	-webkit-transform: translatez(0);
+	-moz-transform: translatez(0);
+    	-ms-transform: translatez(0);
+    	-o-transform: translatez(0);
+    	transform: translatez(0);
+}
+
+.bx-wrapper .bx-pager,
+.bx-wrapper .bx-controls-auto {
+	position: absolute;
+	bottom: -30px;
+	width: 100%;
+}
+
+/* PAGER */
+
+.bx-controls-direction {
+	display:none;
+}
+
+.bx-wrapper .bx-pager {
+	text-align: center;
+	font-size: .85em;
+	font-family: Arial;
+	font-weight: bold;
+	color: #666;
+	padding-top: 20px;
+}
+
+.bx-wrapper .bx-pager .bx-pager-item,
+.bx-wrapper .bx-controls-auto .bx-controls-auto-item {
+	display: inline-block;
+	*zoom: 1;
+	*display: inline;
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+	width: 8px;
+  	height: 8px;
+  	display: block;
+  	border: 2px solid #3e4651;
+	background: none;
+	text-indent: -9999px;
+	display: block;
+	margin: 0 5px;
+	outline: 0;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active {
+	background: #3e4651;
+}
+
+.bx-wrapper .bx-controls-direction a.disabled {
+	display: none;
+}
+
+.bx-wrapper .right-arrow:hover {
+  cursor: e-resize;
+}
+
+.bx-wrapper .left-arrow:hover {
+  cursor: w-resize;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	18.	ICONS
+/*-----------------------------------------------------------------------------------*/
+
+.icon-background-wrapper {
+	position:relative;
+	display:inline-block;
+}
+
+.ontop {
+	z-index:99;
+	position:relative;
+}
+
+.icon-background-wrapper .ontop {
+	z-index:99;
+	position:relative;
+}
+
+.icon-background {
+	position: absolute;
+  	left: 0;
+  	width: 100%;
+  	text-align: center;
+}
+
+.playne_icon_box {
+	padding:30px;
+}
+
+.playne_icon_box i {
+	margin-bottom:20px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	19.	ACCORDION
+/*-----------------------------------------------------------------------------------*/
+
+.playne_accordion h4.playne_accordion-trigger { 
+	display: block; 
+	font-size:12px; 
+	padding: 15px;
+    	background-color: #4d515c;
+	outline: 0;  	
+	margin: 0px!important; 
+	cursor: pointer; 
+  	-webkit-touch-callout: none;
+ 	-webkit-user-select: none;
+  	-khtml-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+}
+
+.playne_accordion h4.playne_accordion-trigger a { 
+	text-decoration: none !important; 
+	color:#FFF;
+}
+
+.playne_accordion .ui-state-focus { 
+	outline: none;
+}
+
+.playne_accordion .playne_accordion-trigger:hover { 
+	text-decoration: none; 
+}
+
+.playne_accordion .playne_accordion-trigger.ui-state-active { 
+	text-decoration: none; 
+}
+
+.playne_accordion .playne_accordion-trigger.ui-state-active a { 
+}
+
+.playne_accordion .trigger-icon {
+	float:right;
+	color:#FFF;
+}
+
+.playne_accordion .ui-accordion-content { 
+	padding: 30px 15px; 
+	border-top: 0px; 
+}
+
+.playne_accordion .ui-accordion-content p:last-child { 
+	margin: 0px; 
+}
+
+.playne_accordion {
+	background:#F8F9FB;
+	margin-bottom:30px;
+}
+
+.playne_accordion-inner {
+	border-bottom:1px solid #EEE;
+}
+
+
+.playne_bxslide-image {
+	padding-bottom:20px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	20.	TOOLTIPS
+/*-----------------------------------------------------------------------------------*/
+
+.playne_tip {
+	border-bottom:1px dotted;
+	display:inline-block;
+}
+
+.tipr_content {
+     	font: 13px/1.7 'Helvetica Neue', Helvetica, Arial, sans-serif;
+     	color: #FFF; 
+     	background: rgba(0,0,0,0.02);
+     	padding: 9px 17px;
+}
+.tipr_container_bottom {
+     	display: none;
+     	position: absolute;
+     	margin-top: 13px;
+     	z-index: 1000;
+  	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+  	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+  	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.01) 0 8px rgba(0, 0, 0, 0.03);
+  	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.01) 0 8px rgba(0, 0, 0, 0.03);
+  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.01) 0 8px rgba(0, 0, 0, 0.03);
+}
+.tipr_container_top {
+     	display: none;
+     	position: absolute;
+     	margin-top: -77px;
+     	z-index: 1000;
+  	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.01);
+  	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.01);
+  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.01);
+  	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.01) 0 8px rgba(0, 0, 0, 0.01);
+  	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.01) 0 8px rgba(0, 0, 0, 0.01);
+  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.01) 0 8px rgba(0, 0, 0, 0.01);
+}
+.tipr_point_top, .tipr_point_bottom 
+{
+     	position: relative;
+	background: rgba(0, 0, 0, 0.85);
+}
+.tipr_point_top:after, .tipr_point_top:before
+{
+	position: absolute;
+	pointer-events: none;
+	border: solid transparent;
+	top: 100%;
+	content: "";
+	height: 0;
+	width: 0;
+}
+.tipr_point_top:after
+{
+	border-top-color: rgba(0, 0, 0, 0.85);
+	border-width: 8px;
+	left: 50%;
+	margin-left: -8px;
+}
+.tipr_point_top:before 
+{
+	border-width: 9px;
+	left: 50%;
+	margin-left: -9px;
+}
+.tipr_point_bottom:after, .tipr_point_bottom:before
+{
+	position: absolute;
+	pointer-events: none;
+	border: solid transparent;
+	bottom: 100%;
+	content: "";
+	height: 0;
+	width: 0;
+}
+.tipr_point_bottom:after
+{
+	border-bottom-color:  rgba(0, 0, 0, 0.85);
+	border-width: 8px;
+	left: 50%;
+	margin-left: -8px;
+}
+.tipr_point_bottom:before 
+{
+	border-width: 9px;
+	left: 50%;
+	margin-left: -9px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	21.	CHARTS
+/*-----------------------------------------------------------------------------------*/
+
+.easyPieChart {
+	display:inline-block;
+  	position: relative;
+  	text-align: center;
+}
+
+.easyPieChart canvas {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+}
+
+.percentage, .label {
+  	text-align: center;
+  	margin-bottom: 0.3em;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	A.	TABLET & MOBILE PHONES
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (max-width:755px) {
+
+.playne_one-half, .playne_one-third, .playne_two-third, .playne_three-fourth, .playne_one-fourth, .playne_one-fifth, .playne_two-fifth, .playne_three-fifth, .playne_four-fifth, .playne_one-sixth, .playne_five-sixth {
+	width:100%;
+}
+
+}
+ 
+/*-----------------------------------------------------------------------------------*/
+/*	B.	MOBILE PHONE LANDSCAPE
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+.playne_one-half, .playne_one-third, .playne_two-third, .playne_three-fourth, .playne_one-fourth, .playne_one-fifth, .playne_two-fifth, .playne_three-fifth, .playne_four-fifth, .playne_one-sixth, .playne_five-sixth {
+	width:100%;
+}
+
+}
+ 
+/*-----------------------------------------------------------------------------------*/
+/*	C.	TABLET PORTRAIT
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+.playne_one-half, .playne_one-third, .playne_two-third, .playne_three-fourth, .playne_one-fourth, .playne_one-fifth, .playne_two-fifth, .playne_three-fifth, .playne_four-fifth, .playne_one-sixth, .playne_five-sixth {
+	width:100%;
+}
+
+}

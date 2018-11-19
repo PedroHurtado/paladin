@@ -1,0 +1,25 @@
+<div
+        class="booking-date-picker-row-container padding5px"
+        layout="row"
+        id="booking-date-picker"
+        layout-align="space-between center"
+        md-colors="::{borderColor:'default-primary-A400'}"
+        ng-click="selectDate()" style="position: relative">
+
+    <span class="fontWeight450" ng-if="startDate">{{ startDate | amDateFormat: 'DD.MM.YY'}}</span>
+    <span class="fontWeight450" ng-if="!startDate">{{'START_DATE' | translate}}</span>
+    <div style="background-color: black; height: 2px; width: 10px"></div>
+    <span class="fontWeight450" ng-if="endDate">{{ endDate  | amDateFormat: 'DD.MM.YY'}}</span>
+    <span class="fontWeight450" ng-if="!endDate">{{'END_DATE' | translate}}</span>
+
+    <md-date-range id="desktopPicker"
+                   auto-confirm="true"
+                   show-template="false"
+                   is-disabled-date="isDateAvailable($date)"
+                   max-range="product.MaxRentalPeriod || undefined"
+                   md-on-select="onDesktopSelect($dates)"
+                   localization-map="pickerTranslations"
+                   one-panel="true" style="position: absolute; height: 0; width: 0; overflow: hidden; bottom: 0; left: 0">
+
+    </md-date-range>
+</div>

@@ -1,0 +1,130 @@
+<div class="rental-request-picker md-whiteframe-4dp md-padding" layout="column" layout-align="space-around stretch"
+     authed-action>
+
+    <!-- Price / Day -->
+    <div layout="row">
+        <span class="fontWeight500">
+            {{ product.Product_Price_Perday | ptCurrency }}
+            <span class="fontWeight300" md-colors="::{color:'default-primary-A300'}">
+                / {{ 'DAY' | translate }}
+            </span>
+        </span>
+    </div>
+
+    <!-- Rating View -->
+    <rating-view rating="product.Product_ReviewScore / 2"
+                 read-only="true"
+                 count="::product.Product_ReviewCount"></rating-view>
+
+    <!-- Date Picker -->
+    <div layout="row" layout-wrap layout-align="start start" class="verticalPadding5px">
+
+                 <span class="fontWeight300 font10"
+                       md-colors="::{color:'default-primary-A300'}">
+                     {{'DATE_PICKER' | translate}}
+                 </span>
+
+        <booking-date-picker flex="100"
+                             id="{{bookingPickerId}}"
+                             result-callback="onDatesSelected"
+                             start-date="startDate"
+                             end-date="endDate"
+                             class="verticalPadding5px"
+                             product-booking-details="productBookingDetails"
+                             product="product"
+        ></booking-date-picker>
+    </div>
+
+    <md-divider layout="column" class="verticalPadding10px"></md-divider>
+
+    <div layout="column"
+         layout-align="space-around stretch">
+
+        <div ng-repeat="price in prices"
+             layout="column"
+             layout-align="start stretch">
+
+            <md-divider ng-if="$last"></md-divider>
+
+            <div layout="row"
+                 layout-align="space-between center"
+                 class="padding5px"
+                 md-colors="::{color: $last ? 'default-primary-A700' : 'default-primary-A300'}">
+
+                         <span ng-class="{'fontWeight400': !$last, 'fontWeight500': $last}">
+                             {{price.description | capitalize}}
+
+                             <i ng-if="price.tooltip" class="fa fa-question-circle"
+                                md-colors="::{color:'default-primary-200'}">
+                                 <md-tooltip md-direction="top" class="font12pt">{{price.tooltip}}</md-tooltip>
+                             </i>
+                         </span>
+
+                <span ng-class="{'fontWeight400': !$last, 'fontWeight500 verticalPadding5px': $last}">
+                             {{price.price | ptCurrency | capitalize}}
+                         </span>
+
+            </div>
+        </div>
+        <span ng-if="statusError"
+              md-colors="::{color:'default-warn-600'}"
+              class="horizontalMargin5px font12"
+              flex="90">
+                     {{statusError | translate}}
+                 </span>
+    </div>
+
+    <!--Request to rent P2P-->
+    <div ng-if="!product.Product_TryAndBuy" layout="row" layout-align="center center" layout-wrap>
+        <md-button class="md-button textColorWhite md-whiteframe-2dp text-transform-none"
+                   flex="90"
+                   md-colors="{backgroundColor: 'default-primary-200'}"
+                   authed-action
+                   ng-click="onRequestRentBtnClicked()">
+            {{'REQUEST_TO_RENT' | translate}}
+        </md-button>
+       
+        <span ng-if="statusError"
+              md-colors="::{color:'default-warn-600'}"
+              class="horizontalMargin5px font12"
+              flex="90">
+                     {{statusError | translate}}
+                 </span>
+
+        <span class="fontWeight300 font10 textCenter"
+              md-colors="::{color:'default-primary-A300'}"
+              flex="100">
+                     {{'NO_CHARGE_YET' | translate}}
+                 </span>
+    </div>
+    <!-- Try and Buy -->
+    <div ng-if="product.Product_TryAndBuy" layout="row" layout-align="center center" layout-wrap>
+        <md-button class="md-button textColorWhite md-whiteframe-2dp text-transform-none"
+                   flex="90"
+                   md-colors="{backgroundColor: 'default-primary-200'}"
+                   authed-action
+                   ng-click="onRequestRentBtnClicked()">
+                   {{ (prices.length > 0? 'TRY_IT_FOR' : 'TRY_IT') | translate: {price: (prices[prices.length-1].price | ptCurrency)} }}
+        </md-button>
+        <div flex="90" ng-if="product.Product_TryAndBuy">
+            <hr class="hr-text" data-content="{{'OR' | translate}}">
+        </div>
+        <md-button class="md-button md-whiteframe-1dp text-transform-none buy-button"
+                   flex="90"
+                   authed-action
+                   ng-click="onBuyBtnClicked()">
+            {{'BUY_NOW' | translate}}
+        </md-button>
+
+        <span class="fontWeight300 font10 textCenter"
+              md-colors="::{color:'default-primary-A300'}"
+              flex="100">
+                     {{'RETAIL_PRICE' | translate}}: 
+                     <span class="fontWeight300 font10 textCenter"
+                        md-colors="::{color:'default-primary-A300'}"
+                        style="padding-left: 5px">
+                         {{product.Product_PurchasePrice | ptCurrency}}
+                     </span>
+                 </span>
+    </div>
+</div>

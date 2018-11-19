@@ -1,0 +1,15 @@
+<div layout="row" layout-align="center start" layout-wrap flex="100">
+    <div layout="row" layout-align="start center" flex="100">
+        <user-item
+                flex
+                user-name="review.ReviewBy_UserName"
+                user-image="review.ReviewBy_UserImage"
+                user-id="review.Reviewby" stars="review.Review_Precnt/2">
+        </user-item>
+        <!--<div flex style="background-color: blue"> wow</div>-->
+        <span md-colors="::{color:'default-primary-A300'}">{{ review.Review_Date.replace('/','.').replace('/','.') }}</span>
+    </div>
+    <div flex="90" style="padding-bottom: 10px" md-colors="::{color:'default-primary-A300'}">
+        {{review.Review_Comment}}
+    </div>
+</div>

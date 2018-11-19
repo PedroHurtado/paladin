@@ -1,0 +1,64 @@
+<div layout="column" md-theme="default" class="md-primary app-footer">
+    <div class="md-padding" layout="row" layout-wrap="wrap" layout-align="center center" md-colors="::{backgroundColor: 'default-primary-A200'}">
+        <div flex="100" style="height: 50px"></div>
+        <span class="fontWeight500 text-transform-none textCenter font20pt" flex="100"> {{:: 'FOOTER_LEND_MAKE_MONEY' | translate}} </span>
+        <span class="fontWeight500 text-transform-none textCenter font20pt" flex="100"> {{:: 'FOOTER_BORROW_SAVE_MONEY' | translate}}</span>
+        <span class="font16 textCenter fontWeight400" flex-gt-sm="33" flex="100">
+            {{:: 'FOOTER_PALADIN_DESCRIPTION' | translate }}
+        </span>
+        <div class="md-padding" flex="100" layout="column" layout-gt-xs="row" layout-align="center center">
+            <a class="md-padding md-margin app-download-btn ios" type="button" ng-href="https://itunes.apple.com/us/app/paladin-borrow-rent-stuff/id1129780407?mt=8"></a>
+            <a class="md-padding md-margin app-download-btn android" type="button"  ng-href="https://play.google.com/store/apps/details?id=com.a2l.paladin"></a>
+        </div>
+    </div>
+    <div md-colors="::{backgroundColor: 'default-primary-500'}" layout="column" layout-align="center stretch">
+        <div layout="row" flex="100">
+            <div flex class="md-padding"></div>
+            <div flex="70" layout="column" layout-gt-sm="row" layout-align-gt-sm="center stretch" layout-fill>
+                <!-- Language Selection-->
+                <div flex="25" class="md-padding textCenter" layout="column" layout-align="start start" layout-align-sm="center center" layout-align-xs="center center">
+                    <div layout="row" layout-align="start start">
+                        <img lazy-loading="{{'/assets/' + selectedLanguage.code + '.png'}}" alt="{{selectedLanguage.name}}" style="margin: 29px 0 26px;">
+                        <md-select ng-model="selectedLanguageCode" ng-change="onSelectLanguage(selectedLanguageCode)" placeholder="{{selectedLanguage.name}}" class="md-no-underline" md-colors="::{backgroundColor: 'default-primary-500'}">
+                            <md-option ng-repeat="lang in supportedLanguages" value="{{lang.code}}"> {{lang.name}} </md-option>
+                        </md-select>
+                    </div>
+
+                </div>
+                <!--Menu Lists-->
+                <div flex="25" class="md-padding" ng-repeat="menuList in menuLists | filter: filterMenuItems" hide-sm hide-xs>
+                    <div layout="column" layout-align="start start">
+                        <span class="fontWeight500 padding5px">{{ ::menuList.title | translate}} </span>
+                        <!--suppress XmlDuplicatedId -->
+                        <a id="{{'footer-' + item.itemId}}"
+                           class="fontWeight400 textColorWhite padding5px"
+                           ng-repeat="item in menuList.list"
+                           ng-href="{{getMenuItemLink(item)}}"
+                           ng-click="$event.preventDefault(); menuClick(item)">
+                            {{ ::item.title | translate }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div flex></div>
+        </div>
+
+        <div layout="column" layout-align="center center">
+            <div class="footer-separator"></div>
+        </div>
+        <div layout="row" flex="100">
+            <div flex class="md-padding"></div>
+            <div flex="70" layout="row" class="md-padding" layout-align-sm="center start" layout-align-xs="center start">
+                <a href="/" class="totop clearfix"><img class="logo-image" lazy-loading="/assets/Paladin_LOGO_white.png" alt="{{::'INVEST' | translate}} "></a>
+                <!--<span class="md-padding" hide-sm hide-xs>Paladin 2018</span>-->
+                <div flex hide-sm hide-xs></div>
+                <!-- Facebook -->
+                <a class="md-margin socialBtn" layout="column" layout-align="center center" href="https://www.facebook.com/paladintrue" hide-sm hide-xs><i class="fa fa-facebook"></i></a>
+                <!-- LinkedIn -->
+                <a class="md-margin socialBtn" layout="column" layout-align="center center" href="https://www.linkedin.com/company/10842380" hide-sm hide-xs><i class="fa fa-linkedin"></i></a>
+            </div>
+            <div flex class="md-padding"></div>
+        </div>
+    </div>
+    <div style="height: 550px" md-colors="::{backgroundColor: 'default-primary-500'}" ng-style="{'height': extraStyle.height}"></div>
+</div>

@@ -1,0 +1,12 @@
+<div class="padding10px" layout="row" layout-align="center center" ng-click="goToProfile()">
+    <user-avatar pic-size="picSize" user-image="userImage"></user-avatar>
+    <div class="md-margin" flex>
+        <span class="fontWeight500">{{::userName}}</span>
+        <rating-view
+                ng-show="stars != null"
+                read-only="true"
+                rating="stars"
+                count="reviews"></rating-view>
+    </div>
+
+</div>

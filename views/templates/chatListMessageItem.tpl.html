@@ -1,0 +1,55 @@
+<div layout="row"
+     layout-align="start stretch"
+     class="padding5px chat-message"
+     flex="100">
+
+    <div ng-if="message.isMe"
+         layout="row"
+         layout-align="end start"
+         flex="100">
+
+        <div layout="column" layout-align="center end">
+            <div layout="row" layout-align="end center">
+                <span class="font10" md-colors="::{color:'default-primary-A300'}">{{message.dateSent | amDateFormat: 'DD/MM/YY H:mm'}}</span>
+            </div>
+            <div
+                    class="speech-bubble right"
+                    layout="row"
+                    layout-align="start center"
+                    layout-wrap
+                    md-colors="::{backgroundColor:'default-primary-500'}">
+                <span flex="100" ng-if="message.message">{{message.message}}</span>
+                <img flex="100"
+                     ng-if="message.img != null"
+                     src="{{message.img}}">
+            </div>
+        </div>
+        <div class="padding5px">
+            <user-avatar user-image="myImage" pic-size="50"></user-avatar>
+        </div>
+    </div>
+    <div ng-if="!message.isMe"
+         layout="row"
+         layout-align="start start"
+         flex="100" >
+        <div class="padding5px">
+            <user-avatar user-image="recipientImage" pic-size="50">
+            </user-avatar>
+        </div>
+        <div layout="column" layout-align="center start">
+            <div>
+                <span class="font10" md-colors="::{color:'default-primary-A300'}">{{message.dateSent | amDateFormat: 'DD/MM/YY H:mm'}}</span>
+            </div>
+            <div
+                    class="speech-bubble left"
+                    layout="row"
+                    layout-align="start center"
+                    md-colors="::{backgroundColor:'default-primary-A600'}">
+                <span flex="100" ng-if="message.message">{{message.message}}</span>
+                <img flex="100"
+                     ng-if="message.img != null"
+                     src="{{message.img}}">
+            </div>
+        </div>
+    </div>
+</div>

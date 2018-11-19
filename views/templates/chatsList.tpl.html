@@ -1,0 +1,48 @@
+<div class="chats-list" layout="column" layout-align="start stretch" flex="100">
+    <md-list when-scrolled="loadMore()">
+
+        <md-list-item
+                ng-repeat="chat in chats track by chat.Chat_Id"
+                ng-click="onChatListItemClicked(chat)"
+                flex="100" md-colors="{backgroundColor: selectedChatId == chat.Chat_QBRoomId ? 'default-primary-500' : 'default-primary-A500'}">
+
+            <div layout="row" flex="100" layout-align="start center" ng-click="onChatListItemClicked(chat)">
+
+                <user-avatar
+                        user-image="chat.thumbnail"
+                        pic-size="40" class="padding5px"></user-avatar>
+
+                <div layout="column" layout-align="start stretch" class="padding5px" style="line-height: 21px">
+                    <h4 class="text-transform-none" md-truncate style="margin-bottom: 2px">{{chat.recipient}}</h4>
+                    <div layout="row" layout-align="space-between center" layout-wrap>
+                        <span class="fontWeight400 font10" md-truncate md-colors="::{color:'default-primary-A400'}">{{chat.Product_Title}}</span>
+                        <span class="font10 text-uppercase" flex="100" md-colors="::{color: chat.isLent ? 'default-primary-500' : 'default-warn-500'}">{{(chat.isLent ? 'LENT' : 'BORROWED') | translate}}</span>
+                    </div>
+                </div>
+                <div flex>
+                </div>
+                <div
+                     ng-if="unreadDict[chat.Chat_QBRoomId] > 0" layout="row" layout-align="end center">
+                    <div class="unread-badge-container" md-colors="::{backgroundColor:'default-primary-500'}" layout="row" layout-align="center center">
+                        <span class="unread-badge textColorWhite" ng-if="unreadDict[chat.Chat_QBRoomId] > 0">{{unreadDict[chat.Chat_QBRoomId]}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <md-divider></md-divider>
+        </md-list-item>
+
+        <!-- Load more -->
+        <md-list-item flex="100" ng-if="isLoading" layout-align="center stretch">
+            <div layout="row" flex="100" layout-align="center center" class="md-padding">
+                <md-progress-circular></md-progress-circular>
+            </div>
+        </md-list-item>
+
+        <md-list-item flex="100" ng-if="!isLoading && chats.length == 0">
+            <div layout="row" flex="100" layout-align="center center" class="md-padding">
+                <span> {{ 'NO_CHATS' | translate }}</span>
+            </div>
+        </md-list-item>
+    </md-list>
+</div>

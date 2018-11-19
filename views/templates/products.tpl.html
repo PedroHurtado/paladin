@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12" style="margin-bottom: -6px; padding-top: 17px; margin-left: -20px;">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12" >
+                <div class="row" id="breadcrumb">
+                    <a ng-href="{{$ctrl.getCategoriesUrl(('ACTG' | translate),null)}}" ng-click="$event.preventDefault(); $ctrl.switchCategoryToAll()">
+                        {{'ACTG' | translate}}
+                    </a>
+                    <span ng-if="$ctrl.isNotAllCategory()">/</span>
+                    <a ng-href="{{$ctrl.getCategoriesUrl($ctrl.filter.category.selectedCategoryName,null)}}" ng-click="$event.preventDefault(); $ctrl.switchMainCategory()" ng-if="$ctrl.isNotAllCategory()">
+                        {{$ctrl.filter.category.selectedCategoryName}}
+                    </a>
+
+                    <span ng-if="$ctrl.filter.category.selectedSubCategoryId!=null">/</span>
+                    <a ng-href="{{$ctrl.getCategoriesUrl($ctrl.filter.category.selectedCategoryName,$ctrl.filter.category.selectedSubCategoryName)}}"  ng-if="$ctrl.filter.category.selectedSubCategoryId!=null" ng-click="$event.preventDefault(); $ctrl.switchSubCategory()">
+                        {{$ctrl.filter.category.selectedSubCategoryName}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+        <div class="row">
+             <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+                 <div class="row search-menu" id="search" style="max-width:1120px;">  
+                    <search filter="$ctrl.filter"></search> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-sm-12 col-xs-12 no-padding">
+        
+        <div class="row no-padding ">
+            <div class="col-lg-3 col-sm-3 col-xs-12  no-padding" id="filter">   
+                <div class="row">
+
+                    <div id="filter-box">
+                    <div class="box">
+                        <filters count="count" filter="$ctrl.filter"></filters>
+                    </div>
+                    </div>
+
+                    </br>
+                    <div class="box hidden-xs"  ng-show="$ctrl.filter && $ctrl.getCategoryDescription()!=null">
+                        <ul class="list-group">
+                            <li class="list-group-item divider sidebar-heading" >{{$ctrl.filter.category.selectedCategoryName && !$ctrl.filter.category.selectedSubCategoryName ? $ctrl.filter.category.selectedCategoryName : $ctrl.filter.category.selectedSubCategoryName}}</li>
+                            <li class="list-group-item idebar-list" >
+                                 <span ng-bind-html="$ctrl.getCategoryDescription()"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-sm-9 col-xs-12 no-padding" >
+
+
+                <div class="row">
+                    <div class="col-lg-8 col-sm-8 col-xs-12 no-padding-right" >
+                        <div style="margin-left: auto;">
+                            <h1 class="h1-title-products" id="h1TitlePrList">{{$ctrl.getH1() }}</h1>
+                        </div>
+                    </div>
+                   
+                   <div class="col-lg-4 col-sm-4 col-xs-12 no-padding-right no-margin" id="sort">
+                        <div class="row sort-product">
+                                <div class="col-lg-12 col-sm-12 col-xs-12" style="text-align: center;">
+                                    <!-- <div class="btn-group pull-right" style="margin-right:18px;">
+                                        <span class="pull-left dropdown-title">{{'SB' | translate}} </span>
+                                        <button class="btn btn-default btn-sm btn-block btn-drop dropdown-toggle box-uper" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$ctrl.filter.sortByCode ? $ctrl.filter.sortByCode : $ctrl.filter.sortBy  | uppercase | translate}} <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">                         
+                                            <li><a href="#" ng-click="$ctrl.sortBy('SortByBestProduct','RELEVANCE')">{{'RELEVANCE' | translate}}</a></li>
+                                            <li><a href="#" ng-click="$ctrl.sortBy('SortByPopularity','POPULARITY')">{{'POPULARITY' | translate}}</a></li>
+                                            <li><a href="#" ng-click="$ctrl.sortBy('SortByRecent','MREC')">{{'MREC' | translate}}</a></li>
+                                            <li><a href="#" ng-click="$ctrl.sortBy('SortByGeoLocation','NEAREST')">{{'NEAREST' | translate}}</a></li>
+                                            <li><a href="#" ng-click="$ctrl.sortBy('SortByLowPrice','LP')">{{'LP' | translate}}</a></li>
+                                            <li><a href="#" ng-click="$ctrl.sortBy('SortByHighPrice','HP')">{{'HP' | translate}}</a></li>
+                                        </ul>
+                                    </div> -->
+                                    <div class="btn-group pull-right" style="margin-right:18px;">
+                                        <md-menu>
+                                            <md-button class="md-button text-transform-none font14 fontWeight450" ng-click="$mdMenu.open($event)">
+                                                {{'SB' | translate}} {{$ctrl.filter.sortByCode ? $ctrl.filter.sortByCode : $ctrl.filter.sortBy | translate}}     <span class="fa fa-angle-down"></span>
+                                            </md-button>
+                                            <md-menu-content width="3">
+                                                <md-menu-item>
+                                                    <md-button ng-click="$ctrl.sortBy('SortByBestProduct','RELEVANCE')">
+                                                        {{'RELEVANCE' | translate}}
+                                                    </md-button>
+                                                </md-menu-item>
+                                                <md-menu-item>
+                                                    <md-button ng-click="$ctrl.sortBy('SortByPopularity','POPULARITY')">
+                                                        {{'POPULARITY' | translate}}
+                                                    </md-button>
+                                                </md-menu-item>
+                                                <md-menu-item>
+                                                    <md-button ng-click="$ctrl.sortBy('SortByRecent','MREC')">
+                                                        {{'MREC' | translate}}
+                                                    </md-button>
+                                                </md-menu-item>
+                                                <md-menu-item>
+                                                    <md-button ng-click="$ctrl.sortBy('SortByGeoLocation','NEAREST')">
+                                                        {{'NEAREST' | translate}}
+                                                    </md-button>
+                                                </md-menu-item>
+                                                <md-menu-item>
+                                                    <md-button ng-click="$ctrl.sortBy('SortByLowPrice','LP')">
+                                                        {{'LP' | translate}}
+                                                    </md-button>
+                                                </md-menu-item>
+                                                <md-menu-item>
+                                                    <md-button ng-click="$ctrl.sortBy('SortByHighPrice','HP')">
+                                                        {{'HP' | translate}}
+                                                    </md-button>
+                                                </md-menu-item>
+                                            </md-menu-content>
+                                        </md-menu>
+                                    </div>
+                                </div>
+                        </div>
+                   </div> 
+                </div>
+
+                <div class="row no-padding-right">
+                    <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs no-padding-right" >
+                         <div class="container-fluid banner-nopadding">
+                            <div class="row no-padding-right">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 banner-nopadding">
+
+                                   <span ng-if="$ctrl.filter.category && ($ctrl.filter.category.selectedCategoryBannerImage || $ctrl.filter.category.selectedSubCategoryBannerImage)" class="padding-top-bottom">
+                                       <img lazy-loading="{{$ctrl.getBannerImageUrl()}}" class="banner-img">
+                                   </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="h2_id">
+                    <div class="col-lg-12 col-sm-12 hidden-xs no-padding-right" >
+                         <h2 id="h2TitlePrList">{{$ctrl.getH2() }}</h2>
+                    </div>
+                </div>
+                <div class="row placeholders no-margin" id="product_list">
+                        <!--<div class="spinner" ng-show="$ctrl.loading"></div>-->
+                        <productlist filter="$ctrl.filter">
+                            
+                        </productlist>
+                </div>            
+            </div>
+
+          
+        </div>
+    </div>
+</div>

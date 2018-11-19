@@ -1,0 +1,142 @@
+ <md-dialog aria-label="Some" id="loginPopup" style="max-height: 100%; max-width: 100%" class="login-signup-popup">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <span hide-xs hide-sm>{{'HEADER_TITLE' | translate}}</span>
+                <span hide-gt-sm class="font14pt">{{'HEADER_TITLE' | translate}}</span>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()" >
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab">
+                <md-tab label="{{'HEADER_LOGIN' | translate}}">
+                    <div flex="100" layout-align="center center" layout="row" layout-wrap>
+
+                        <div flex="100" layout-align="center center" layout="row" style="margin-top: 8px">
+                            <div id="fb-button-login"  fb-button class="fb-login-button"
+                                 data-max-rows="1"
+                                 data-size="large"
+                                 data-button-type="continue_with"
+                                 data-show-faces="false"
+                                 data-auto-logout-link="false"
+                                 data-use-continue-as="true"
+                                 data-scope="email, public_profile"
+                                 onlogin="angular.element($('#fb-button-login')).scope().registerFacebook()"></div>
+
+                            <div ng-switch on="registerFacebookStatus">
+                                <div  ng-switch-when="error">{{loginFacebookMessage}}</div>
+                            </div>
+                        </div>
+                        <hr  style="width: 95%; height: 1px; margin: 8px 0 0 0; border: none; background-color: rgb(224, 224, 224);">
+                        <div flex="100" layout-align="center center" layout="row">
+                            <span>{{'HEADER_OR' | translate}}</span>
+                        </div>
+                        <form flex="100"
+                              name="loginForm"
+                              class="md-padding"
+                              ng-submit="login(loginData.username, loginData.password)">
+
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <label>{{'HEADER_USERNAME_LOGIN' | translate}}</label>
+                                <!-- <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon> -->
+                                <md-icon class="fa fa-user fa-lg"></md-icon>
+                                <input ng-model="loginData.username" name="username" type="text" ng-required="true">
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <label>{{'HEADER_PASSWORD' | translate}}</label>
+                                <!-- <md-icon md-svg-src="img/icons/ic_vpn_key_24px.svg" class="key"></md-icon> -->
+                                <md-icon class="fa fa-key fa-lg"></md-icon>
+                                <input ng-model="loginData.password" name="password" type="password" ng-required="true">
+
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block" style="margin-top:-40px;">
+                                <a ng-click="showTabDialogForgotPassword()"style="font-size:12px; cursor: pointer;">{{'HEADER_FORGOT_PASSWORD' | translate}}</a>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <md-button ng-hide="isLoading" type="submit" class="md-raised md-primary">{{'HEADER_LOGIN' | translate}}</md-button>
+                                <md-progress-circular ng-show="isLoading" md-diameter="30"/>
+                            </md-input-container>
+
+                            <div ng-switch on="loginStatus">
+                                <div ng-switch-when="error"><span class="md-body-1-warn">{{loginMessage}}</span></div>
+                            </div>
+
+                        </form>
+                    </div>
+                </md-tab>
+
+                <!-- Sign up form -->
+                <md-tab label="{{'HEADER_SIGNUP' | translate}}">
+                    <div class="promo-message-signup" layout="row" layout-align="center center">
+                            <span>{{promoMessage}}</span>
+                    </div>
+                    <div flex="100" layout-align="center center" layout="row" layout-wrap>
+                        <div flex="100" layout-align="center center" layout="row" style="margin-top: 8px">
+                            <div fb-button class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true" data-scope="email, public_profile"  onlogin="angular.element($('#fb-button-register')).scope().registerFacebook()" id="fb-button-register"></div>
+                            <div ng-switch on="signupFacebookStatus">
+                                <div  ng-switch-when="error">{{signupFacebookMessage}}</div>
+                                <div  ng-switch-when="success">{{'HEADER_EMAIL_CHECK' | translate}}</div>
+                            </div>
+                        </div>
+                        <hr  style="width: 95%; height: 1px; margin: 8px 0 0 0; border: none; background-color: rgb(224, 224, 224);">
+                        <div flex="100" layout-align="center center" layout="row">
+                            <span>{{'HEADER_OR' | translate}}</span>
+                        </div>
+                        <form flex="100"
+                                name="signupForm"
+                                class="md-padding"
+                                ng-submit="register(signupData.username, signupData.password, signupData.email, signupData.location)">
+
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <label>{{'HEADER_USERNAME_SIGNUP' | translate}}</label>
+                                <md-icon class="fa fa-user fa-lg"></md-icon>
+                                <input ng-model="signupData.username" name="username" type="text" ng-required="true">
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <!-- Use floating label instead of placeholder -->
+                                <label>{{'HEADER_PASSWORD' | translate}}</label>
+                                <md-icon class="fa fa-key fa-lg"></md-icon>
+                                <input ng-model="signupData.password" name="password" type="password" ng-required="true">
+                            </md-input-container>
+
+
+
+                            <md-input-container class="md-block">
+                                <label>Email</label>
+                                <md-icon class="fa fa-envelope fa-lg"></md-icon>
+                                <input required="" type="email" name="email" ng-model="signupData.email" minlength="3" maxlength="300" ng-pattern="/^.+@.+\..+$/">
+
+                                <div ng-messages="signupForm.email.$error" role="alert">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        {{'HEADER_EMAIL_REQUIREMENT' | translate}}
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <div ng-switch on="btnStatus">
+                                <div  ng-switch-when="1"><md-progress-circular md-diameter="30"/></div>
+                                <div  ng-switch-default><md-button type="submit"  class="md-raised md-primary">{{'HEADER_SIGNUP' | translate}}</md-button></div>
+                            </div>
+                            <div >
+                            </div>
+
+                            <div ng-switch on="signupStatus">
+                                <div  ng-switch-when="error" md-colors="::{color:'default-warn-600'}">{{signupMessage | translate}}</div>
+
+                                <div  ng-switch-when="success">{{'HEADER_EMAIL_CHECK' | translate}}</div>
+                            </div>
+                        </form>
+                    </div>
+                </md-tab>
+            </md-tabs>
+        </md-dialog-content>
+
+    </md-dialog>

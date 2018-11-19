@@ -1,0 +1,35 @@
+<!-- Contact Lender -->
+<div class="contact-lender-or-borrower" ng-if="isCanStartChat" flex="100" layout="row" layout-align="start start" layout-wrap>
+    <span class="fontWeight400 font16"
+          md-colors="::{color:'default-primary-A300'}"
+          style="padding-bottom: 5px"
+          flex="100"
+          ng-hide="isTitleHidden">{{titleText | translate: {user: displayedUser.username} }}</span>
+    <div flex="100">
+        <md-divider></md-divider>
+    </div>
+    <div layout="row" layout-align="center center" flex="100">
+        <user-item
+                user-name="displayedUser.username"
+                user-image="displayedUser.profilePic"
+                user-id="displayedUser.id"
+                stars="displayedUser.stars/2"
+                reviews="displayedUser.reviews"
+                pic-size="50"
+                flex="60">
+        </user-item>
+        <div flex>
+
+        </div>
+        <chat-cta-button
+                authed-action
+                product="product"
+                product-booking-details="productBookingDetails"
+                booking="booking">
+        </chat-cta-button>
+    </div>
+    <div flex="100">
+        <md-divider></md-divider>
+    </div>
+    <span flex="100" md-colors="::{color: 'default-primary-A400'}" class="font10pt" ng-hide="isDescriptionHidden || isMyProduct">{{'ASK_LENDER_ANYTHING' | translate:{name: product.Lender_FullName} }}</span>
+</div>

@@ -1,0 +1,19 @@
+<md-dialog style="max-width: 500px">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span>{{title | translate}}</span>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog(false)" >
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="md-padding">
+        <span>{{message | translate }}</span>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-if="!isConfirm" ng-click="closeDialog(true)" class="md-primary"> {{ okBtn | translate }}        </md-button>
+        <md-button ng-if="isConfirm" ng-click="closeDialog(true)" class="md-primary">  {{  yesButton | translate }}   </md-button>
+        <md-button ng-if="isConfirm" ng-click="closeDialog(false)" class="md-primary"> {{ noButton | translate }}     </md-button>
+    </md-dialog-actions>
+</md-dialog>

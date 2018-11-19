@@ -1,0 +1,68 @@
+<div class="user-verification" flex="100" layout="row" layout-gt-md="row"
+     layout-wrap
+     layout-fill
+     layout-align="center stretch" layout-align-gt-md="center stretch">
+    <div flex="100" class="md-padding">
+        <md-button class="md-icon-button" ng-click="vm.closeProductReview()()">
+            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+    </div>
+    <div flex="80"
+        flex-xs="100"
+         layout="row"
+         layout-align="end center">
+
+        <div flex="80"
+             
+             layout="row"
+             layout-align="start start">
+                <div flex="100" layout="row" layout-align="center center" class="md-padding" layout-wrap>
+
+                    <div flex="100"
+                         layout="column"
+                         layout-align="start start"
+                         layout-wrap>
+                        <h2 flex="100" class="text-transform-none"> {{  'PRODUCT_REVIEW_TITLE' | translate }} </h2>
+                        <span flex="50"> {{ 'PRODUCT_REVIEW_STARS_DESCRIPTION' | translate }} </span>
+                        <rating-view class="no-padding-left"
+                            rating="vm.review.stars" on-rating="vm.onRating(vm.review.stars)">
+                        </rating-view>
+                    </div>
+                    
+                    <div flex="100"
+                        layout="row"
+                        layout-align="start start"
+                        layout-wrap>
+                
+                        <textarea 
+                            rows="5"
+                            flex="100"
+                            flex-xs="100"
+                            layout-align="start start"
+                            ng-model="vm.review.text"
+                            placeholder="{{ 'PRODUCT_REVIEW_TEXTBOX_PLACEHOLDER' | translate }}">
+                        </textarea>
+                    </div>
+                    <div flex="100" layout="row" layout-align="start start" layout-wrap>
+                        <md-button flex="40"
+                                    flex-xs="100"
+                                   ng-if="!isLoading"
+                                   ng-click="vm.submitReview()"
+                                   class="font15pt md-primary md-raised text-transform-none verify-btn round-corners5px"
+                                   md-colors="::{backgroundColor:'default-primary-200',color:'default-primary-A500'}"> {{'PRODUCT_REVIEW_SUBMIT_BUTTON' | translate}} </md-button>
+                        <md-progress-circular
+                                
+                                class="image-processing"
+                                ng-if="isLoading"
+                                md-diameter="50"></md-progress-circular>
+
+                        <span flex="100"
+                              
+                              class="horizontalPadding10px"
+                              ng-if="statusError != null && !isLoading"
+                              md-colors="::{color:'default-warn-A700'}"> {{statusError}} </span>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

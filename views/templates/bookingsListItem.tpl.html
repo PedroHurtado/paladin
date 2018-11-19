@@ -1,0 +1,75 @@
+<div flex="100" class="booking-list-item" layout="row">
+
+    <!-- Image/Title/Price -->
+    <div class=""
+         flex="60"
+         flex-gt-md="40" layout="row" layout-align="center center">
+        <div layout="row" flex="100">
+            <!--Image-->
+            <div layout-align="center center" layout="column">
+                <img class="product-image md-whiteframe-1dp"
+                     hide-md
+                     hide-sm
+                     hide-xs
+                     image-type="product"
+                     lazy-loading="{{::booking.Product_Image}}"
+                     alt="product image"/>
+                <img class="product-image small md-whiteframe-1dp"
+                     hide-gt-md
+                     image-type="product"
+                     lazy-loading="{{::booking.Product_Image}}"
+                     alt="product image"/>
+            </div>
+            <!--Details-->
+            <div flex class="md-padding" layout="column" layout-align="start start">
+                <span class="fontWeight500 font10pt product-title">{{::booking.Product_Title | capitalize}}</span>
+                <span class="fontWeight300 font12 product-title" md-colors="::{color:'default-primary-A300'}">{{(isLent ? booking.Borrower_Name : booking.Lender_Name) | capitalize}}</span>
+                <div layout="row" layout-wrap layout-align="start center">
+                    <span class="fontWeight500 un-selectable horizontalMargin2px"> {{::booking.AmountCharge | ptCurrency}}</span>
+                    <span class="fontWeight400 un-selectable total-days horizontalMargin2px font12" md-colors="::{color:'default-primary-A300'}">{{::booking.NoOfdays}} {{::( booking.NoOfdays > 1 ? 'DAYS' :'DAY' )| translate | capitalize}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description -->
+    <div class="md-padding"
+         flex="40"
+         layout="row"
+         layout-wrap
+         hide-xs
+         hide-sm
+         hide-md>
+
+        <div flex class="md-padding" layout="column" layout-align="start start" ng-if="!!booking.BookingStatus[booking.BookingStatus.length - 1][isLent ? 'Lender_Description' : 'Borrwer_Description']">
+            <span flex="100" class="fontWeight500 font10pt product-description">{{'DESCRIPTION' | translate}}</span>
+            <span> {{::booking.BookingStatus[booking.BookingStatus.length - 1][isLent ? 'Lender_Description' : 'Borrwer_Description'] | ptHtmlToPlainText | ptTruncate:140}}</span>
+        </div>
+
+    </div>
+    <!-- Date/Status-->
+    <div class="md-padding"
+         layout="column"
+         flex="40"
+         layout-align="start end">
+        <div
+             layout-align="end end"
+             layout-wrap
+             layout="column">
+            <span class="font10 rental-dates" md-colors="::{color:'default-primary-A300'}">
+                {{::booking.FullStartDate | amDateFormat:'DD/MM/YY'}}-{{::booking.FullEndDate | amDateFormat:'DD/MM/YY'}}
+            </span>
+            <product-status-label
+                    status-id="booking.BookingStatus[booking.BookingStatus.length - 1].Status_TrackId">
+            </product-status-label>
+            <div layout="row" layout-align="end end" layout-wrap>
+                <span class="font10 rental-dates textRight" md-colors="::{color:'default-primary-A300'}" flex="100" flex-gt-sm>
+                    {{ 'LAST_MODIFIED' | translate }}:
+                </span>
+                <span class="font10 rental-dates textRight" md-colors="::{color:'default-primary-A300'}" flex="100" flex-gt-sm>
+                    {{:: booking.lastModified | amDateFormat : 'DD/MM/YY HH:mm' }}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

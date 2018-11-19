@@ -1,0 +1,44 @@
+<div class="product-teaser" layout="row" layout-align="start stretch">
+    <loader-container is-loading="isLoading" layout="row" layout-align="start center"  flex="100">
+        <div ng-show="products.length > 0" class="md-padding" layout="column" flex="100">
+            <!-- Products Description -->
+            <div layout="row" layout-align="start center">
+                <span ng-if="::customTitle != null" class="text-transform-none" md-colors="::{color: 'default-primary-A300'}">{{::customTitle}}</span>
+                <span ng-if="::customTitle == null && category != null" class="text-transform-none" md-colors="::{color: 'default-primary-A300'}">{{::category.Category_Name}}</span>
+                <span ng-if="::customTitle == null && isRecentItems" class="text-transform-none" md-colors="::{color: 'default-primary-A300'}">{{::'RECENTLY_ADDED' | translate}}</span>
+                <span ng-if="::customTitle == null && isPopularItems" class="text-transform-none" md-colors="::{color: 'default-primary-A300'}">{{::'POPULAR_ITEMS' | translate}}</span>
+                <a ng-show="::categoryDescription != null" class="md-padding font12 product-teaser-link" ng-href="{{::descriptionLink}}">{{::categoryDescription | translate}}</a>
+                <div flex></div>
+
+                <a class="md-padding font12 see-all" md-colors="::{color: 'default-primary-A300'}" ng-href={{getHrefLink()}} ng-click="$event.preventDefault(); seeAll()">{{::'SEE_ALL' | translate}} <span class="fa fa-chevron-right"></span></a>
+            </div>
+            <!-- Items -->
+            <div layout="row" id="{{::'productsTeaserList' + ( categoryId || (isRecentItems ? 'Recent' : isPopularItems ? 'Popular' : ''))}}" class="products-teaser-list">
+                <product-teaser-list-item
+                        id="{{::'productTeaserItem-' + product.Product_Id}}"
+                        ng-repeat="product in ::products"
+                        product="product"
+                        on-swipe="onSwipe"
+                ></product-teaser-list-item>
+            </div>
+            <div class="left-arrow"
+                 hide-xs
+                 hide-sm
+                 md-colors="::{borderColor:'default-primary-A300'}"
+                 layout-align="center center"
+                 ng-show="scrollArrows.isLeftVisible"
+                 layout="row" ng-click="onArrowClick(false)">
+                <i class="fa fa-chevron-left" ng-click=""></i>
+            </div>
+            <div class="right-arrow"
+                 hide-xs
+                 hide-sm
+                 md-colors="::{borderColor:'default-primary-A300'}"
+                 layout-align="center center"
+                 ng-show="scrollArrows.isRightVisible"
+                 layout="row" ng-click="onArrowClick(true)">
+                <i class="fa fa-chevron-right"></i>
+            </div>
+        </div>
+    </loader-container>
+</div>

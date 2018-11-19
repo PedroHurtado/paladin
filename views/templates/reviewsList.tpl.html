@@ -1,0 +1,14 @@
+<div>
+    <h4 class="text-transform-none">{{'REVIEWS_TITLE' | translate}}</h4>
+</div>
+<md-list ng-if="reviews != null && reviews.length > 0">
+    <md-list-item ng-repeat="review in reviews">
+        <reviews-list-item review="review" flex="100">
+        </reviews-list-item>
+        <md-divider></md-divider>
+    </md-list-item>
+</md-list>
+<div flex="100" class="md-padding" ng-if="reviews == null || reviews.length == 0" layout="row" layout-align="start center" layout-wrap="">
+    <span class="font14pt" md-colors="::{color:'default-primary-A300'}">{{'NO_REVIEWS_YET' | translate}}</span>
+    <!--<md-divider flex="80"></md-divider>-->
+</div>

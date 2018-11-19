@@ -1,0 +1,116 @@
+<div class="chat-detailed" flex layout="column" layout-align="center stretch">
+    <loader-container is-loading="isLoading" flex="100"  layout="row" layout-align="start stretch">
+        <div layout="column" layout-align="start stretch" flex="100" layout-fill>
+
+            <md-toolbar flex="nogrow" class="md-padding" layout="row" layout-align="start center" md-colors="::{backgroundColor:'default-primary-A500'}" md-whiteframe="2">
+                <md-button ng-click="toggleNav()"
+                         hide-gt-sm
+                         class="md-icon-button padding10px"
+                         layout="column"
+                         md-colors="::{color:'default-primary-500'}"
+                         layout-align="center center">
+                    <i class="fa fa-comments font20pt"></i>
+                </md-button>
+                <!-- Product Details-->
+                <div flex ng-if="product == null"></div>
+
+                <div flex layout="row" layout-align="start center" ng-if="product != null" hide-xs hide-sm>
+                    <div class="padding10px">
+                        <img image-type="product"
+                             lazy-loading="{{::product.ProductImage_Image1}}"
+                             class="product-image">
+                    </div>
+                    <div flex class="padding5px" layout="column" layout-align="start stretch">
+                        <span class="fontWeight500 font15pt" hide-xs hide-sm> {{ product.Product_Title | capitalize}} </span>
+                        <span class="fontWeight500 font10pt" hide-xs hide-sm> {{ product.Lender_FullName | capitalize}} </span>
+                    </div>
+                    <div flex layout="row" layout-align="end stretch">
+                        <md-button ng-if="bookingId != null" ng-click="goToRental()" class="md-primary md-raised md-padding textColorWhite text-transform-none"
+                                   md-colors="::{backgroundColor:'default-primary-200'}">{{:: 'GO_TO_RENTAL' | translate}}</md-button>
+                        <md-button ng-if="bookingId == null" ng-click="goToProduct()" class="md-primary md-raised md-padding textColorWhite text-transform-none"
+                                   md-colors="::{backgroundColor:'default-primary-200'}">{{:: 'GO_TO_PRODUCT' | translate}}</md-button>
+                    </div>
+                </div>
+
+                <div flex layout="row" layout-align="start center" ng-if="product != null" hide-gt-sm layout-wrap>
+                    <div class="padding10px">
+                        <img image-type="product"
+                            lazy-loading="{{::product.ProductImage_Image1}}"
+                             class="product-image">
+                    </div>
+                    <div flex class="padding5px" layout="column" layout-align="start stretch">
+                        <span class="fontWeight500 font10pt"> {{ product.Product_Title | capitalize}} </span>
+                        <span class="fontWeight500 font7pt"> {{ product.Lender_FullName | capitalize}} </span>
+
+                    </div>
+                    <div flex="100" layout="row" layout-align="start stretch">
+                        <md-button ng-click="goToProduct()" flex="80" class="md-primary md-raised md-padding textColorWhite text-transform-none"
+                                   md-colors="::{backgroundColor:'default-primary-200'}"> {{:: 'GO_TO_PRODUCT' | translate}} </md-button>
+                    </div>
+                </div>
+            </md-toolbar>
+            <!-- Messages -->
+            <div flex layout="column">
+                <div layout="column"
+                     layout-align="center center"
+                     layout-fill
+                     md-colors="::{backgroundColor:'default-primary-A600'}"
+                     ng-if="!chatId">
+                    <span class="fontWeight500 font20pt" md-colors="::{color:'default-primary-A400'}">{{:: 'NO_CHAT_SELECTED' | translate }}</span>
+                </div>
+                <div style="overflow: scroll; transform: rotate(180deg);" when-scrolled="loadMoreMessages()">
+                    <md-list ng-if="messages.length > 0" style="transform: rotate(180deg)">
+                        <md-list-item ng-if="isGettingMoreMsgs" layout="row">
+                            <div flex="100" layout="row" layout-align="center center">
+                                <md-progress-circular ng-show="isGettingMoreMsgs"></md-progress-circular>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-repeat="message in messages track by message._id" layout="row">
+                            <chat-list-message-item message="message" recipient-image="userImages.recipient" my-image="userImages.me" flex="100"></chat-list-message-item>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+            <!-- Input field -->
+            <div flex="nogrow" layout="row" class="padding5px" layout-align="start stretch" ng-class="{'disabled-input' : chat == null}" md-whiteframe="4">
+                    <textarea id="composeTextMessage"
+                              ng-model="compose.text"
+                              ng-disabled="chat == null"
+                              class="input-field"
+                              focus-me
+                              md-colors="::{borderColor:'default-primary-500'}"
+                              placeholder="{{:: 'ENTER_MESSAGE' | translate}}"
+                              flex="100"
+                              data-max-rows="5" ng-keypress="keyPress($event)"></textarea>
+
+                <div flex="30" flex-gt-sm="10" flex-md="20" layout="row" layout-align="end center" ng-if="isUploadingMedia">
+                    <md-progress-circular></md-progress-circular>
+                </div>
+                <div flex="30" flex-gt-sm="10" flex-md="20" layout="row" layout-align="end center" ng-if="!isUploadingMedia">
+                    <div flex></div>
+                    <input id="chatMediaUpload"
+                           type="file"
+                           accept="image/*"
+                           style="display: none"
+                           onchange="angular.element(this).scope().onUploaded(this)">
+                    <md-button class="md-icon-button padding10px"
+                               ng-click="uploadMedia()"
+                               layout="column"
+                               md-colors="::{color:'default-primary-500'}"
+                               layout-align="center center" ng-disabled="chat == null">
+                        <i class="fa fa-camera font20pt"></i>
+                    </md-button>
+
+                    <md-button class="md-icon-button padding10px"
+                               ng-click="sendMessage()"
+                               layout="column"
+                               md-colors="::{color:'default-primary-500'}"
+                               layout-align="center center" ng-disabled="chat == null || compose.text == ''">
+                        <i class="fa fa-send font20pt"></i>
+                    </md-button>
+                </div>
+
+            </div>
+        </div>
+    </loader-container>
+</div>

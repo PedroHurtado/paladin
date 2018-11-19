@@ -1,0 +1,263 @@
+<div class="user-profile" flex="100" layout="column">
+    <loader-container is-loading="isLoading" flex="100" loader-size="100">
+        <!-- Main Container -->
+        <div flex="100" layout-gt-md="row" layout="column" class="md-padding">
+            <!-- Right offset -->
+            <div flex="0" flex-gt-md="15"></div>
+            <!-- Profile Container-->
+            <div flex flex-gt-md="50" layout="row" layout-wrap layout-align="start start">
+                <h4 class="text-transform-none md-padding" ng-if="isMyProfile">{{'MY_PROFILE' | translate}}</h4>
+                <!-- View profile -->
+                <div flex="100" ng-if="!isEditing" layout="column">
+                    <user-avatar ng-if="profile != null" user-image="profile.User_DisplayPicturePath"
+                                 pic-size="120"></user-avatar>
+
+                    <div class="verticalPadder20px"></div>
+
+                    <div layout-gt-sm="row"
+                         layout="column"
+                         layout-align-gt-sm="start end"
+                         layout-align="start start">
+                        <h2 class="text-transform-none"> {{profile.User_FullName | capitalize}}</h2>
+                        <a ng-if="isMyProfile" class="md-padding" ng-click="editProfile()"> {{'EDIT_PROFILE' |
+                            translate}}</a>
+                    </div>
+
+                    <div style="height: 40px" flex="100"></div>
+
+                    <!-- user Rating -->
+                    <md-divider></md-divider>
+                    <div layout-align="start stretch"
+                         layout="row" class="md-padding">
+                        <div flex-gt-xs="20" flex>
+                            <span>{{'LENDER' | translate}}</span>
+                            <rating-view rating="profile.User_ReviewAsLender / 2"
+                                        read-only="true"
+                                         count="profile.User_ReviewCountAsLender"></rating-view>
+                        </div>
+                        <div flex-gt-xs="20" flex>
+                            <span>{{'BORROWER' | translate}}</span>
+                            <rating-view rating="profile.User_ReviewAsBorrower / 2"
+                                        read-only="true"
+                                        count="profile.User_ReviewCountAsBorrower"></rating-view>
+                        </div>
+
+                    </div>
+
+                    <md-divider></md-divider>
+
+                    <div class="verticalPadder20px"></div>
+
+                    <div layout-align="start start"
+                         layout-wrap
+                         ng-show="credit.User_Credit >= 0 && isMyProfile"
+                         class="layout-gt-sm-row layout-align-gt-sm-start-end layout-align-start-start">
+
+                        <div class="flex-gt-xs-100">
+                            <div layout="row" layout-align="center center" flex="100" class="layout-align-center-center layout-row flex-100">
+
+                                    
+                                <h2 class="text-transform-none">{{'CREDIT' | translate}}</h2>
+                                <div flex="" class="flex"></div>
+                                <button class="md-button textColorWhite text-transform-none round-corners5px md-raised fontWeight450 no-click"
+                                md-colors="::{backgroundColor:'default-primary-200'}" aria-hidden="false">{{'CURRENT_CREDIT' | translate: {user_credit: credit.User_Credit} }}</button>
+                            </div>
+                            <p class="md-padding">
+                                
+                                {{'CREDIT_DESCR1' | translate: {credit_register_amb: credit.CREDIT_REGISTER_AMB} }}
+                                {{'CREDIT_DESCR2' | translate: {credit_trans_amb: credit.CREDIT_TRANS_AMB} }}
+                                {{'CREDIT_DESCR3' | translate: {credit_register_ref: credit.CREDIT_REGISTER_REF} }}
+         
+                            </p>
+                                
+                             
+                            <p></p>
+                            <p class="md-padding" style="font-weight: bold;">
+                                {{'CREDIT_DESCR4' | translate }}
+                            </p>
+
+                            <div layout="row" layout-wrap layout-align="center center" flex="100" class="layout-align-center-center layout-row flex-100">
+                                <p class="copy-to-clipboard-target"
+                                    id="referralLinkToShare">
+                                    {{credit.ReferralCode}}
+                                </p>
+                                <div flex="" class="flex"></div>    
+                                <button class="md-raised md-button md-ink-ripple no-padding-left"
+                                        copy-text-to-clipboard="referralLinkToShare">
+                                    {{'COPY' | translate }}
+                                </button>
+
+                                <button class="md-raised md-primary md-button md-ink-ripple"
+                                        data-ng-click="credit.shareReferralLink()">
+                                    {{'SHARE' | translate}}
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <md-divider style="margin: 25px 0px 10px 0px" ng-show="credit.User_Credit >= 0 && isMyProfile"></md-divider>
+
+                    <!-- User Address -->
+                    <div ng-if="profile.User_Address && profile.User_Latitude && profile.User_Longitude">
+                        <div style="height: 20px;"></div>
+                        <h4 class="text-transform-none"> {{'HEADER_LOCATION' | translate}} </h4>
+                        <span><i class="fa fa-map-marker"></i> {{profile.User_Address}}</span>
+                        <div style="height: 20px;"></div>
+                        <div id="map" ng-if="profile.User_Latitude" style="margin-bottom: 30px;">
+                            <ng-map center="{{profile.User_Latitude}},{{profile.User_Longitude}}" zoom="12"
+                                gesture-handling="cooperative">
+                                <marker position="{{profile.User_Latitude}},{{profile.User_Longitude}}"></marker>
+                                <!-- icon="{{customIcon}}"  -->
+                            </ng-map>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit profile -->
+                <div flex="100" ng-if="isEditing">
+                    <div class="edit-profile-image-container">
+                        <user-avatar ng-if="tempBas64Image == null"
+                                     user-image="editableProfile.User_DisplayPicturePath"
+                                     pic-size="120"></user-avatar>
+                        <div
+                                ng-if="tempBas64Image != null"
+                                class="userAvatarContainer md-whiteframe-3dp"
+                                style="width: 120px; height: 120px">
+                            <img class="userAvatarImage" ng-src="{{tempBas64Image}}">
+                        </div>
+
+                        <div
+                                class="upload-image-container"
+                                ng-click="uploadImage()">
+                            <div class="upload-image-container-blur"></div>
+                            <i class="fa fa-camera camera-image"></i>
+                            <input id="uploadImageBtn"
+                                   type="file"
+                                   accept="image/*"
+                                   style="display: none"
+                                   onchange="angular.element(this).scope().onUploaded(this)"/>
+
+                        </div>
+                    </div>
+                    <form
+                            flex="100"
+                            layout="row"
+                            layout-align-gt-sm="start end"
+                            layout-align="center start"
+                            class="md-padding"
+                            layout-wrap
+                            name="profileForm">
+
+                        <md-input-container flex="100" flex-gt-md="50" layout="row">
+                            <label class="fontWeight500 font14">
+                                {{'FIRST_NAME' | translate}}
+                            </label>
+                            <input
+                                    required
+                                    ng-model="editableProfile.userFirstName">
+                        </md-input-container>
+
+                        <md-input-container flex="100" flex-gt-md="50" layout="row">
+                            <label class="fontWeight500 font14">
+                                {{'LAST_NAME' | translate}}
+                            </label>
+                            <input required ng-model="editableProfile.userLastName">
+                        </md-input-container>
+
+                        <md-input-container flex="100" layout="row">
+                            <label class="fontWeight500 font14">
+                                {{'ADDRESS' | translate}}
+                            </label>
+                            <input id="editProfileAddressField"
+                                   required
+                                   ng-model="editableProfile.User_Address"
+                                   googleplace-autocomplete>
+                        </md-input-container>
+
+                        <md-button
+                                flex="100"
+                                flex-gt-sm="50"
+                                class="textColorWhite text-transform-none"
+                                md-colors="::{backgroundColor:'default-primary-200'}"
+                                ng-hide="isUpdating" ng-click="submitProfileEdit()">
+                            {{'SAVE_CHANGES' | translate}}
+                        </md-button>
+                        <md-progress-circular ng-show="isUpdating" md-diameter="50"></md-progress-circular>
+                    </form>
+                </div>
+            </div>
+            <!--Left offset -->
+            <div flex="100"
+                 flex-gt-md="30"
+                 layout="column">
+                <!--(Possible Listings list)-->
+                <div ng-if="!isEditing" flex="100" layout="row" layout-align="center stretch" layout-wrap>
+
+                    <div style="height: 40px" flex="100"></div>
+
+                    <div ng-if="!isMyProfile"
+                         class="round-corners5px md-whiteframe-1dp latest-listings"
+                         flex="100"
+                         flex-gt-sm="90"
+                         layout="column"
+                         layout-align="start stretch">
+                        <div layout="column">
+                            <h4 class="text-transform-none md-padding" flex="5"> {{ 'USER_RENTALS' | translate: {
+                                username: profile.User_FullName } }} </h4>
+                            <md-divider flex="5"></md-divider>
+
+                            <div flex style="overflow: auto" layout="column">
+                                <user-listings-list
+                                        user-id="userId"
+                                        flex="100" is-minified="true">
+                                </user-listings-list>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="isEditing"
+                     flex="100"
+                     layout="row"
+                     layout-align-gt-sm="start end"
+                     layout-align="center center"
+                     class="md-padding">
+                    <div class="account-settings-container md-whiteframe-4dp md-padding" layout="column"
+                         layout-align="start stretch">
+                        <h4 class="text-transform-none">{{'ACCOUNT_SETTINGS' | translate}}</h4>
+                        <md-checkbox ng-model="editableProfile.Notification_Chat"
+                                     layout="row"
+                                     layout-align="end center"
+                                     class="md-primary">
+                            <span class="font12">
+                                {{'SHOULD_RECEIVE_CHAT_NOTIFS' | translate}}
+                            </span>
+                        </md-checkbox>
+                        <md-checkbox ng-model="editableProfile.Notification_Email"
+                                     layout="row"
+                                     layout-align="end center"
+                                     class="md-primary">
+                            <span class="font12">
+                                {{'SHOULD_RECEIVE_EMAIL_NOTIFS' | translate}}
+                            </span>
+                        </md-checkbox>
+                        <md-divider></md-divider>
+                        <md-button
+                                class="text-transform-none fontWeight500 font10pt"
+                                md-colors="::{color:'default-primary-200',backgroundColor:'default-primary-A200',borderColor:'default-primary-200'}"
+                                ng-click="changePassword()">
+                            {{'CHANGE_PASS' | translate}}
+                        </md-button>
+                        <div layout="row" layout-align="space-between center" class="md-margin">
+                            <span class="text-underline" md-colors="::{color:'default-primary-A300'}"
+                                  ng-click="deleteAccount()">{{'DEL_ACCOUNT' | translate}}</span>
+                            <span class="text-underline" md-colors="::{color:'default-primary-A300'}"
+                                  ng-click="logout()">{{'HEADER_LOGOUT' | translate}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </loader-container>
+</div>

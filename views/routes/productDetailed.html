@@ -1,0 +1,135 @@
+<div class="product-detailed" layout="column" flex="100">
+    <!-- Product -->
+    <loader-container layout="row" flex="100" is-loading="isLoading" layout-wrap layout-align="start start">
+        <div layout="row" flex="100" layout-wrap layout-align="start start">
+            <!-- Product Image -->
+            <div flex="100" ng-if="product.ProductImage_Image1 != null" id="main-product-image" class="product-image-container md-whiteframe-4dp" layout="column" layout-align="center center">
+                <img class="product-image-blur" 
+                    image-type="product"
+                    lazy-loading="{{product.ProductImage_Image1}}"/>
+                <img class="product-image" 
+                    image-type="product"
+                    sizes="(max-width: 765px) 100vw, 50vw"
+                    lazy-loading="{{product.ProductImage_Image1}}"/>
+            </div>
+            <!-- Description -->
+            <div class="md-padding" flex="100" layout="row">
+                <div flex="15" hide-md hide-sm hide-xs></div>
+                <div flex flex-md="60">
+                    <span class="breadcrumb-text fontWeight400 font10pt">
+                        <a ng-href="{{getCategoriesUrl('ACTG' | translate, null)}}" ng-click="$event.preventDefault(); browseCategory('ACTG' | translate,null)"> {{'ACTG' | translate}}</a>
+                        /
+                        <a ng-if="product.Product_CategoryName != null" ng-href="{{getCategoriesUrl(product.Product_CategoryName, null)}}" ng-click="$event.preventDefault(); browseCategory(product.Product_CategoryName,null)"> {{product.Product_CategoryName}}</a>
+                        <a ng-if="product.Product_SubCategoryName != null" ng-href="{{getCategoriesUrl(product.Product_CategoryName, product.Product_SubCategoryName)}}" ng-click="$event.preventDefault(); browseCategory(product.Product_CategoryName,product.Product_SubCategoryName)"> / {{product.Product_SubCategoryName}}</a>
+                    </span>
+                    <h3 class="text-transform-none" > {{product.Product_Title | capitalize}}</h3>
+                    <!-- Contact Lender -->
+                    <contact-lender-or-borrower flex="100" product-booking-details="productBookingDetails"
+                                                product="product"></contact-lender-or-borrower>
+                    <!-- Product Description -->
+                    <div class="product-description" flex="100" layout="row" layout-wrap layout-align="start start">
+                        <div style="height: 20px" flex="100"></div>
+                        <h4 class="text-transform-none" flex="100">{{'DESCRIPTION' | translate}}</h4>
+                        <p ng-bind-html="product.Product_Description" flex="100" style="word-wrap: break-word"></p>
+                    </div>
+                    <!-- Pick up -->
+                    <div>
+                        <div style="height: 20px;"></div>
+                        <h4 class="text-transform-none"> {{'PICK_UP' | translate}} </h4>
+                        <span ng-if="!!product.Lender_User_Address"><i class="fa fa-map-marker"></i> {{product.Lender_User_Address}}</span>
+                        <div style="height: 20px;"></div>
+                        <div id="map" ng-if="product.Lender_User_Latitude" style="margin-bottom: 30px;">
+                            <ng-map center="{{product.Lender_User_Latitude}},{{product.Lender_User_Longitude}}" zoom="12" gesture-handling="cooperative">
+                                <marker  position="{{product.Lender_User_Latitude}},{{product.Lender_User_Longitude}}"></marker><!-- icon="{{customIcon}}"  -->
+                            </ng-map>
+                        </div>
+                    </div>
+                    <div hide-gt-sm>
+                        <div style="height: 40px;"></div>
+                        <div flex="100" layout="column" layout-gt-xs="row" layout-align="center center" style="position: relative" ng-hide="isMyProduct">
+                            <rental-request-picker
+                                    id="{{rentPickersIds.mobile}}"
+                                    product="product"
+                                    product-booking-details="productBookingDetails"
+                                    on-request-rent="onRequestRent"
+                                    on-dates-updated="onDatesUpdated"
+                            >
+                            </rental-request-picker>
+                            <div style="height: 20px; position: relative; color: transparent">
+                                CUZ F CSS
+                            </div>
+                            <rental-request-how-to is-try-and-buy="product.Product_TryAndBuy" is-buy="false"></rental-request-how-to>
+                        </div>
+                    </div>
+                    <!-- Reviews -->
+                    <div flex="100">
+                        <div style="height: 40px;"></div>
+                        <reviews-list reviews="product.Reviews"></reviews-list>
+                    </div>
+                </div>
+                <div flex-md="10"></div>
+                <!-- Right Side Full Screen Floater (Rent request details)-->
+                <div flex="30" class="right-floater-container" hide-sm hide-xs>
+                    <div flex="100" class="right-sticky" layout="column" layout-align="center center">
+                        <div flex="100" class="right-floater" layout="column" layout-align="center center"  ng-hide="isMyProduct">
+                            <rental-request-picker
+                                    id="{{rentPickersIds.desktop}}"
+                                    product="product"
+                                    product-booking-details="productBookingDetails"
+                                    on-request-rent="onRequestRent"
+                                    on-dates-updated="onDatesUpdated"
+                            >
+                            </rental-request-picker>
+                            <div style="height: 20px; position: relative; color: transparent">
+                                CUZ F CSS
+                            </div>
+                            <rental-request-how-to is-try-and-buy="product.Product_TryAndBuy" is-buy="false"></rental-request-how-to>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Related -->
+            <div class="md-padding" flex="100" layout="row" layout-align="start start" layout-wrap>
+                <div flex="100" style="height: 310px;"></div>
+                <products-teaser
+                        flex-offset-gt-sm="15"
+                        flex-gt-sm="70"
+                        flex="100"
+                        category-id="product.Product_CategoryId"
+                        category-name="product.Product_CategoryName"
+                        current-product-id="product.Product_Id"
+                        products="product.RelatedProducts"
+                        custom-title="'RELATED_PRODUCTS' | translate">
+                </products-teaser>
+                <products-teaser flex-offset-gt-sm="15"
+                                 flex-gt-sm="70"
+                                 flex="100"
+                                 user-id="product.Lender_UserId"
+                                 current-product-id="product.Product_Id"
+                                 products="product.LenderProducts"
+                                 custom-title="'MORE_FROM_LENDER' | translate:{name: product.Lender_FullName}"
+                ></products-teaser>
+            </div>
+            <!-- Mobile bttom sticky -->
+            <div class="rental-request-bottom-page-sticky md-whiteframe-4dp md-padding" layout="row" hide-gt-sm  ng-hide="isMyProduct">
+            <!-- Price / Day -->
+            <div flex class="md-padding">
+            <div layout="row">
+                <span class="fontWeight500"> {{ product.Product_Price_Perday | ptCurrency }} <span class="fontWeight300" md-colors="::{color:'default-primary-A300'}"> / {{ 'DAY' | translate }}</span> </span>
+            </div>
+            <!-- Rating View -->
+            <rating-view flex="100" rating="product.Product_ReviewScore/2" count="::product.Product_ReviewCount" read-only="true"></rating-view>
+            </div>
+            <div flex="60" layout="row" layout-align="end center">
+                <md-button class="md-button font15pt textColorWhite md-whiteframe-2dp text-transform-none round-corners5px md-raised fontWeight450"
+                           flex="100"
+                           gid="book-now-button-mobile"
+                           ng-click="requestRentalDates()"
+                           style="min-height: 45px !important;"
+                           authed-action
+                           md-colors="::{backgroundColor:'default-primary-200'}"> {{ 'TRY_IT' | translate }}</md-button>
+            </div>
+        </div>
+        </div>
+    </loader-container>
+</div>

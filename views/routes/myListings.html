@@ -1,0 +1,36 @@
+<div class="my-listings md-padding" flex="100" layout="column">
+    <loader-container is-loading="isLoading" flex="100" loader-size="100" layout="row">
+        <!-- Main container -->
+        <div class="md-padding" layout="row" layout-align="center center" flex="100">
+            <!--Right offset-->
+            <div flex flex-gt-md="15"></div>
+            <!--Middle Content-->
+            <div
+                 flex="100"
+                 flex-gt-md="70"
+                 layout="row"
+                 layout-align="start start" layout-wrap>
+                <!-- Title + create product btn-->
+                <div flex="100"
+                     layout="row"
+                     layout-align="start center">
+                    <span class="text-transform-none fontWeight500 font15pt" md-colors="::{color:'default-primary-A300'}">{{'MY_LISTINGS' | translate}}</span>
+                    <md-button
+                            class="text-transform-none fontWeight500 font10 solid-border round-corners5px"
+                            md-colors="::{color:'default-primary-200',backgroundColor:'default-primary-A200',borderColor:'default-primary-200'}"
+                            ng-click="addNewItem()">
+                        {{'ADD_NEW_ITEM' | translate}}
+                    </md-button>
+                    <div flex></div>
+                </div>
+                <div
+                        flex="100"
+                        ng-class="{'md-whiteframe-4dp round-corners5px':isGtMd}" layout="row">
+                        <user-listings-list user-id="userId" flex="100"></user-listings-list>
+                </div>
+            </div>
+            <!--Left offset-->
+            <div flex flex-gt-md="15"></div>
+        </div>
+    </loader-container>
+</div>

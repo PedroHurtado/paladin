@@ -1,0 +1,25 @@
+<md-dialog aria-label="Some" id="loginPopup">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span flex></span>
+            <span>{{popupTitle}}</span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-padding" layout="column" layout-align="center center" style="max-width:800px;max-height:810px; ">
+
+
+        <div>
+            {{'ID_VERIFY_FAIL_POPUP_CONTENT' | translate}}
+        </div>
+
+        <md-progress-circular md-diameter="30" ng-show="isProcessing"/>
+
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button ng-click="retry()" class="md-primary">{{'ID_VERIFY_FAIL_POPUP_BUTTON_RETRY' | translate}}</md-button>
+        <md-button ng-click="sendToManualVerification()" class="md-primary">{{'ID_VERIFY_FAIL_POPUP_BUTTON_MANUAL' | translate}}</md-button>
+    </md-dialog-actions>
+</md-dialog>

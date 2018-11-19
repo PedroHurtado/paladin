@@ -1,0 +1,9 @@
+<div layout="row" layout-align="center center" flex="100">
+    <md-button ng-repeat="btn in btns"
+               class="font10pt text-transform-none"
+               md-colors="{backgroundColor: (btn.isEnabled ? (btn.isDestructive ? 'default-primary-A500' : 'default-primary-200') : 'default-primary-A400'), color: (btn.isDestructive ? 'default-warn-600' : 'default-primary-A500' ) }"
+               ng-class="{'flex-70': btns.length == 1, 'flex-50': btns.length > 1,'round-corners5px md-whiteframe-1dp': !btn.isDestructive,'text-underline': btn.isDestructive}"
+               ng-disabled="!btn.isEnabled" ng-click="btn.BL(booking)">
+            {{btn.text | translate}}
+    </md-button>
+</div>

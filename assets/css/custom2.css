@@ -1,0 +1,57 @@
+.main-column{
+    width: 100%;
+}
+#header {
+    background-image: url(/assets/paladin-background-2mb.png);
+}
+.mt-10{
+    margin-top: 10px;
+}
+.mt-20{
+    margin-top: 20px;
+}
+.mt-30{
+    margin-top: 30px;
+}
+.search-box>.fa.fa-search{
+    position: absolute;
+    top: 5px;
+    left: 27px;
+    color: #999;
+}
+.search-box>.fa.fa-map-marker{
+    position: absolute;
+    top: 5px;
+    left: 27px;
+    color: #999;
+    font-size: 16px;
+}
+.search-box>.form-control{
+    padding-left: 25px;
+    border-radius: 0;
+    box-shadow: 2px 3px 7px #ccc;
+    background-color: white;
+    border: 1px solid #eee;
+    
+    padding: 7px 14px 6px 30px;
+    height: 38px;
+}
+.row{
+    width:100%;
+}
+.btn-success{
+    border: 1px solid #ccc;
+    box-shadow: 2px 3px 7px #ccc;
+    border-radius: 0;
+    background-color: #69c187;
+    padding: 10px;
+}
+.no-padding{
+    padding:0 !important;
+}
+@media only screen and (min-width: 768px) {
+#content-wrapper {
+	margin-left : 25px;
+}
+
+}

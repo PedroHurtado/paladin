@@ -1,13 +1,9 @@
 const path = require('path');
-
+const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 module.exports = {
     mode: 'production',
     entry: {
-       index: './src/index.js'
-    },
-    externals: {
-        jquery: 'jQuery',
-        angular:'angular'
+        index: './src/index.js'
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -15,7 +11,14 @@ module.exports = {
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js',
         library: "Paladin",
-        libraryTarget: "umd",
+
     },
-    devtool: "source-map",
+    plugins: [
+        new ngAnnotatePlugin({
+            add: true,
+        })
+    ],
+    devtool: "source-map"
+    
+
 }

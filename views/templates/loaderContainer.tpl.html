@@ -1,0 +1,4 @@
+<div flex="100" class="md-padding" layout="column" layout-align="center center" ng-if="isLoading">
+    <md-progress-circular md-diameter="{{loaderSize}}"/>
+</div>
+<ng-transclude ng-if="!isLoading" flex="100" layout="row" layout-wrap="wrap" layout-align="center center"></ng-transclude>

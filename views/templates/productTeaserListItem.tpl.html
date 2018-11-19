@@ -1,0 +1,47 @@
+<!-- Tile -->
+<div class="products-teaser-list-item-v2" layout="column" layout-align="start stretch">
+    <!-- Image upper wrapper-->
+    <div flex="80"
+         layout="row"
+         class="solid-border"
+         md-colors="::{borderColor:'default-primary-A400'}"
+         layout-align="center stretch"
+         style="position: relative">
+
+        <img flex="100" 
+            image-type="product"
+            sizes="20vw"
+            lazy-loading="{{::product.ProductImage_Image1}}" alt="{{::product.Product_Title}}">
+
+        <div style="position: absolute; bottom: 0; right: 0; left: 0;" flex="100" layout="column" layout-align="end stretch">
+            <div layout="column" flex="70" layout-align="end stretch" class="lender-price-details">
+                <div class="padding5px" layout="row" layout-align="start center">
+                    <user-avatar hide-xs hide-sm hide-md class="un-selectable" user-image="::product.Lender_Image" pic-size="50"></user-avatar>
+                    <user-avatar hide-gt-xs class="un-selectable" user-image="::product.Lender_Image" pic-size="25"></user-avatar>
+                    <user-avatar hide-xs hide-gt-md class="un-selectable" user-image="::product.Lender_Image" pic-size="30"></user-avatar>
+                    <div flex></div>
+                    <div>
+                        <span class="fontWeight500 textColorWhite un-selectable"> {{::product.Product_Price_Perday | ptCurrency}}</span>
+                        <span class="fontWeight400 textColorWhite un-selectable"> / {{:: 'DAY' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bottom Wrapper -->
+    <div flex="20" layout="row" layout-align="start start" layout-wrap>
+        <!-- Desktop -->
+        <span hide-xs hide-sm flex="100" class="fontWeight500 font12pt un-selectable" md-truncate>{{::product.Product_Title | capitalize}}</span>
+        <span hide-xs hide-sm flex="100" class="fontWeight400 font10pt un-selectable product-description" md-colors="::{color: 'default-primary-A300'}" md-truncate>{{::product.Product_Description  | ptHtmlToPlainText | ptTruncate: 50}}</span>
+        <!-- Mobile -->
+        <span hide-gt-sm flex="100" class="fontWeight500 font12pt un-selectable" md-truncate>{{::product.Product_Title | capitalize}}</span>
+        <span hide-gt-sm flex="100" class="fontWeight400 font7pt un-selectable product-description" md-colors="::{color: 'default-primary-A300'}" md-truncate>{{::product.Product_Description  | ptHtmlToPlainText | ptTruncate: 50}}</span>
+
+        <rating-view flex="100" rating="::product.Product_ReviewScore/2" count="::product.Product_ReviewCount" read-only="true"></rating-view>
+    </div>
+    <!-- Button click-able overlay -->
+    <a class="button-overlay"
+         ng-click="$event.preventDefault(); onItemClick()"
+         ng-href="{{getProductUrl()}}"
+    ></a>
+</div>

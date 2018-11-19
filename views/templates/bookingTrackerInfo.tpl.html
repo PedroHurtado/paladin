@@ -1,0 +1,105 @@
+<div class="booking-tracker-info md-whiteframe-1dp round-corners5px" flex="100" layout="row">
+    <!-- Main Container -->
+    <div class="md-padding"
+         flex="100"
+         layout="row"
+         layout-align="start start"
+         layout-wrap>
+
+        <!--Upper content -->
+        <div layout="column"
+             flex="100">
+            <span
+             class="fontWeight500 md-padding">
+                {{'TRACK_YOUR_REQUEST' | translate}}
+            </span>
+            <md-divider></md-divider>
+        </div>
+
+        <!-- Bottom content -->
+        <div layout="row"
+             flex="100"
+             layout-align="start start"
+             layout-wrap>
+
+            <!--STEPS NG-REPEAT -->
+            <div class="step"
+                 ng-repeat="step in steps"
+                 flex="100"
+                 layout="column"
+                 md-colors="::{backgroundColor:step.isCurrent ? 'default-primary-A600' :'default-primary-A500'}">
+
+                <!--Step inner wrapper -->
+                <div layout="row"
+                     class="md-padding"
+                     layout-align="start center"
+                     layout-wrap>
+
+                    <!-- Background separator -->
+                    <div class="background-wrapper"
+                         flex="100">
+                        <div class="md-padding vertical-separator-line"
+                             md-colors="::{borderColor:'default-primary-A400'}"></div>
+                    </div>
+
+                    <!-- foreground content -->
+                    <div flex="100"
+                         layout="row">
+
+                        <div class="icon-wrapper"
+                             layout-align="center center">
+
+                            <i class="icon fa"
+                               ng-class="{'fa-clock-o':step.status == 0, 'fa-check-circle': step.status == 1,'fa-times-circle': step.status == 2}"
+                               md-colors="::{color: step.status == 0 ? 'default-primary-A300' : step.status == 1 ? 'rentOrderStatus-primary-300' : 'rentOrderStatus-primary-200',backgroundColor: (step.isCurrent ? 'default-primary-A600' : 'default-primary-A500')}"
+                               ></i>
+                        </div>
+
+                        <span class="horizontalMargin2px fontWeight500"
+                              md-colors="::{color:'default-primary-A300'}"
+                              flex>
+                            {{step.label | translate}}
+                        </span>
+
+                        <span class="font12"
+                              ng-if="step.date"
+                              md-colors="::{color:'default-primary-A300'}">
+                            {{step.date | amDateFormat:'DD/MM/YY'}}
+                        </span>
+                    </div>
+
+                    <!-- isCurrent Description -->
+                    <div ng-if="step.isCurrent && step.description != ''"
+                         layout="row"
+                         class="md-padding"
+                         flex="80"
+                         flex-offset="10">
+
+                        <span class="fontWeight300 font12"
+                              style="word-wrap:break-word;"
+                              flex="100"
+                              md-colors="::{color:'default-primary-A300'}"
+                              ng-bind-html="step.description">
+                        </span>
+                    </div>
+
+                    <div class="post-review-cta-wrapper md-padding"
+                         ng-if="step.isCurrent && productReview.showReviewCTA()"
+                         layout="row"
+                         flex="100"
+                         flex-offset="10">
+                        <button class="btn btn-md btn-primary"
+                                ng-click="productReview.startReviewFlow()">
+                            {{ 'PRODUCT_REVIEW_SUBMIT_BUTTON' | translate }}
+                        </button>
+                        </span>
+                    </div>
+
+                    <md-divider ng-if="!$last"
+                                flex-offset="15"
+                                flex-offset-gt-md="15"></md-divider>
+                </div>
+
+            </div>
+        </div>
+    </div>

@@ -1,23 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+<head <!-- Page hiding snippet (recommended) -->
+    <style>
+        .async-hide {
+            opacity: 0 !important
+        }
+    </style>
+    <script>
+        (function (a, s, y, n, c, h, i, d, e) {
+            s.className += ' ' + y;
+            h.end = i = function () { s.className = s.className.replace(RegExp(' ?' + y), '') };
+            (a[n] = a[n] || []).hide = h; setTimeout(function () { i(); h.end = null }, c);
+        })(window, document.documentElement, 'async-hide', 'dataLayer', 4000, { 'GTM-5SC6WFL': true });
+    </script>
+    <!-- End Page hiding snippet-->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5SC6WFL');</script>
+    <!-- End Google Tag Manager -->
+    <!-- PRERENDER -->
+    <meta name="fragment" content="!">
+    <base href="/">
+    <!-- HREFLANG tags-->
+    <link rel="alternate" hreflang="it" href="{{ngMeta.currentUrl_it}}" />
+    <link rel="alternate" hreflang="en" href="{{ngMeta.currentUrl_en}}" />
+    <!-- <link rel="alternate" hreflang="de" href="{{ngMeta.currentUrl_de}}" /> -->
+    <link rel="alternate" hreflang="x-default" href="{{ngMeta.currentUrl_en}}" />
+    <!--PAGINATION TAGS-->
+    <link rel="prev" href="{{ngMeta.prevUrl}}" />
+    <link rel="next" href="{{ngMeta.nextUrl}}" />
+    <meta name="keywords" content="noleggio milano,noleggio tra privati milano, noleggio casse milano , noleggio technics milano, noleggio service milano, noleggio gopro milano, noleggio canon milano , noleggio nikon milano , noleggio droni milano, noleggio tavoli , noleggio sedie milano , noleggio props, noleggio macchine fotografiche , noleggio eventi milano , noleggio chitarre milano , noleggio trapano milano, noleggio elettrodomestici , noleggio biciclette milano, noleggio sport milano, noleggio e spedizione milano , spedizione noleggio milano attrezzature musicali, affitta piante milano , noleggio fai da te milano, affitta oggetti milano , scambio oggetti milano , sharing economy oggetti, green economy oggetti, rent items in milano , borrow and rent items in milano">
+
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title ng-bind="ngMeta.title"></title>
+
+    <!-- Arbitrary tags -->
+    <meta property="og:type" content="{{ngMeta['og:type']}}" />
+    <meta property="og:locale" content="{{ngMeta['og:locale']}}" />
+    <meta property="og:image" content="{{ngMeta.imagePath}}" />
+    <meta name="author" content="{{ngMeta['author']}}" />
+    <!-- OR <meta name="author" content="{{ngMeta.author}}" /> -->
+    <meta name="description" content="{{ngMeta.description}}" />
+    <link ng-href="/favicon.ico" rel="icon" type="image/x-icon" />
+
+    
+    <script id="fb-root"></script>
+
 </head>
 
 <body>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/angular/angular.min.js"></script>
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SC6WFL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div id="main-wrap" style="height: 100%">
+        <ui-view>
+
+        </ui-view>
+    </div>
+
+    <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+    <script type="text/javascript" src="src/polyfill/polyfill.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxTisLGmcRESSu_thai5E_YuN8LbxkTtQ&libraries=places"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quickblox/2.11.0/quickblox.min.js"></script>
     <script src="dist/index.bundle.js"></script>
-    <script type="module">
-        console.log(this);
-    </script>
-    <script>
-        console.log(this);
-    </script>
+
 </body>
 
 </html>

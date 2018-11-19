@@ -1,0 +1,120 @@
+<div class="booking-detailed" layout="column" flex="100">
+    <loader-container is-loading="isLoading" flex="100" loader-size="100" layout="row">
+        <!-- Main Container -->
+        <div layout="row" layout-align="center center" flex="100">
+            <!-- Desktop -->
+            <div
+                hide-sm
+                hide-xs
+                class="md-padding"
+                flex="100"
+                layout="row"
+                layout-align="center center">
+                <!-- Left offset -->
+                <div flex-gt-md></div>
+                <!-- Middle content-->
+                <div flex-gt-md="75"
+                     layout="row"
+                     layout-align="center start">
+                    <!-- Left -->
+                    <div flex="60"
+                         class="md-padding"
+                         layout="column">
+                        <!-- Title -->
+                        <span class="fontWeight500 font10pt">{{'MY_RENTAL' | translate}}</span>
+                        <h3 class="text-transform-none"> {{booking.Product_Title | capitalize}}</h3>
+                        <!-- Contact Lender -->
+                        <!-- Contact Lender -->
+                        <contact-lender-or-borrower flex="100" product-booking-details="productBookingDetails"
+                                                    product="product" booking="booking"></contact-lender-or-borrower>
+                        <!-- Product Image -->
+                        <img image-type="product"
+                            lazy-loading="{{booking.Product_Image}}" class="product-image" ng-click="goToProduct()"/>
+                        <!--<img src="https://picsum.photos/1400/1000/?image=777" class="product-image"/>-->
+
+                        <!-- Product Description -->
+                        <div flex="100">
+                            <div style="height: 20px"></div>
+                            <h4 class="text-transform-none">{{'DESCRIPTION' | translate}}</h4>
+                            <p ng-bind-html="booking.Product_Description" style="word-wrap: break-word"> </p>
+                        </div>
+
+
+                        <!-- Delivery address -->
+                        <div ng-if="address.address || address.lat || address.lng">
+                            <div style="height: 20px;"></div>
+                            <h4 class="text-transform-none"> {{address.title | translate}} </h4>
+                            <span ng-if="address.address && address.address != ''"><i class="fa fa-map-marker"></i> {{ address.address }}</span>
+                            <div style="height: 20px;"></div>
+                            <div id="map" ng-if="address.lat" style="margin-bottom: 30px;">
+                                <ng-map center="{{address.lat}},{{address.lng}}" zoom="12" gesture-handling="cooperative">
+                                    <marker  position="{{address.lat}},{{address.lng}}" ></marker><!-- icon="{{customIcon}}"  -->
+                                </ng-map>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div flex="40" layout="row" layout-align="center center" layout-wrap>
+                        <booking-detailed-status
+                                layout="row"
+                                class="md-margin info-card"
+                                booking="booking"></booking-detailed-status>
+                        <booking-tracker-info
+                                class="md-margin info-card"
+                                booking="booking"></booking-tracker-info>
+                    </div>
+                </div>
+                <!--Right offset-->
+                <div flex-gt-md></div>
+            </div>
+            <!-- Mobile -->
+            <div
+                hide-gt-sm
+                class="md-padding"
+                flex="100"
+                layout="row"
+                layout-align="center center">
+
+                <div flex="100"
+                     class="md-padding">
+                    <!-- Title -->
+                    <span class="fontWeight500 font10pt">{{'MY_RENTAL' | translate}}</span>
+                    <h3 class="text-transform-none"> {{booking.Product_Title | capitalize}}</h3>
+                    <!-- Product Image -->
+                    <img image-type="product"
+                        lazy-loading="{{booking.Product_Image}}" 
+                        class="product-image" ng-click="goToProduct()" style="z-index: 8; position: relative"/>
+                    <booking-detailed-status
+                            style="margin-top: -40px; z-index: 9; position: relative"
+                            flex="100"
+                            layout="row"
+                            class="md-margin"
+                            booking="booking"></booking-detailed-status>
+                    <booking-tracker-info
+                            flex="100"
+                            layout="row"
+                            class="md-margin"
+                            booking="booking"></booking-tracker-info>
+
+                    <div class="bottom-page-sticky" layout="row" layout-wrap>
+
+                        <div layout="row" layout-align="center center" flex="100">
+                            <!-- Contact Lender -->
+                            <contact-lender-or-borrower flex="100" product-booking-details="productBookingDetails"
+                                                        product="product" booking="booking"
+                                                        is-title-hidden="true"
+                                                        is-description-hidden="true"></contact-lender-or-borrower>
+                        </div>
+
+                        <div flex="100">
+                            <booking-detailed-cta-button booking="booking"></booking-detailed-cta-button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </loader-container>
+</div>

@@ -1,0 +1,33 @@
+<div class="booking-coupon padding5px" layout="row" flex="100" layout-wrap>
+    <md-button
+            flex="100"
+            class="solid-border round-corners5px"
+            ng-if="!isAddingCoupon"
+            md-colors="::{borderColor:'default-primary-200',color:'default-primary-200'}" ng-click="addCoupon()">{{'ADD_COUPON' | translate}}</md-button>
+    <div ng-if="isAddingCoupon" flex="100" layout="row" layout-align="end start" layout-wrap>
+            <input id="coupon-input-field"
+                   type="text"
+                   ng-model="coupon.code"
+                   placeholder="{{'ENTER_COUPON_CODE' | translate}}"
+                   flex="100">
+
+            <span md-colors="::{color:'default-warn-600'}"
+                  flex="100"
+                  ng-if="error != null"
+                  class="font10 error-span"> {{ error | translate}}</span>
+        <a ng-click="cancel()"
+           md-colors="::{color:'default-primary-200'}"
+           class="action-a-btns"
+           ng-show="!isLoading"> {{ 'CANCEL' | translate}}</a>
+
+        <a  ng-click="validateCoupon()"
+            md-colors="::{color:'default-primary-200'}"
+            class="action-a-btns"
+            ng-show="!isLoading">{{ 'APPLY' | translate}}</a>
+
+        <md-progress-circular
+                              ng-show="isLoading"
+                              md-diameter="20"
+                              md-colors="::{stroke:'default-primary-200'}"></md-progress-circular>
+    </div>
+</div>

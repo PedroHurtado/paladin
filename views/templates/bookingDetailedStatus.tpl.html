@@ -1,0 +1,70 @@
+<div class="booking-detailed-status md-whiteframe-1dp round-corners5px" flex="100">
+    <!-- Main Container -->
+    <div class="md-padding"
+         layout="row"
+         layout-wrap
+         flex="100">
+        <!-- First divider -->
+        <div flex="100"
+             layout="column">
+            <!-- Borrower details-->
+            <div class="md-margin"
+                 layout="row"
+                 layout-align="space-between center">
+                <user-avatar user-image="booking.Borrower_Image"
+                             pic-size="30"></user-avatar>
+                <div layout="column"
+                     flex
+                     layout-align="start start">
+                    <span class="font10pt fontWeight500 md-margin">{{booking.Borrower_Name}}</span>
+                </div>
+                <product-status-label status-id="booking.BookingStatus[booking.BookingStatus.length - 1].Status_TrackId"></product-status-label>
+            </div>
+            <!-- Rental Period -->
+            <div class="md-margin"
+                 layout="row" layout-align="start start" layout-wrap>
+                <span md-colors="::{color:'default-primary-A300'}"
+                      class="fontWeight300 font10">{{'RENTAL_PERIOD' | translate}}</span>
+
+                <div flex="100"
+                     class="solid-border round-corners5px padding5px"
+                     layout="row"
+                     layout-align="space-between center"
+                     md-colors="::{borderColor: 'default-primary-A400'}">
+                    <span class="fontWeight400">{{::booking.FullStartDate | amDateFormat: 'DD/MM/YY'}}</span>
+                    <div class="dash"></div>
+                    <span class="fontWeight400">{{::booking.FullEndDate  | amDateFormat: 'DD/MM/YY'}}</span>
+                </div>
+            </div>
+            <div class="veritcalPadder10px"></div>
+        </div>
+        <!-- Second Divider -->
+        <div flex="100" layout="row" layout-align="center center" layout-wrap>
+            <div ng-repeat="price in prices" layout="column" layout-align="center stretch" flex="95">
+                <md-divider ng-if="$last || $first"></md-divider>
+                <div layout="row" layout-align="space-between center" class="padding5px" md-colors="::{color: $last ? 'default-primary-A700' : 'default-primary-A400'}">
+                    <span ng-class="{'fontWeight450': !$last, 'fontWeight500': $last}">{{price.description | capitalize}}
+                        <i ng-if="price.tooltip" class="fa fa-question-circle" md-colors="::{color:'default-primary-200'}">
+                            <md-tooltip md-direction="top" class="font12pt">{{price.tooltip}}</md-tooltip>
+                        </i>
+                    </span>
+                    <span ng-class="{'fontWeight450': !$last, 'fontWeight500 verticalPadding5px': $last}">{{price.price | ptCurrency | capitalize}} </span>
+                </div>
+            </div>
+        </div>
+        <!-- CTA BUTTON -->
+        <div flex="100" layout="row" layout-align="center center" layout-wrap>
+            <div flex="100" class="verticalPadder20px"></div>
+            <booking-detailed-cta-button
+                    hide-xs
+                    hide-sm
+                    flex="100"
+                    layout="row"
+                    booking="booking"></booking-detailed-cta-button>
+            <div flex="100" class="veritcalPadder10px"></div>
+            <div flex="80" layout-align="center center" layout="row" class="textCenter">
+                <span ng-if="youWontBeChargedText">{{ youWontBeChargedText | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>

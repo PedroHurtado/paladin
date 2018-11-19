@@ -1,0 +1,41 @@
+<div flex="100"
+     layout="column"
+     layout-align="start stretch"
+     class="paladin-chat"
+     ng-class="{'md-padding':isGtSM}"
+     layout-fill>
+    <loader-container flex="100"
+                      layout="column"
+                      layout-align="start stretch"
+                      is-loading="isLoading"
+                      ng-class="{'md-padding':isGtSM}">
+
+        <section flex="100"
+                 layout="row"
+                 class="chat-wrapper"
+                 ng-class="{'solid-border round-corners5px': isGtSM}"
+                 md-colors="::{borderColor:'default-primary-A400'}">
+            <md-sidenav
+                    md-is-locked-open="$mdMedia('gt-sm')"
+                    md-component-id="chat-list-side-nav"
+                    layout="column"
+                    layout-align="start stretch"
+                    when-scrolled="loadMore()">
+                <chats-list flex="100"></chats-list>
+            </md-sidenav>
+
+            <div class="solid-border horizontal-divider"
+                 md-colors="::{borderColor:'default-primary-A400'}"
+                 hide-xs
+                 hide-sm>
+            </div>
+            <md-content flex layout="column" layout-align="start stretch">
+                <chat-detailed
+                        flex="100"
+                        layout="column"
+                        chat-id="preSelectedchat.value"></chat-detailed>
+            </md-content>
+        </section>
+
+    </loader-container>
+</div>

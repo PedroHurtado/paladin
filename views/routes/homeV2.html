@@ -1,0 +1,115 @@
+<div layout="row" layout-align="center center">
+    <loader-container flex="100" is-loading="isLoading" layout="row">
+        <div layout="column" flex="100" layout-align="center stretch" md-colors="::{backgroundColor: 'default-primary-A200'}">
+            <products-teaser flex="100"
+                custom-title = "'TRY_AND_BUY' | translate"
+                is-try-and-buy="true"
+                category-description="productTeasers.tryAndBuy.description"
+                products="getProductList(0,true)"
+                description-link="productTeasers.tryAndBuy.link"></products-teaser>
+            <home-steps-tutorial
+                ng-if="isPromo"
+                flex="100"
+                steps-list="promoFixCoupon1.steps"
+                img-url="promoFixCoupon1.imgUrl"
+                tutorial-title="promoFixCoupon1.title"
+                tutorial-description="promoFixCoupon1.description"       
+            ></home-steps-tutorial>
+
+            <home-steps-tutorial
+                ng-if="!isPromo"
+                flex="100"
+                steps-list="borrowTutorial.steps"
+                img-url="borrowTutorial.imgUrl"
+                tutorial-title="borrowTutorial.title"
+                tutorial-description="borrowTutorial.description"       
+            ></home-steps-tutorial>
+
+            <products-teaser flex="100"
+                            custom-title = "'Hi-Tech'"
+                            category-id = "productTeasers.hiTech.categoryId"
+                            category-name = "getCategoryName(productTeasers.hiTech.categoryId)"
+                            products="getProductList(productTeasers.hiTech.categoryId, true)">
+            </products-teaser>
+
+            <products-teaser flex="100"
+                            category-id="productTeasers.smartMobility.categoryId"
+                            category-name = "getCategoryName(productTeasers.smartMobility.categoryId)"
+                            custom-title = "'SMART_MOBILITIES' | translate"
+                            products="getProductList(productTeasers.smartMobility.categoryId, true)">
+            </products-teaser>               
+            
+
+            <products-teaser flex="100"
+                            custom-title = "'HOME_APPLIANCE' | translate"
+                            category-id="productTeasers.homeAppliance.categoryId"
+                            category-name = "getCategoryName(productTeasers.homeAppliance.categoryId)"
+                            products="getProductList(productTeasers.homeAppliance.categoryId, true)">
+            </products-teaser> 
+
+            <products-teaser flex="100"
+                custom-title = "'Outdoor'"
+                category-id="productTeasers.outdoor.categoryId"
+                category-name = "getCategoryName(productTeasers.outdoor.categoryId)"
+                products="getProductList(productTeasers.outdoor.categoryId, true)">
+
+            </products-teaser> 
+
+            <products-teaser flex="100"
+                custom-title = "'KIDS' | translate"
+                category-id="productTeasers.kids.categoryId"
+                category-name = "getCategoryName(productTeasers.kids.categoryId)"
+                products="getProductList(productTeasers.kids.categoryId, true)">
+
+            </products-teaser> 
+
+
+            <home-steps-tutorial
+                    ng-if="isPromo"
+                    flex="100"
+                    steps-list="promoFixCoupon2.steps"
+                    img-url="promoFixCoupon2.imgUrl"
+                    tutorial-title="promoFixCoupon2.title"
+                    tutorial-description="promoFixCoupon2.description"
+            ></home-steps-tutorial>
+
+            <home-steps-tutorial
+                ng-if="!isPromo"
+                flex="100"
+                steps-list="lendTutorial.steps"
+                img-url="lendTutorial.imgUrl"
+                tutorial-title="lendTutorial.title"
+                tutorial-description="lendTutorial.description"
+            ></home-steps-tutorial>
+
+            <products-teaser flex="100"
+                custom-title = "'BEST_P2P_PRODUCTS' | translate"
+                is-try-and-buy="false"
+                products="getProductList(0,false)">
+            </products-teaser> 
+
+
+            <!-- Talking about us-->
+            <div class="md-padding" flex="100" layout="row" layout-align="center stretch" style="background-color: white" layout-wrap>
+                <span class="md-padding font15pt fontWeight450" flex="100">{{::"TALKING_ABOUT_US" | translate}}</span>
+                <md-grid-list
+                        class="md-padding"
+                        md-cols="3"
+                        md-cols-gt-sm="9"
+                        md-row-height="100px"
+                        flex="80"
+                        md-gutter="1em"
+                >
+                    <md-grid-tile
+                            class="md-padding"
+                            ng-repeat="img in ::takingAboutUsImages"
+                            md-colspan="1"
+                            md-rowspan="1"
+                    >
+                        <a href="{{::img.link}}"><img class="md-padding" height="100px" width="100px" lazy-loading="{{::img.img}}"/></a>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </div>
+    </loader-container>
+</div>

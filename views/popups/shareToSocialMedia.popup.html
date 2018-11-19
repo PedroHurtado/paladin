@@ -1,0 +1,100 @@
+<md-dialog aria-label="Some"
+           class="share-to-social-media-popup"
+           id="shareToSocialMediaPopup">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span>{{'HEADER_TITLE_SHARE_REFERRAL_LINK' | translate}}</span>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div class="md-padding">
+            <a class="btn btn-lg font-bold"
+               socialshare
+               socialshare-provider="facebook"
+               socialshare-type="sharer"
+               socialshare-text="Paladin True referral link"
+               socialshare-url="{{referralLink}}"
+               socialshare-popup-height="300"
+               socialshare-popup-width="400"
+               socialshare-trigger="click">
+                <i class="fa fa-facebook"></i> Facebook
+            </a>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div class="md-padding">
+            <a class="btn btn-lg font-bold"
+               socialshare
+               socialshare-provider="twitter"
+               socialshare-hashtags="Paladin True, share, rent, try brand"
+               socialshare-via="twitter"
+               socialshare-text="Paladin True referral link"
+               socialshare-url="{{referralLink}}"
+               socialshare-popup-height="300"
+               socialshare-popup-width="400"
+               socialshare-trigger="click">
+                <i class="fa fa-twitter"></i> Twitter
+            </a>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div class="md-padding">
+            <a class="btn btn-lg font-bold"
+               socialshare
+               socialshare-provider="email"
+               socialshare-body="{{referralLink}}"
+               socialshare-subject="PaladinTrue referral link"
+               socialshare-popup-height="300"
+               socialshare-popup-width="400">
+                <i class="fa fa-envelope"></i> Email
+            </a>
+        </div>
+
+        <md-divider ng-if="isMobile"></md-divider>
+
+        <div ng-if="isMobile"  class="md-padding">
+            <a class="btn btn-lg font-bold"
+               socialshare
+               socialshare-provider="sms"
+               socialshare-text="Paladin True referral link"
+               socialshare-url="{{referralLink}}">
+                <i class="fa fa-comments"></i> SMS
+            </a>
+        </div>
+
+        <md-divider ng-if="isMobile"></md-divider>
+
+        <div ng-if="isMobile" class="md-padding">
+            <a class="btn btn-lg font-bold"
+               socialshare
+               socialshare-provider="whatsapp"
+               socialshare-url="{{referralLink}}"
+               socialshare-text="Paladin True referral link">
+                <i class="fa fa-whatsapp"></i> Whatsapp
+            </a>
+        </div>
+
+        <md-divider></md-divider>
+
+<!--
+        <div class="md-padding">
+            <a class="btn btn-medium font-bold"
+               copy-text-to-clipboard="referralLinkToShare">
+                <i class="fa fa-link"></i> Copy
+            </a>
+        </div>
+-->
+
+    </md-dialog-content>
+
+</md-dialog>
+

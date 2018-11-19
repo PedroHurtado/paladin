@@ -1,0 +1,172 @@
+<div class="product-new" layout="column" flex="100">
+    <loader-container layout="row" flex="100" is-loading="isLoading" layout-wrap layout-align="start start">
+        <!-- Main Container -->
+        <div layout="column" flex="100" layout-align="start stretch">
+            <!-- Photo -->
+            <div class="product-image-container">
+                <img ng-if="tmpUlpoadedImg == null"class="default-image" ng-src="{{emptyProductImage}}">
+                <img ng-if="tmpUlpoadedImg != null" class="default-image" ng-src="{{tmpUlpoadedImg}}">
+                <div class="product-image-blur"></div>
+                <div class="product-image-camera-icon-container" layout="column" layout-align="center center" ng-click="onUploadClicked()">
+                    <i class="fa fa-camera camera-image"></i>
+                    <span class="add-photo-btn fontWeight500">{{'ADD_PHOTO' | translate}}</span>
+                    <input id="uploadImageBtn"
+                           type="file"
+                           accept="image/*"
+                           style="display: none"
+                           onchange="angular.element(this).scope().onUploaded(this)"/>
+                </div>
+            </div>
+            <!-- Product Details-->
+            <div layout="column"
+                 layout-gt-md="row"
+                 layout-align-gt-md="center center">
+                <div flex="50"
+                     layout="row"
+                     layout-align-gt-md="end center"
+                     layout-align="center center" class="md-padding">
+
+                    <div layout="column"
+                         flex="100"
+                         flex-gt-md="50">
+                        <div
+                                layout="row"
+                                class="md-padding"
+                                layout-wrap>
+                            <md-input-container
+                                    flex="100"
+                                    layout="row">
+                                <label>{{'ITEM_TITLE' | translate}}</label>
+                                <input ng-model="newProductModel.Product_Title">
+                            </md-input-container>
+
+                            <md-input-container flex="100"
+                                                layout="row" layout-align="start start">
+                                <label>{{'ITEM_CATEGORY' | translate}}</label>
+                                <md-select flex="100" ng-model="newProductModel.Product_ItemCategory_Id" ng-change="onCategorySelected(newProductModel.Product_ItemCategory_Id)">
+                                    <md-option ng-repeat=" category in categories" ng-value="category.Category_Id">
+                                        {{category.Category_Name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container flex="100"
+                                                layout="row" layout-align="start start">
+                                <label>{{'ITEM_SUB_CATEGORY' | translate}}</label>
+                                <md-select flex="100" ng-model="newProductModel.Product_SubCategoryId" ng-disabled="subCategories.length == 0">
+                                    <md-option ng-repeat=" subCategory in subCategories" ng-value="subCategory.SubCategory_Id">
+                                        {{subCategory.SubCategory_Name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row" class="md-padding" layout-wrap>
+                            <md-input-container flex="100" style="margin-bottom: 0; padding-bottom: 0" ng-if="!isUseUserAddress.value">
+                                <label>{{('ADDRESS' | translate)}}</label>
+                                <input id="newProductAddress" ng-model="newProductModel.Product_City" googleplace-autocomplete>
+                            </md-input-container>
+
+                            <md-input-container flex="100" style="margin-bottom: 0; padding-bottom: 0" ng-if="isUseUserAddress.value">
+                                <label>{{('ADDRESS' | translate)}}</label>
+                                <input id="userAddress" ng-model="userAddress.address" ng-disabled="true">
+                            </md-input-container>
+                            <md-checkbox class="md-primary" style="margin-top: -16px" ng-disabled="!userAddress" ng-model="isUseUserAddress.value" ng-class="{'disabledOpacity': !userAddress}">
+                                <span md-colors="::{color:'default-primary-A300'}">{{'USE_PROFILE_ADDRESS' | translate}}</span>
+                            </md-checkbox>
+                        </div>
+
+                        <div layout="row" class="md-padding">
+                            <md-input-container flex="100">
+                                <label>{{'DESCRIPTION' | translate}}</label>
+                                <textarea ng-model="newProductModel.Product_Description" md-maxlength="631" rows="5" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+
+                    </div>
+                </div>
+                <div flex="50"
+                     layout="row"
+                     layout-align-gt-md="start start"
+                     layout-align="center center">
+                    <div layout="row"
+                         flex="100"
+                         flex-gt-md="50">
+                        <div flex="100"
+                             flex-gt-md="70"
+                             flex-offset-gt-md="15"
+                             layout="row"
+                             layout-align="center center"
+                             layout-wrap
+                             class="md-padding md-whiteframe-1dp">
+                            <md-input-container flex="95">
+                                <label>{{'PPD' | translate}}</label>
+                                <input ng-model="newProductModel.Product_Price_Perday" type="number" min="0">
+                            </md-input-container>
+
+                            <md-input-container flex="95">
+                                <label>{{'PRICE_PER_WEEK' | translate}} ({{'OPTIONAL' | translate}})</label>
+                                <input ng-model="newProductModel.Price7Day" type="number">
+                            </md-input-container>
+
+                            <md-input-container flex="95">
+                                <label>{{'PRICE_PER_MONTH' | translate}} ({{'OPTIONAL' | translate}})</label>
+                                <input ng-model="newProductModel.Price15Day" type="number">
+                            </md-input-container>
+                            <md-button
+                                    class="text-transform-none textColorWhite md-raised"
+                                    flex="95"
+                                    hide-md
+                                    hide-sm
+                                    hide-xs
+                                    md-colors="::{backgroundColor:'default-primary-200'}" ng-click="addProduct()">
+                                {{'SAVE_CHANGES' | translate}}
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Try and buy-->
+            <div layout="column"
+                 layout-gt-md="row"
+                 layout-align-gt-md="center center" class="md-padding">
+                <div flex="100"
+                     flex-gt-md="50"
+                     layout="row"
+                     layout-align-gt-md="end center"
+                     layout-align="center center" class="md-padding" layout-wrap>
+
+                    <div flex="100"
+                         flex-gt-md="50"
+                         layout="row"
+                         layout-align="start start"
+                         layout-wrap>
+                        <div flex="100"
+                             layout="row"
+                             layout-align="end center">
+
+                            <span class="fontWeight500 font10pt">{{'ARE_YOU_A_SHOP' | translate}} <span md-colors="::{color:'default-primary-A300'}">({{'OPTIONAL' | translate}})</span></span>
+                            <div flex></div>
+                            <md-switch ng-model="newProductModel.IsShop" class="md-primary"></md-switch>
+                        </div>
+                        <div flex="100" ng-if="newProductModel.IsShop" layout="row" layout-align="start start">
+                            <md-input-container flex="100">
+                                <label>{{'PRODUCT_URL' | translate}}</label>
+                                <input type="url" ng-model="newProductModel.Product_ShopURL">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <md-button
+                            class="text-transform-none textColorWhite md-raised"
+                            flex="100"
+                            hide-gt-md
+                            md-colors="::{backgroundColor:'default-primary-200'}" ng-click="addProduct()">
+                        {{'SAVE_CHANGES' | translate}}
+                    </md-button>
+
+                </div>
+                <div flex="50"></div>
+            </div>
+        </div>
+    </loader-container>
+</div>

@@ -1,0 +1,21 @@
+<md-dialog
+        class="app-wide-loader"
+        aria-label="Some"
+        id="loginPopup"
+        style="max-height: 100%">
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row" layout-align="center center">
+            <span>{{'LOADING' | translate}}</span>
+            <span class="dot font20pt">.</span>
+            <span class="dot font20pt">.</span>
+            <span class="dot font20pt">.</span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-margin md-padding" layout="row" flex="100" layout-align="center center" style="background-color: transparent" layout-wrap>
+            <md-progress-circular md-diameter="100"></md-progress-circular>
+            <span ng-if="loadingText" flex="100" class="textCenter md-padding">{{loadingText}}</span>
+        </div>
+    </md-dialog-content>
+</md-dialog>

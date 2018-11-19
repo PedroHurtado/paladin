@@ -1,0 +1,736 @@
+/*-----------------------------------------------------------------------------------*/
+/*	1.	TABLET LANDSCAPE
+/*-----------------------------------------------------------------------------------*/
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape) { 
+
+.slick-next {
+	right:30px;
+}
+
+.slick-prev {
+	left:30px;
+}
+
+/* Header */
+
+#dynamic.show {
+	display:block;
+}
+
+body .header-nav {
+	display:block;
+}
+
+body .mobile-menu {
+	display:none;
+}
+
+.nav-area {
+	display:none;
+}
+
+/* Main columns */
+
+.main-column {
+	width:100%;
+	margin-right:10%;
+	float:left;
+}
+
+.sidebar-column {
+	padding:65px 0;
+	width:25%;
+	float:right;
+}
+
+/* Footer */
+
+#footer #footer-inside .columns {
+	text-align: left;
+	width: 50%;
+}
+
+#footer #footer-inside .lead {
+	width:80%;
+}
+
+/* Columns */
+
+body .one-half {
+	width: 47%;
+}
+
+body .one-third {
+	width: 29.33%;
+}
+
+body .two-third {
+	width: 64.67%;
+}
+
+body .one-fourth {
+	width: 20%;
+}
+
+body .three-fourth {
+	width: 74%;
+}
+
+body .one-fifth {
+	width: 16.8%;
+}
+
+body .two-fifth {
+	width: 37.6%;
+}
+
+body .three-fifth {
+	width: 58.4%;
+}
+
+body .four-fifth {
+	width: 67.2%;
+}
+
+body .one-sixth {
+	width: 13.33%;
+}
+
+body .five-sixth {
+	width: 82.67%;
+}
+
+body .one-half, .one-third, .two-third, .three-fourth, .one-fourth, .one-fifth, .two-fifth,.three-fifth, .four-fifth, .one-sixth, .five-sixth {
+	position: relative;
+	margin-right: 6%;
+	margin-bottom: 0px !important;
+	float: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body .righty, body .righty img {
+	float: right;
+}
+
+body .lefty, body .lefty img {
+	float: left;
+}
+
+body #content-wrapper .no-bottom {
+	padding-bottom:0px !important;
+}
+
+.footer-bottom .copyright .logo {
+	float:left;
+}
+
+body #footer .menu-footer {
+	float:right;
+}
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	2.	TABLET PORTRAIT
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+	
+.slick-next {
+	right:10px;
+}
+
+.slick-prev {
+	left:10px;
+}
+
+/* Header */
+
+.button-area {
+	text-align: center;
+}
+
+#header .left-version .button-area {
+	text-align:center;
+}
+
+#header .left-version .button-area .main-button {
+	margin:20px 0px 0 0;
+}
+
+#header .socials {
+	padding-left:0px;
+	float:none;
+	text-align:center;
+	width:100%;
+}
+
+#dynamic {
+	display:none;
+}
+
+.logo {
+	text-align:center;
+	float:none;
+}
+
+#header .lead, #header .left-version .lead, #header h2, #header .left-version h2 {
+	text-align:center;
+	width:100%;
+	max-width:1000px;
+}
+
+#header .columns {
+	text-align:center;
+}
+
+.main-column {
+	width:100%;
+	margin-right:0%;
+	float:none;
+}
+
+.nav-area {
+	display:none;
+}
+
+.sidebar-column {
+	border-top:1px solid rgba(0,0,0,0.04) !important;
+	width:100%;
+	float:none;
+}
+
+.header-nav {
+	display:none;
+}
+
+.main-button {
+	margin:20px 10px 0 10px;
+}
+
+.home #header .extra {
+	padding-top:80px;
+}
+
+.mobile-menu {
+	display:block;
+}
+
+body .showcase {
+	float:none;
+	width:100%;
+	margin-right:0%;
+}
+
+body .headerimage {
+	margin-top:80px;
+	width:100%;
+	text-align:center;
+	float:none;
+}
+
+#header .left-version .headerimage {
+	text-align:center;
+	margin:80px auto 0px;
+}
+
+/* Footer */
+
+body #footer-inside .columns {
+	text-align: center;
+	width: 100%;
+}
+
+body #footer .lead {
+	width:100%;
+}
+  
+#footer #footer-inside {
+	text-align:left;
+}
+
+/* Columns */
+
+.one-half, .one-third, .two-third, .three-fourth, .one-fourth, .one-fifth, .two-fifth,.three-fifth, .four-fifth, .one-sixth, .five-sixth {
+	width:100%;
+	margin-bottom:30px;
+}
+
+body .feature-left .one-half, body .feature-right .one-half {
+	width:100%;
+	margin-bottom:0px;
+}
+
+.feature-img {
+	min-height:400px !important;
+	height:400px;
+}
+
+#content-wrapper .no-bottom {
+	padding-bottom:0px;
+}
+
+.socials {
+	float:none;
+	text-align:center;
+}
+
+.socials a {
+	padding:0px 5px;
+}
+
+.footer-bottom .copyright .logo {
+	float:left;
+}
+
+#footer .widget {
+	width:100%;
+	margin-bottom:30px;
+}
+
+body #footer .menu-footer {
+	float:right;
+}
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	3.	MOBILE PHONE LANDSCAPE
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+.slick-next {
+	right:10px;
+}
+
+.slick-prev {
+	left:10px;
+}
+
+.feature-img {
+	min-height:400px !important;
+	height:400px;
+}
+
+/* Header */
+
+.button-area {
+	text-align: center;
+}
+
+#header .left-version .button-area {
+	text-align:center;
+}
+
+#header .left-version .button-area .main-button {
+	margin:20px 0px 0 0;
+}
+
+#header .socials {
+	padding-left:0px;
+	float:none;
+	text-align:center;
+	width:100%;
+}
+
+#dynamic {
+	display:none;
+}
+
+.nav-area {
+	display:none;
+}
+
+.main-button {
+	margin:20px 0px 0 0px;
+}
+
+.logo {
+	text-align:center;
+	float:none;
+}
+
+.main-column {
+	width:100%;
+	margin-right:0%;
+	float:none;
+}
+
+.sidebar-column {
+	border-top:1px solid rgba(0,0,0,0.04) !important;
+	width:100%;
+	float:none;
+}
+
+#header h2, #footer h2 {
+	font-size: 20px;
+	line-height: 25px;
+}
+
+#header .lead, #footer .lead {
+	font-size: 15px;
+}
+
+#header .lead, #header .left-version .lead, #header h2, #header .left-version h2 {
+	text-align:center;
+	width:100%;
+}
+
+#content-wrapper .no-bottom {
+	padding-bottom:0px !important;
+}
+
+.clients .one-fifth {
+	width:100%;
+	margin:20px 0;
+}
+
+/* Footer */
+
+#footer .lead {
+	width:100%;
+}
+
+body #footer-inside .columns {
+	text-align: center;
+	width: 100%;
+}
+
+.socials {
+	float:none;
+	text-align:center;
+}
+
+.socials a {
+		padding:0px 5px;
+}
+
+.header-nav {
+	display:none;
+}
+
+.mobile-menu {
+	display:block;
+}
+
+.showcase {
+	float:none;
+	width:100%;
+	margin-right:0%;
+}
+
+.headerimage {
+	margin-top:80px;
+	width:100%;
+	text-align:center;
+	float:none;
+}
+
+#header .left-version .headerimage {
+	text-align:center;
+	margin:50px auto 0px;
+}
+
+.text-blockquote {
+	float:none;
+	width:100%;
+}
+
+#footer .widget {
+	width:100%;
+	margin-bottom:30px;
+}
+
+.slick-initialized .slick-slide {
+	margin:0px 20px;
+}
+
+#footer .columns {
+	margin:0px;
+}
+
+.footer-bottom .copyright {
+	float:none;
+	display:block;
+	text-align:center;
+}
+
+#footer .menu-footer {
+	float:none;
+	text-align:center;
+}
+
+#footer .menu-footer .nav a {
+	padding-left: 0px;
+}
+
+#footer .menu-footer .nav li {
+	float:none;
+}
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	4.	TABLET & MOBILE PHONES GENERAL
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (max-width:755px) {
+
+.slick-next {
+	right:10px;
+}
+
+
+.feature-img {
+	min-height:400px !important;
+	height:400px;
+}
+
+
+.slick-prev {
+	left:10px;
+}
+
+/* Header */
+
+.button-area {
+	text-align: center;
+}
+
+#header .left-version .button-area {
+	text-align:center;
+}
+
+#header .left-version .button-area .main-button {
+	margin:20px 0px 0 0;
+}
+
+#dynamic {
+	display:none;
+}
+
+#header .socials {
+	padding-left:0px;
+	float:none;
+	text-align:center;
+	width:100%;
+}
+
+.nav-area {
+	display:none;
+}
+
+.logo {
+	text-align:center;
+	float:none;
+}
+
+#header h2, #footer h2 {
+	font-size: 26px;
+	line-height: 25px;
+}
+
+#header .lead, #footer .lead {
+	font-size: 16px;
+}
+
+#header .lead, #header .left-version .lead, #header h2, #header .left-version h2 {
+	text-align:center;
+	width:100%;
+}
+
+.footer-bottom .footer-nav {
+	display:block;
+	float:none;
+}
+
+.footer-nav li {
+	display:block;
+	padding-left:0px;
+	padding-bottom:5px;
+}
+
+.headerimage {
+	margin-top:80px;
+	width: 100%;
+	text-align: center;
+	float: none;
+}
+
+#header .left-version .headerimage {
+	text-align:center;
+	margin:80px auto 0px;
+}
+
+.showcase-centered {
+	width: 100%;
+}
+
+.main-button {
+	margin:20px 0px 0 0px;
+}
+
+.header-nav {
+	display:none;
+}
+
+.mobile-menu {
+	display:block;
+}
+
+.showcase {
+	float:none;
+	width:100%;
+	margin-right:0%;
+}
+
+.headerimage {
+	width:100%;
+	text-align:center;
+	float:none;
+}
+
+#header .left-version .headerimage {
+	text-align:center;
+	margin:50px auto 0px;
+}
+
+/* Footer */
+
+body #footer-inside .columns {
+	text-align: center;
+	width: 100%;
+}
+
+/* Main content */
+
+.main-column {
+	width:100%;
+	margin-right:0%;
+	float:none;
+}
+
+.sidebar-column {
+	border-top:1px solid rgba(0,0,0,0.04) !important;
+	width:100%;
+	float:none;
+}
+
+.home-title {
+	font-size:20px;
+	line-height:25px;
+}
+
+.owl-carousel .owl-item {
+	width:100%;
+}
+
+.footer-bottom .float-left {
+	text-align:center;
+	float:none;
+	display:block;
+}
+
+.footer-bottom .float-right {
+	text-align:center;
+	float:none;
+	display:block;
+}
+
+.showcase-left {
+	width: 100%;
+	margin-right: 0%;
+	float: none;
+	margin-bottom:40px;
+}
+
+#footer .widget {
+	width:100%;
+	margin-bottom:30px;
+}
+
+.home #header .extra {
+	padding-top:20px;
+}
+
+.one-half, .one-third, .two-third, .three-fourth, .one-fourth, .one-fifth, .two-fifth,.three-fifth, .four-fifth, .one-sixth, .five-sixth {
+	width:100%;
+	margin-bottom:30px;
+}
+
+body .feature-left .one-half, body .feature-right .one-half {
+	width:100%;
+	margin-bottom:0px;
+}
+ 
+#content-wrapper .no-bottom {
+	padding-bottom:0px !important;
+}
+
+/* Footer */
+
+#footer .lead {
+	width:100%;
+}
+
+.clients .one-fifth {
+	width:100%;
+	margin:20px 0;
+
+}
+
+.socials {
+	float:none;
+	text-align:center;
+}
+
+.socials a {
+		padding:0px 5px;
+}
+
+#instagram, .instagram-image, .instagram-placeholder {
+	max-height: 300px; 
+	height: 300px;}
+
+#instagram .instagram-placeholder {
+	width: 100%;
+	padding: 0;		
+}
+
+.text-blockquote {
+	float:none;
+	width:100%;
+}
+
+.slick-initialized .slick-slide {
+	margin:0px 20px;
+}
+
+#footer .columns {
+	margin:0px;
+}
+
+.footer-bottom .copyright {
+	float:none;
+	display:block;
+	text-align:center;
+}
+
+#footer .menu-footer {
+	float:none;
+	text-align:center;
+}
+
+#footer .menu-footer .nav a {
+	padding-left: 0px;
+}
+
+#footer .menu-footer .nav li {
+	float:none;
+}
+
+}

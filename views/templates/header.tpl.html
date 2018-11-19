@@ -1,0 +1,179 @@
+<div class="header" id="dynamic">
+				<div class="container">
+
+				    <nav class="row clearfix">
+				        <div class="logo">
+				            <a href="{{'URL_HOME' | translate}}" class="totop clearfix" ><img class="logo-image" src="/assets/Paladin_LOGO_white.png" alt="{{'INVEST' | translate}} "></a>
+				        </div>
+
+				        <div id="nav" class="clearfix">
+				            <div class="special clearfix">
+				                <div class="menu-menu-principale-container">
+				                    <ul id="menu-menu-principale" class="nav">
+				                        <li id="menu-item-362"
+				                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-362"><a
+				                                href="{{'URL_HIW' | translate}}">{{'HIW' | translate}}</a></li>
+				                        <li id="menu-item-8"
+				                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8"><a
+												href="{{'URL_FAQ' | translate}}">{{'FAQ' | translate}}</a></li>
+										<li id="menu-item-435"
+											class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-433 current_page_item menu-item-435">
+											<a href="{{'URL_SHARING' | translate}}">{{'SHARING' | translate}} </a></li>
+				                        <li id="menu-item-406"
+				                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-406"><a
+				                                href="{{'URL_CONTACT' | translate}}">{{'CONTACT' | translate }}</a></li>
+                                    <li ng-if="$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a ng-click="$ctrl.showTabDialog($event)"> MY ACCOUNT </a></li>
+
+
+
+
+												<li id="menu-item-201"
+				                            class="qtranxs-lang-menu qtranxs-lang-menu-en menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-201">
+				                            <a title="{{lang.name}}" href="#">
+				                                <img ng-src="/assets/{{$ctrl.currentLang}}.png" alt="{{$ctrl.currentLang}}">
+				                            </a>
+
+				                            <ul class="sub-menu">
+				                                <li id="menu-item-462" class="qtranxs-lang-menu-item qtranxs-lang-menu-item-en menu-item menu-item-type-custom menu-item-object-custom menu-item-462" ng-repeat="lang in $ctrl.supportedLanguages"  ng-click="$ctrl.changeLanguage(lang,true)">
+				                                    <a title="{{lang.name}}" ng-class="($ctrl.currentLang | uppercase)==(lang.code| uppercase)?'selected':''">
+				                                    	<img ng-src="/assets/{{lang.code}}.png" alt="{{lang.name}}">
+				                                    	&nbsp;{{lang.name}}
+				                                    </a>
+				                                </li>
+				                            </ul>
+				                        </li>
+				                    </ul>
+				                </div>
+				            </div>
+				        </div>
+				    </nav>
+				</div>
+</div>
+<div class="mobile-menu clearfix">
+
+
+		<div class="collapse-menu-bg clearfix" style="background-color:#69C187;">
+		<div class="collapse-menu-inner" style="display: block;">
+				        <div class="logo-mobile" style="float:left;">
+				            <a href="{{'URL_HOME' | translate}}" class="totop clearfix" ><img class="logo-image" src="/assets/Paladin_LOGO_white.png" alt="{{'INVEST' | translate}} "></a>
+						</div>
+
+			<a href="#" id="collapse-menu" onClick="closenav()" style="display: block; text-align:right;"><i class="fa fa-bars" id="burger"></i></a>
+		</div>
+	</div>
+
+
+
+	<div id="collapse" style="background-color:#7AC794;position:fixed;left:0px;top:0px;z-index:10;width:80%;height:100%;">
+		<div class="collapse-darker" style=" padding:5px;">
+			<div class="row clearfix">
+				<div class="mobile-menu-inner">
+					<div class="menu-menu-principale-container">
+						<ul id="menu-menu-principale-1" class="nav-mobile">
+									<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-351 current_page_item menu-item-362"><a href="{{'URL_HIW' | translate}}">{{'HIW' | translate}}</a></li>
+
+									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8"><a href="{{'URL_FAQ' | translate}}">{{'FAQ' | translate}}</a></li>
+
+									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-406"><a href="{{'URL_SHARING' | translate}}">{{'SHARING' | translate }}</a></li>
+
+									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a href="{{'URL_CONTACT' | translate}}">{{'CONTACT' | translate}} </a></li>
+
+									<!-- <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a ng-click="$ctrl.showTabDialog($event)"> LOGIN </a></li> -->
+                                    <li ng-if="$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a ng-click="$ctrl.showTabDialog($event)"> {{'HEADER_MY_ACCOUNT' | translate}} </a></li>
+									 <li ng-if="!$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a ng-click="$ctrl.showTabDialog($event)"> {{'HEADER_LOGIN' | translate}} </a></li>
+									<li ng-if="$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a ng-click="$ctrl.logout($event)"> {{'HEADER_LOGOUT' | translate}} </a></li>
+									<li ng-if="$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><img class="img-responsive img-circle" src="{{$ctrl.cookies.getObject('globals').currentUser.User_DisplayPicturePath == '' ? $ctrl.profileDefaultImage : $ctrl.cookies.getObject('globals').currentUser.User_DisplayPicturePath}}"></li>
+
+
+									<li class="qtranxs-lang-menu qtranxs-lang-menu-en menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-201">
+				                            <a title="{{lang.name}}" href="#" onClick="$('#lang-sub-menu').toggle(200)">
+				                                Language <img ng-src="/assets/{{$ctrl.currentLang}}.png" alt="{{$ctrl.currentLang}}"> <i class="fa fa-caret-down"></i>
+				                            </a>
+				                            <ul class="sub-menu" id="lang-sub-menu">
+				                                <li id="menu-item-462" class="qtranxs-lang-menu-item qtranxs-lang-menu-item-en menu-item menu-item-type-custom menu-item-object-custom menu-item-462" ng-repeat="lang in $ctrl.supportedLanguages"  ng-click="$ctrl.changeLanguage(lang,true)"  onclick="closenav();">
+				                                    <a title="{{lang.name}}" ng-class="($ctrl.currentLang | uppercase)==(lang.code| uppercase)?'selected':''">
+				                                    	<img ng-src="/assets/{{lang.code}}.png" alt="{{lang.name}}">
+				                                    	&nbsp;{{lang.name}}
+				                                    </a>
+				                                </li>
+			                            	</ul>
+			                        	</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</div>
+<section id="header">
+		<div class="container">
+
+		        <div class="row row-header clearfix">
+
+
+					<div class="logo animated fadeIn">
+		                <a href="{{'URL_HOME' | translate}}" class="clearfix"  ng-click="home()"><img class="logo-image" src="/assets/Paladin_LOGO_white.png" alt="{{'INVEST' | translate}} "></a>
+		            </div>
+
+		            <ul class="socials clearfix" style=" padding-top: 10px;">
+		                <li><a class="facebook" href="https://www.facebook.com/paladintrue"><i class="fa fa-facebook"></i></a>
+		                </li>
+		                <li><a class="linkedin" href="https://www.linkedin.com/company/10842380"><i class="fa fa-linkedin"></i></a>
+		                </li>
+		            </ul>
+
+
+
+
+
+		            <div class="nav-area">
+
+                        <div class="menu-menu-principale-container">
+			                       <ul id="menu-menu-principale-2" class="nav">
+				                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-362"><a
+				                                href="{{'URL_HIW' | translate}}">{{'HIW' | translate}}</a></li>
+				                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8"><a
+				                                href="{{'URL_FAQ' | translate}}">{{'FAQ' | translate}}</a></li>
+				                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-406"><a
+				                                href="{{'URL_SHARING' | translate}}">{{'SHARING' | translate }}</a></li>
+				                        <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-433 current_page_item menu-item-435">
+				                            <a href="{{'URL_CONTACT' | translate}}">{{'CONTACT' | translate}} </a></li>
+
+                                    <li ng-if="$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a ng-click="$ctrl.showTabDialog($event)"> {{'HEADER_MY_ACCOUNT' | translate}} </a></li>
+<li ng-if="!$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a ng-click="$ctrl.showTabDialog($event)"> {{'HEADER_LOGIN' | translate}} </a></li>
+<li ng-if="$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a ng-click="$ctrl.logout($event)"> {{'HEADER_LOGOUT' | translate}} </a></li>
+<li ng-if="$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><img class="img-responsive img-circle" width="32" style="margin-top:12px" src="{{$ctrl.cookies.getObject('globals').currentUser.User_DisplayPicturePath == '' ? $ctrl.profileDefaultImage : $ctrl.cookies.getObject('globals').currentUser.User_DisplayPicturePath}}"></li>
+
+<li ng-if="$ctrl.userStatus" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a href="#">{{$ctrl.cookies.getObject('globals').currentUser.username}} </a></li>
+
+
+				                        <li class="qtranxs-lang-menu qtranxs-lang-menu-en menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-201">
+				                            <a title="{{lang.name}}" href="#">
+				                                <img ng-src="/assets/{{$ctrl.currentLang}}.png" alt="{{$ctrl.currentLang}}">
+				                            </a>
+				                            <ul class="sub-menu">
+				                                <li id="menu-item-462" class="qtranxs-lang-menu-item qtranxs-lang-menu-item-en menu-item menu-item-type-custom menu-item-object-custom menu-item-462" ng-repeat="lang in $ctrl.supportedLanguages"  ng-click="$ctrl.changeLanguage(lang,true)">
+				                                    <a title="{{lang.name}}" ng-class="($ctrl.currentLang | uppercase)==(lang.code| uppercase)?'selected':''">
+				                                    	<img ng-src="/assets/{{lang.code}}.png" alt="{{lang.name}}">
+				                                    	&nbsp;{{lang.name}}
+				                                    </a>
+				                                </li>
+			                            	</ul>
+			                        	</li>
+			                       </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+        <div class="row extra clearfix no-showcase" id="bottom-header">
+            <div class="columns clearfix" id="fadeOut" style="opacity: 1.5;">
+                <h2 class="fadeInUp animated">{{'FWYNN' | translate}}</h2>
+            </div>
+        </div>
+        </div>
+</section>

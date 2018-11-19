@@ -1,0 +1,123 @@
+<div class="col-md-offset-1 main">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12" style="margin-bottom: -6px; padding-top: 17px;">
+            <div class="row" id="breadcrumb-pr-detail">
+                <div class="col-lg-12 col-sm-12 col-xs-12" >
+                    <div class="row">
+                        <a href="" ng-click="goToAllCategory()">
+                            {{'ACTG' | translate}}
+                        </a>
+                        <span ng-if="selectedCategoryName!=null">/</span>
+                        <a href=""  ng-click="goToCategory()" ng-if="selectedCategoryName!=null">
+                            {{selectedCategoryName}}
+                        </a>
+
+                        <span ng-if="selectedSubCategoryName!=null">/</span>
+                        <a href=""  ng-if="selectedSubCategoryName!=null" ng-click="goToSubCategory()">
+                            {{selectedSubCategoryName}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row placeholders text-left" id="productDetailH1Div" >
+
+        <h1 class="no-text-transform color" ng-bind-html="h1" id="h1TitlePrDetail"></h1>
+        <!-- <h2 class="no-text-transform color">{{h2}}</h2> -->
+
+        <div class="col-md-6 col-sm-6 col-xs-12 placeholder Product-detail-grid">
+
+            <img ng-src="{{productImageBaseUrl + productDetail.ProductImage_Image1}}" width="100%" class="detail-img img-responsive" alt="Generic placeholder thumbnail">
+
+            <div class="hidden-lg hidden-md hidden-sm" style="padding-top:15px;">
+                <div class="row">
+                    <label class="col-sm-6 col-xs-8 product-label text-left">{{'PPD' | translate}}:</label>
+                    <p class="col-md-4 pull-right product-price" >{{productDetail.Product_Price_Perday}} &euro;</p>
+                </div>
+                <div class="row">
+                    <label class="col-sm-6 col-xs-8 product-label text-left">{{'DEPOSIT' | translate}}:</label>
+                    <p class="col-md-4 pull-right  product-price" >{{productDetail.Product_Deposit}}  &euro;</p>
+                </div>
+
+            </div>
+            <div class="form-group text-left detail-body">
+                <label class="detail-header">{{'Description' | translate}}:</label>
+                <div class="header-body">{{productDetail.Product_Description}}</div>
+            </div>
+            </img>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 Detail-description">
+            <div class="hidden-xs">
+                <div class="row">
+                    <label class="col-sm-8 col-xs-8  product-label text-left">{{'PPD' | translate}}:</label>
+                    <p class="col-md-4 product-price" >{{productDetail.Product_Price_Perday}}  &euro;</p>
+                </div>
+                <div class="row">
+                    <label class="col-sm-8 col-xs-8 product-label text-left">{{'DEPOSIT' | translate}}:</label>
+                    <p class="col-md-4  product-price" >{{productDetail.Product_Deposit}}  &euro;</p>
+                </div>
+            </div>
+
+            <div class="row hidden-xs">
+                <div class="col-sm-10 " style="padding-top: 20px;padding-bottom: 30px;">
+                    <button type="button" class="btn-pro btn-sm btn-block  btn-search" id="rent_now_button" ng-click="rentNowDesktop()" ng-mobile-click="rentNow()">{{'REQUEST_NOW' | translate}}</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="product-info-cust-preview" style="padding-left: 14px;">
+                    <div >
+                        <div class="user-img-product-preview inline"  style="margin-top: 15px;background-image: url('{{productDetail.Lender_User_DisplayPicturePath ? userImageBaseUrl+productDetail.Lender_User_DisplayPicturePath : profileDefaultImage}}')">
+                            <img ng-src=""  class="img-responsive pull-left" >
+                        </div>
+
+                        <div class="inline">
+                            <div class="user-detail-preview">
+                                {{productDetail.Lender_FullName}}
+                            </div>
+
+                            <h4 class="item-label"></h4>
+
+                            <uib-rating
+                                    ng-model="ratingRounded"
+                                    max="5"
+                                    read-only="true"
+                                    on-hover="hoveringOver(value)"
+                                    on-leave="overStar = null"
+                                    titles="['Sucks big time - 1 star','Kinda bad - 2 stars','Meh - 3 stars','Pretty good - 4 stars','Awesome - 5 stars']"
+                                    aria-labelledby="default-rating">
+
+                            </uib-rating>
+                            <span class="lender-rating-label" ng-if="rating>0">{{rating}}</span>
+                            <span class="color">({{productDetail.User_ReviewCountAsLender}} {{'REVIEWS'|translate}})</span>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row" style="margin-left: 4px" >
+                <div class="col-sm-10 text-left detail-address" ><p>{{productDetail.productAddress}}</p></div>
+            </div>
+            <div class="row" >
+                <div class="col-sm-10">
+                    <div id="map" ng-if="productDetail.Lender_User_Latitude" style="margin-bottom: 30px;">
+                        <ng-map center="{{productDetail.Product_Latitude}},{{productDetail.Product_Longitude}}" zoom="12" scrollwheel="false">
+                            <marker  position="{{productDetail.Lender_User_Latitude}},{{productDetail.Lender_User_Longitude}}" ></marker><!-- icon="{{customIcon}}"  -->
+                        </ng-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row hidden-md hidden-lg hidden-sm">
+        <div class="col-sm-8 " style="padding: 15px; height: 60px; margin-bottom: 50px">
+            <button type="button" class="btn-pro btn-sm btn-block  btn-search" ng-click="rentNow()">{{'REQUEST_NOW' | translate}}</button>
+        </div>
+    </div>
+</div>

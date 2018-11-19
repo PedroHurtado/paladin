@@ -1,0 +1,23 @@
+<md-dialog aria-label="Some" id="loginPopup">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span flex></span>
+            <span>{{welcome_message_dialog}}</span>
+            <span flex></span>
+            <!--<md-button class="md-icon-button" ng-click="cancel()" >-->
+                <!--<md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>-->
+            <!--</md-button>-->
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="md-padding" layout="column" layout-align="center center" style="max-width:800px;max-height:810px; ">
+        <span class="md-padding">{{ message }}</span>
+        <md-progress-circular md-diameter="30" ng-show="isProcessing"/>
+        <!--<div style="padding:50px;">-->
+            <!--{{message}}-->
+        <!--</div>-->
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="retry()" class="md-primary" ng-show="!isProcessing && !isSuccess">{{'RETRY' | translate}}</md-button>
+        <md-button ng-click="cancel()" class="md-primary" ng-show="!isProcessing">OK</md-button>
+    </md-dialog-actions>
+</md-dialog>

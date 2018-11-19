@@ -1,0 +1,193 @@
+<div id="desktop-filter" class="desktop-filter">
+ 
+    <md-tabs md-dynamic-height md-border-bottom flex="100" md-selected="$ctrl.selectedTab">
+        <md-tab flex="50" label="{{'TRY_AND_BUY' | translate}}" md-on-select="$ctrl.onTabSelected()">
+                <ul class="list-group">
+                        <!-- <li class="list-group-item divider sidebar-heading" >{{'CATG' | translate }}</li> -->
+
+                        <li class="list-group-item no-padding sidebar-list" ng-class="!$ctrl.filter.category.selectedCategoryId ?'active':''">
+                            <a ng-click="$event.preventDefault(); $ctrl.selectCategory(('ACTG' | translate),true)"
+                                ng-href="{{$ctrl.getCategoryUrl(0, null, true)}}">
+                                <img class="icon-other" ng-src="/assets/paladin-logo-300x300.png">
+                                <span>{{'ACTG' | translate}}</span>
+                            </a>
+                        </li>
+                    
+                    
+                    
+                        <li ng-repeat="category in $ctrl.customCategoriesTnB" class="list-group-item no-padding sidebar-list" ng-class="$ctrl.filter.category.selectedCategoryId == category.Category_Id && $ctrl.filter.category.selectedSubCategoryId == null ? 'active':''">
+                            <a ng-href="{{$ctrl.getCategoryUrl(category, null, true)}}"" ng-click="$event.preventDefault(); $ctrl.selectCategory(category,true)">
+                                <img ng-src="{{$ctrl.categoryImageBaseUrl + category.Category_ImagePath}}">
+                                    <span>{{category.Category_Name}}</span>
+                                </img>
+                    
+                                <i class="fa adj-fa" ng-class="$ctrl.filter.category.selectedCategoryId != category.Category_Id?'fa-angle-down':''" ng-if="category.Category_SubCatrgories.length>0"></i>
+                            </a>
+                    
+                            <ul class="list-group-submenu" id="{{'sub-cat-'+category.Category_Id}}" ng-class="$ctrl.filter.category.selectedCategoryId == category.Category_Id?'':'collapse'">
+                                <li class="list-group-item no-padding sidebar-list" ng-if="category.Category_SubCatrgories.length>0"  ng-repeat="subCategory in category.Category_SubCatrgories"  data-parent="{{'#sub-cat-'+category.Category_Id}}" ng-class="$ctrl.filter.category.selectedSubCategoryId !=null && $ctrl.filter.category.selectedSubCategoryId == subCategory.SubCategory_Id ? 'active':''">
+                                    <a ng-href="{{$ctrl.getCategoryUrl(category, subCategory, true)}}" ng-click="$event.preventDefault(); $ctrl.selectSubCategory(subCategory,true)">
+                                        <img  style="padding: 9px;" ng-src="{{$ctrl.categoryImageBaseUrl + subCategory.SubCategory_ImagePath}}">
+                                            <span>{{subCategory.SubCategory_Name}}</span>
+                                        </img>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- <li class="list-group-item divider sidebar-heading" style="margin-top: 30px;">{{'PRICE' | translate}}</li> -->
+                    
+                        <!-- <div class="form-group">
+                    
+                            <div  style="padding: 10px 10px 10px 9px;">
+                                <a name="ex9"></a>
+                                <div ng-model="priceRange" ui-slider="$ctrl.slider.priceSliderOption" class="slider-body"> </div>
+                    
+                                <div class="pull-left text-left range-text">{{priceRange[0]}} &euro;</div>
+                                <div class="pull-right text-right range-text-right">{{priceRange[1]}} &euro;</div>
+                            </div>
+                    
+
+                        </div>                 -->
+
+                    </ul>  
+        </md-tab>
+        <md-tab flex="50" label="{{'PRIVATE' | translate}}" md-on-select="$ctrl.onTabSelected()">
+                <ul class="list-group">
+                        <!-- <li class="list-group-item divider sidebar-heading" >{{'CATG' | translate }}</li> -->
+                        <li class="list-group-item no-padding sidebar-list" ng-class="!$ctrl.filter.category.selectedCategoryId ?'active':''">
+                            <a ng-href="{{$ctrl.getCategoryUrl(0, null, false)}}" ng-click="$event.preventDefault(); $ctrl.selectCategory(('ACTG' | translate),true)">
+                                <img class="icon-other" ng-src="/assets/paladin-logo-300x300.png">
+                                <span>{{'ACTG' | translate}}</span>
+                            </a>
+                        </li>
+                    
+                    
+                    
+                        <li ng-repeat="category in $ctrl.customCategoriesP2P" class="list-group-item no-padding sidebar-list" ng-class="$ctrl.filter.category.selectedCategoryId == category.Category_Id && $ctrl.filter.category.selectedSubCategoryId == null ? 'active':''">
+                            <a ng-href="{{$ctrl.getCategoryUrl(category,null,false)}}" ng-click="$event.preventDefault(); $ctrl.selectCategory(category,true)">
+                                <img ng-src="{{$ctrl.categoryImageBaseUrl + category.Category_ImagePath}}">
+                                    <span>{{category.Category_Name}}</span>
+                                </img>
+                    
+                                <i class="fa adj-fa" ng-class="$ctrl.filter.category.selectedCategoryId != category.Category_Id?'fa-angle-down':''" ng-if="category.Category_SubCatrgories.length>0"></i>
+                            </a>
+                    
+                            <ul class="list-group-submenu" id="{{'sub-cat-'+category.Category_Id}}" ng-class="$ctrl.filter.category.selectedCategoryId == category.Category_Id?'':'collapse'">
+                                <li class="list-group-item no-padding sidebar-list" ng-if="category.Category_SubCatrgories.length>0"  ng-repeat="subCategory in category.Category_SubCatrgories"  data-parent="{{'#sub-cat-'+category.Category_Id}}" ng-class="$ctrl.filter.category.selectedSubCategoryId !=null && $ctrl.filter.category.selectedSubCategoryId == subCategory.SubCategory_Id ? 'active':''">
+                                    <a ng-href="{{$ctrl.getCategoryUrl(category,subCategory,false)}}" ng-click="$event.preventDefault(); $ctrl.selectSubCategory(subCategory,true)">
+                                        <img  style="padding: 9px;" ng-src="{{$ctrl.categoryImageBaseUrl + subCategory.SubCategory_ImagePath}}">
+                                            <span>{{subCategory.SubCategory_Name}}</span>
+                                        </img>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- <li class="list-group-item divider sidebar-heading" style="margin-top: 30px;">{{'PRICE' | translate}}</li>
+                    
+                        <div class="form-group">
+                    
+                            <div  style="padding: 10px 10px 10px 9px;">
+                                <a name="ex9"></a>
+                                <div ng-model="priceRange" ui-slider="$ctrl.slider.priceSliderOption" class="slider-body"> </div>
+                    
+                                <div class="pull-left text-left range-text">{{priceRange[0]}} &euro;</div>
+                                <div class="pull-right text-right range-text-right">{{priceRange[1]}} &euro;</div>
+                            </div>
+  
+                        </div>                 -->
+                    </ul>
+        </md-tab>
+    </md-tabs>
+
+</div>
+
+
+
+
+<div id="mobile-filter">
+<div class="list-group-item divider sidebar-heading" ng-click="$ctrl.toggleDiv()"> <div style="margin-top:10px;line-height:10px;"><i class="fa fa-filter" style="margin-right:5px;color:#8E8E8E;font-size:16px;"></i> <span> {{'FILTER' | translate }} </span> <i class="fa fa-sort" style="float:right;color:#8E8E8E;"></i></div></div>
+<div id="filter-collapse" ng-show="$ctrl.showCategoriesDiv">
+<!-- <div class="list-group-item divider sidebar-heading">{{'CATG' | translate }}</div> -->
+<md-tabs md-dynamic-height md-border-bottom flex="100" md-selected="$ctrl.selectedTab">
+    <md-tab flex="50" label="{{'TRY_AND_BUY' | translate}}" md-on-select="$ctrl.onTabSelected()">
+        <ul class="list-group">
+            <li class="list-group-item no-padding sidebar-list" ng-class="!$ctrl.filter.category.selectedCategoryId ?'active':''">
+                    <a ng-href="{{$ctrl.getCategoryUrl(0,null,true)}}" ng-click="$event.preventDefault(); $ctrl.selectCategory(('ACTG' | translate),true)">
+                        <img class="icon-other" ng-src="/assets/paladin-logo-300x300.png">
+                        <span>{{'ACTG' | translate}}</span>
+                    </a>
+            </li>
+            <li ng-repeat="category in $ctrl.customCategoriesTnB" class="list-group-item no-padding sidebar-list" ng-class="$ctrl.filter.category.selectedCategoryId == category.Category_Id && $ctrl.filter.category.selectedSubCategoryId == null ? 'active':''">
+                <a ng-href="{{$ctrl.getCategoryUrl(category,null,true)}}" ng-click="$event.preventDefault(); $ctrl.selectCategory(category,true)">
+                    <img ng-src="{{$ctrl.categoryImageBaseUrl + category.Category_ImagePath}}">
+                        <span>{{category.Category_Name}}</span>
+                    </img>
+
+                    <i class="fa adj-fa" ng-class="$ctrl.filter.category.selectedCategoryId != category.Category_Id?'fa-angle-down':''" ng-if="category.Category_SubCatrgories.length>0"></i>
+                </a>
+
+                <ul class="list-group-submenu" id="{{'sub-cat-'+category.Category_Id}}" ng-class="$ctrl.filter.category.selectedCategoryId == category.Category_Id?'':'collapse'">
+                    <li class="list-group-item no-padding sidebar-list" ng-if="category.Category_SubCatrgories.length>0"  ng-repeat="subCategory in category.Category_SubCatrgories"  data-parent="{{'#sub-cat-'+category.Category_Id}}" ng-class="$ctrl.filter.category.selectedSubCategoryId !=null && $ctrl.filter.category.selectedSubCategoryId == subCategory.SubCategory_Id ? 'active':''">
+                        <a ng-href="{{$ctrl.getCategoryUrl(category,subCategory,true)}}" ng-click="$event.preventDefault(); $ctrl.selectSubCategory(subCategory,true)">
+                            <img  style="padding: 9px;" ng-src="{{$ctrl.categoryImageBaseUrl + subCategory.SubCategory_ImagePath}}">
+                                <span>{{subCategory.SubCategory_Name}}</span>
+                            </img>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </md-tab>
+    <md-tab flex="50" label="{{'PRIVATE' | translate}}" md-on-select="$ctrl.onTabSelected()">
+        <ul class="list-group">
+            <li class="list-group-item no-padding sidebar-list" ng-class="!$ctrl.filter.category.selectedCategoryId ?'active':''">
+                <a ng-href="{{$ctrl.getCategoryUrl(0,null,false)}}"  ng-click="$event.preventDefault(); $ctrl.selectCategory(('ACTG' | translate),true)">
+                    <img class="icon-other" ng-src="/assets/paladin-logo-300x300.png">
+                    <span>{{'ACTG' | translate}}</span>
+                </a>
+            </li>
+            <li ng-repeat="category in $ctrl.customCategoriesP2P" class="list-group-item no-padding sidebar-list" ng-class="$ctrl.filter.category.selectedCategoryId == category.Category_Id && $ctrl.filter.category.selectedSubCategoryId == null ? 'active':''">
+                <a ng-href="{{$ctrl.getCategoryUrl(category,null,false)}}" ng-click="$event.preventDefault(); $ctrl.selectCategory(category,true)">
+                    <img ng-src="{{$ctrl.categoryImageBaseUrl + category.Category_ImagePath}}">
+                        <span>{{category.Category_Name}}</span>
+                    </img>
+
+                    <i class="fa adj-fa" ng-class="$ctrl.filter.category.selectedCategoryId != category.Category_Id?'fa-angle-down':''" ng-if="category.Category_SubCatrgories.length>0"></i>
+                </a>
+
+                <ul class="list-group-submenu" id="{{'sub-cat-'+category.Category_Id}}" ng-class="$ctrl.filter.category.selectedCategoryId == category.Category_Id?'':'collapse'">
+                    <li class="list-group-item no-padding sidebar-list" ng-if="category.Category_SubCatrgories.length>0"  ng-repeat="subCategory in category.Category_SubCatrgories"  data-parent="{{'#sub-cat-'+category.Category_Id}}" ng-class="$ctrl.filter.category.selectedSubCategoryId !=null && $ctrl.filter.category.selectedSubCategoryId == subCategory.SubCategory_Id ? 'active':''">
+                        <a ng-href="{{$ctrl.getCategoryUrl(category,subCategory,false)}}" ng-click="$event.preventDefault(); $ctrl.selectSubCategory(subCategory,true)">
+                            <img  style="padding: 9px;" ng-src="{{$ctrl.categoryImageBaseUrl + subCategory.SubCategory_ImagePath}}">
+                                <span>{{subCategory.SubCategory_Name}}</span>
+                            </img>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>    
+    </md-tab>
+</md-tabs>
+<!-- <div class="list-group-item divider sidebar-heading">{{'PRICE' | translate}}</div>
+<ul class="list-group">
+
+    <div class="form-group">
+
+        <div  style="padding: 10px 10px 10px 9px;">
+            <a name="ex9"></a>
+            <div ng-model="priceRange" ui-slider="$ctrl.slider.priceSliderOption" class="slider-body"> </div>
+
+            <div class="pull-left text-left range-text">{{priceRange[0]}} &euro;</div>
+            <div class="pull-right text-right range-text-right">{{priceRange[1]}} &euro;</div>
+        </div>
+
+
+    </div>                
+
+</ul> -->
+
+
+</div>
+</div>

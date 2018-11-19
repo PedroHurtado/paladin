@@ -1,0 +1,71 @@
+
+<div class="spinner" ng-show="$ctrl.isLoading"></div>
+<div class="row" id="prListDiv" ng-if="!$ctrl.isLoading">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 no-padding placeholder list-item product-grid layout-align-start-stretch layout-column"
+         ng-repeat="product in $ctrl.productsList track by product.Product_Id">
+            <div>
+                <div class="product-pic" >
+                    <img class="pro-img-bg"
+                        image-type="product"
+                        sizes="(max-width: 755px) 150px, 180px"
+                        lazy-loading="{{::product.ProductImage_Image1}}" alt="{{::product.Product_Title}}">
+                    <div class="Product-detail">
+                            <p class="item-title item-title-p" data-ng-bind="product.Product_Title"></p>
+                            <span class="pull-left product-des">
+                               {{$ctrl.getPricePerDayLabel()}}
+                            </span>
+    
+                            <span  class="pull-right product-price">&euro;{{product.Product_Price_Perday}}</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-info-cust">
+                        <div style="display: inline">
+                            <!-- <div class="user-img-bg inline" style="background-image: url('{{product.Lender_User_DisplayPicturePath ? $ctrl.profileImageBaseUrl + product.Lender_User_DisplayPicturePath : $ctrl.profileDefaultImage}}')"></div> -->
+                            <user-avatar hide-xs hide-sm hide-md class="un-selectable inline" user-image="::product.Lender_Image" pic-size="45"></user-avatar>
+                            <user-avatar hide-gt-xs class="un-selectable inline" user-image="::product.Lender_Image" pic-size="35"></user-avatar>
+                            <user-avatar hide-xs hide-gt-md class="un-selectable inline" user-image="::product.Lender_Image" pic-size="45"></user-avatar>
+                            <div class="user-detail">
+                                <h4 style="margin: 0px;">{{product.Lender_FullName}}</h4>
+                                <span ng-if="$ctrl.filter.sortBy=='SortByGeoLocation'" class="item-title-p">{{$ctrl.getDistanceLabel(product)}}</h6></span>
+                                <rating-view ng-if="$ctrl.filter.sortBy!='SortByGeoLocation'" flex="100" rating="::product.Product_ReviewScore/2" count="::product.Product_ReviewCount" read-only="true"></rating-view>
+                            </div>
+                        </div>
+                        <div class="clear-s"> </div>
+                    </div>
+                </div>
+            </div>
+            <a class="button-overlay"
+                ng-click="$event.preventDefault(); $ctrl.navigateToProduct(product)"
+                ng-href="{{$ctrl.getProductUrl(product)}}"
+            ></a>
+    </div>
+    <div ng-if="$ctrl.productsList != null && $ctrl.productsList.length == 0">
+        <div class="alert alert-info">
+          <strong>{{'NO_PRODUCTS_ALERT' | translate}}</strong> 
+        </div>           
+    </div>
+</div>
+<!-- Pagination -->
+<div class="row text-center" ng-if="!$ctrl.isLoading">
+    <!-- pager -->
+    <ul ng-if="$ctrl.pages.pages.length" class="pagination">
+        <li ng-class="{disabled:$ctrl.filter.currentPage === 1}">
+            <a ng-click="$ctrl.setPage(1)">{{'FIRST' | translate}}</a>
+        </li>
+        <li ng-class="{disabled:$ctrl.filter.currentPage === 1}">
+            <a ng-click="$ctrl.setPage($ctrl.filter.currentPage - 1)">{{'PREV' | translate}}</a>
+        </li>
+        <li ng-repeat="page in $ctrl.pages.pages" ng-class="{active:$ctrl.filter.currentPage === page}">
+            <a ng-click="$ctrl.setPage(page)">{{page}}</a>
+        </li>                
+        <li ng-class="{disabled:$ctrl.filter.currentPage === $ctrl.pages.totalPages}">
+            <a ng-click="$ctrl.setPage($ctrl.filter.currentPage + 1)">{{'NEXT' | translate}}</a>
+        </li>
+
+        <li ng-class="{disabled:$ctrl.filter.currentPage === $ctrl.pages.totalPages}">
+            <a ng-click="$ctrl.setPage($ctrl.pages.totalPages)">{{'LAST' | translate}}</a>
+        </li>
+    </ul>
+</div>
+

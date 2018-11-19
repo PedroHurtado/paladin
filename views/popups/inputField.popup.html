@@ -1,0 +1,22 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span>{{title | translate}}</span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="md-padding" layout="row" layout-align="start center" layout-wrap>
+        <span class="md-padding" ng-if="message" flex="100">{{message | translate}}</span>
+        <md-input-container flex="100">
+            <label>{{'HEADER_EMAIL' | translate}}</label>
+            <input ng-model="inputField.value">
+        </md-input-container>
+        <div ng-if="isInvalid" flex="100">
+            <span md-colors="::{color:'default-warn-600'}">{{validationErrorMessage | translate}}</span>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="closeDialog(false)" class="md-primary">{{'POPUP_CANCEL' | translate}}</md-button>
+        <md-button ng-click="closeDialog(true)" class="md-primary">{{'POPUP_TRY_AGAIN' | translate}}</md-button>
+    </md-dialog-actions>
+</md-dialog>

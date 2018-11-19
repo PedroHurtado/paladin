@@ -1,0 +1,404 @@
+<div class="payment-detailed"
+     layout="column"
+     layout-align="center stretch" flex="100">
+    <loader-container
+            layout="row"
+            layout-align="start stretch"
+            is-loading="isLoading"
+            flex="100">
+        <!-- Main Container -->
+        <div flex="100"
+             flex-offset-gt-md="10"
+             layout="column"
+             layout-gt-md="row"
+             layout-align="start stretch" class="md-padding">
+            <!-- Left/Top Side -->
+            <div flex="50" layout="column" layout-align="start stretch">
+                <!-- CREDIT CARD STUFF-->
+                <div layout-align="start center">
+                    <!-- TITLE -->
+                    <h3 class="text-transform-none"> {{'REVIEW_AND_PAYMENT' | translate}}</h3>
+                    <!-- Card in use (case available)-->
+                    <div class="card-in-user-container"
+                         layout="row"
+                         layout-align="start center"
+                         flex="100"
+                         layout-wrap ng-if="isHaveSavedCC">
+
+                        <div flex="100" layout="column" layout-align="start stretch" ng-click="toggleNewCardLayout()">
+
+                            <md-divider></md-divider>
+                            <div layout="row" layout-align="start center" class="md-padding" style="font-size: 18px"
+                                 md-colors="::{color: 'default-primary-A400'}">
+                                <i class="fa horizontalMargin10px"
+                                   ng-class="ccIcon[(userSavedCard || {}).brand || 'Unknown']"></i>
+                                <span>{{ (userSavedCard || {}).brand }}</span>
+                                <span class="horizontalMargin10px"> {{ (userSavedCard || {}).last4 }}</span>
+                                <span class="horizontalMargin10px"> {{ (userSavedCard || {}).exp_month }}/{{ (userSavedCard || {}).exp_year }}</span>
+                                <i class="fa fa-check horizontalMargin10px"
+                                   md-colors="::{color: 'default-primary-500'}"></i>
+                                <div flex></div>
+                                <md-icon>
+                                    <i class="fa fa-trash"></i>
+                                </md-icon>
+                            </div>
+
+                            <md-divider></md-divider>
+                        </div>
+                    </div>
+                    <!-- New Card -->
+                    <form class="new-card-form"
+                          layout="row"
+                          layout-align="start start"
+                          flex="100"
+                          layout-wrap
+                          ng-class="{'isCollapsed': (!isNewCardLayoutOpen && isHaveSavedCC)}"
+                          name="forms.ccForm">
+                        <div flex="100" class="verticalPadder20px"></div>
+
+                        <div layout="row"
+                             layout-align="start start"
+                             flex="100"
+                             layout-wrap>
+
+                            <md-input-container flex="100">
+                                <md-icon>
+                                    <i class="cc-number-icon fa"
+                                       ng-class="ccIcon[forms.ccForm.ccNumber.$ccEagerType || 'Unknown']"
+                                       md-colors="{'color': forms.ccForm.ccNumber.$invalid ? 'default-warn-A700' : 'default-primary-500'}"></i>
+                                </md-icon>
+                                <label>{{'PAYMENT_CC_NUMBER' | translate}}</label>
+                                <input type="text" ng-model="ccModel.number" id="cardNumber" cc-number cc-eager-type
+                                       name="ccNumber" cc-format>
+                                <div ng-messages="forms.ccForm.ccNumber.$error" multiple>
+                                    <div ng-message="ccNumber"> {{'PAYMENT_VALIDATION_CC_NUMBER' | translate}}</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex="25">
+                                <label> {{'PAYMENT_CC_MM' | translate}} </label>
+                                <input type="text"
+                                       ng-model="ccModel.exp_month"
+                                       cc-exp-month
+                                       name="ccExpMonth">
+                                <div ng-messages="forms.ccForm.ccExpMonth.$error">
+                                        <span ng-message="ccExpMonth" style="font-size: 12px">
+                                            {{'PAYMENT_VALIDATION_CC_MM' | translate}}
+                                        </span>
+                                </div>
+                            </md-input-container>
+                            <span style="padding-top: 30px">/</span>
+                            <md-input-container flex="25">
+                                <label> {{'PAYMENT_CC_YY' | translate}} </label>
+                                <input type="text"
+                                       ng-model="ccModel.exp_year"
+                                       cc-exp-year name="ccExpYear">
+                                <div ng-messages="forms.ccForm.ccExpYear.$error">
+                                        <span ng-message="ccExpYear" style="font-size: 12px">
+                                            {{'PAYMENT_VALIDATION_CC_YY' | translate}}
+                                        </span>
+                                    <span ng-message="parse" style="font-size: 12px">
+                                            {{'PAYMENT_VALIDATION_CC_YY' | translate}}
+                                        </span>
+                                </div>
+                            </md-input-container>
+                            <div flex></div>
+                            <md-input-container flex="25">
+                                <label> {{'PAYMENT_CC_CVC' | translate}} </label>
+                                <input type="text"
+                                       ng-model="ccModel.cvc"
+                                       cc-cvc
+                                       cc-type="forms.ccForm.ccNumber.$ccType"
+                                       name="ccCvc">
+                                <div ng-messages="forms.ccForm.ccCvc.$error">
+                                        <span ng-message="ccCvc" style="font-size: 12px">
+                                            {{'PAYMENT_VALIDATION_CC_CVC' | translate}}
+                                        </span>
+                                </div>
+                            </md-input-container>
+                            <md-input-container flex="100">
+                                <label>{{'PAYMENT_CC_CARD_HOLDER' | translate}}</label>
+                                <input type="text" ng-model="ccModel.name" name="cardHolder"
+                                       ng-pattern="/^\D{3,}(\ )\D{2,}$/" minlength="5" maxlength="70">
+                                <div ng-messages="forms.ccForm.cardHolder.$error" multiple>
+                                        <span ng-message="pattern" style="font-size: 12px">
+                                            {{'PAYMENT_VALIDATION_CC_CARD_HOLDER_INVALID' | translate}}
+                                        </span>
+                                    <span ng-message="minlength" style="font-size: 12px">
+                                            {{'PAYMENT_VALIDATION_CC_CARD_HOLDER_SHORT' | translate}}
+                                        </span>
+                                    <span ng-message="maxlength" style="font-size: 12px">
+                                            {{'PAYMENT_VALIDATION_CC_CARD_HOLDER_LONG' | translate}}
+                                        </span>
+                                </div>
+                            </md-input-container>
+                            <md-checkbox ng-if="!isBuy" ng-model="ccModel.isSaveCardForFutureTransactions" class="md-primary"
+                                         layout="row" layout-align="start center" flex="100">
+                                <span class="font12" md-colors="::{color:'default-primary-A400'}">{{'PAYMENT_SAVE_CC_FOR_FUTURE' | translate}}</span>
+                            </md-checkbox>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- DELIVERY STUFF -->
+                <div layout-align="center stretch"
+                     class="delivery-container"
+                     ng-if="isTryAndBuy">
+                    <div flex="100" class="verticalPadder20px"></div>
+                    <div flex="100" layout="row" layout-align="start center">
+                        <h3 class="text-transform-none">{{'CHOOSE_DELIVERY_SERVICE' | translate }}</h3>
+                        <div flex class="flex"></div>
+                        <md-switch ng-model="ccModel.isDelivery" ng-change="isDeliveryStatusChange()"
+                                    class="md-primary" style="opacity: 1"></md-switch>
+                    </div>
+                    <!-- <md-divider></md-divider> -->
+                    <div flex class="flex"></div>
+                    <!-- Delivery Address -->
+                    <div layout="row"
+                         layout-align="start start"
+                         layout-wrap
+                         class="delivery-address"
+                         ng-show="ccModel.isDelivery">
+                         <div layout="row" flex="100" class="padding5px" layout-wrap>
+                            
+                            <md-input-container flex="100" layout="row">
+                                <label>{{'ADD_DELIVERY_ADDRESS' | translate}}</label>
+                                <md-icon class="fas fa-home delivery-icon"></md-icon>
+                                <input googleplace-autocomplete id="productDeliveryAddress" ng-model="ccModel.deliveryAddress">
+                            </md-input-container>
+                            <md-input-container flex="100" layout="row">
+                                <label>{{'ADD_BILLING_NAME' | translate}}</label>
+                                <md-icon class="fas fa-user delivery-icon"></md-icon>
+                                <input id="productDeliveryName" ng-model="ccModel.deliveryName">
+                            </md-input-container>
+                            <md-input-container flex="100" layout="row">
+                                <label>{{'ADD_PHONE_NUMBER' | translate}}</label>
+                                <md-icon class="fas fa-phone delivery-icon"></md-icon>
+                                <input id="productDeliveryPhone" ng-model="ccModel.deliveryPhone">
+                            </md-input-container>
+                            <md-input-container flex="100" layout="row">
+                                <label>{{'ADD_RING_BELL_NAME' | translate}}</label>
+                                <md-icon class="far fa-bell delivery-icon"></md-icon>
+                                <input id="productDeliveryBell" ng-model="ccModel.deliveryBell">
+                            </md-input-container>
+                            <md-divider></md-divider>
+
+                            <div ng-if="!isBuy" flex="100" layout="row" class="padding5px text-transform-none font12pt fontWeight500" layout-align="start center">
+                                    <span class="md-padding font12pt padding5px" layout-align="center center"
+                                            style="padding-left: 0; padding-top: 0">
+                                            {{'PRODUCT_SENDAL_DESCRIPTION' | translate:{fee: productBookingDetails.DeliveryAndPickupDetail.Delivery_Fee} }}</span>
+                            </div>
+                            <div ng-if="isBuy" flex="100" layout="row" class="padding5px text-transform-none font12pt fontWeight500" layout-align="start center">
+                                <span class="md-padding font12pt padding5px" layout-align="center center"
+                                        style="padding-left: 0; padding-top: 0">
+                                        {{'PRODUCT_SENDAL_FREE_DESCRIPTION' | translate}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Pickup Address -->
+                    <div layout="row"
+                         layout-align="start start"
+                         layout-wrap
+                         class="pickup-address" ng-show="!ccModel.isDelivery">
+                        <div flex="100" layout="row" layout-align="start center" class="padding5px" layout-wrap
+                             style="margin-top: 8px">
+                            <span class="text-transform-none font12pt fontWeight500"
+                                  md-colors="::{color:'default-primary-A300'}"> {{ 'PRODUCT_PICK_UP' | translate }} </span>
+                            <div layout="row" flex="100" class="md-padding" layout-align="start center">
+                                <i class="fa fa-map-marker horizontalMargin2px padding5px"></i>
+                                <span class="font12pt padding5px"> {{productBookingDetails.DeliveryAndPickupDetail.PickUp_Address}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <md-divider></md-divider>
+                <!-- Terms and Conditions / Chat with lender -->
+                <div layout-align="center stretch">
+                    <div class="verticalPadder20px"></div>
+                    <h3 class="text-transform-none"> {{'TANDC' | translate}} </h5>
+                    <!-- Terms and conditions checkbox -->
+                    <div layout-align="start start" layout="row" flex="100">
+                        <md-checkbox flex="100" ng-model="ccModel.isTermsAndConditionsAccepted" class="md-primary terms-and-conditions-checkbox">
+                            <span>{{'PAYMENT_VALIDATION_TERM_AND_CONDITIONS_READ' | translate}} </span>
+                            <a class="horizontalMargin2px" ng-click="gotoTermsAndConditions()">{{'TANDC' |
+                                translate}}</a>
+                        </md-checkbox>
+                    </div>
+                    <!-- Chat with lender -->
+                    <!-- Contact Lender -->
+                    <contact-lender-or-borrower flex="90" product-booking-details="productBookingDetails"
+                                                product="product" is-title-hidden="true"
+                                                is-description-hidden="true"></contact-lender-or-borrower>
+                </div>
+            </div>
+            <!-- Right/Bottom Side -->
+            <div flex="50" layout="row" layout-align="center center" layout-wrap>
+                <div class="verticalPadder20px" flex="100"></div>
+                <div flex="100" class="rental-period-details" layout="column" layout-align="start center">
+                    <!-- Payment -->
+                    <div class="price-breakdown round-corners5px md-whiteframe-4dp" layout="row"
+                         layout-align="start start" layout-wrap>
+                        <!-- Product Image -->
+                        <div flex="100" layout-align="start stretch">
+
+                            <div layout="row" layout-align="start start">
+                                <div class="padding10px">
+                                    <img image-type="product"
+                                         lazy-loading="{{::product.ProductImage_Image1}}"
+                                         class="product-image">
+                                </div>
+                                <div flex class="padding5px" layout="column" layout-align="start stretch">
+                                    <span class="fontWeight500 font10pt"> {{ product.Product_Title }} </span>
+                                    <!-- Price Per Day -->
+                                    <div layout="row">
+                                            <span class="fontWeight500">
+                                                {{ (isBuy ? product.Product_PurchasePrice : product.Product_Price_Perday) | ptCurrency }}
+                                                <span class="fontWeight300"
+                                                      ng-if="!isBuy"
+                                                      md-colors="::{color:'default-primary-A300'}">
+                                                    / {{ 'DAY' | translate }}
+                                                </span>
+                                            </span>
+                                    </div>
+                                    <!-- Rating View -->
+                                    <div layout="row">
+                                        <rating-view flex="100" rating="product.Product_ReviewScore/2"
+                                                     count="::product.Product_ReviewCount" read-only="true"> </rating-view>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <md-divider></md-divider>
+                        </div>
+
+                        <!-- Product Prices breakdown -->
+                        <div flex="100"
+                             layout-align="center stretch"
+                             layout="column">
+
+                            <div layout="row"
+                                 layout-align="center center" layout-wrap
+                                 ng-if="!isBuy">
+
+                                <div class="verticalPadder20px" flex="100"></div>
+
+                                <span flex="80" class="fontWeight300 font10"
+                                      md-colors="::{color:'default-primary-A300'}">
+                                    {{'RENTAL_PERIOD' | translate}}
+                                </span>
+
+                                <booking-date-picker
+                                        ng-if="productBookingDetails != null"
+                                        flex="80"
+                                        id="bookingPickerPaymentDetailed"
+                                        result-callback="onDatesSelected"
+                                        start-date="rentStartDate"
+                                        end-date="rentEndDate"
+                                        class="verticalPadding5px"
+                                        product-booking-details="productBookingDetails"
+                                        product="product"
+                                ></booking-date-picker>
+                            </div>
+
+                            <div layout="row"
+                                 layout-align="space-around stretch"
+                                 layout-wrap>
+
+                                <div class="verticalPadder20px" flex="100"></div>
+
+                                <md-progress-circular ng-if="prices.length == 0 && !statusError"></md-progress-circular>
+
+                                <div ng-if="prices.length > 0"
+                                     ng-repeat="price in prices"
+                                     layout="column"
+                                     layout-align="start stretch"
+                                     flex="80">
+
+                                    <booking-coupon on-coupon-validation="couponValidated"
+                                                    ng-if="$last && coupon == null && !isBuy"></booking-coupon>
+
+                                    <md-divider ng-if="$last || $first && !isBuy"></md-divider>
+
+                                    <div layout="row"
+                                         layout-align="space-between center"
+                                         class="padding5px"
+                                         md-colors="::{color: $last ? 'default-primary-A700' : 'default-primary-A300'}">
+
+                                                <span ng-class="{'fontWeight400 font11pt': !$last, 'fontWeight500': $last}">
+                                                    {{price.description}}
+
+                                                    <i ng-if="price.tooltip" class="fa fa-question-circle"
+                                                       md-colors="::{color:'default-primary-200'}">
+                                                        <md-tooltip md-direction="top"
+                                                                    class="font12pt">
+                                                            {{price.tooltip}}
+                                                        </md-tooltip>
+                                                    </i>
+
+                                                    <i class="fa fa-minus-circle"
+                                                       md-colors="::{color:'default-warn-A700'}"
+                                                       ng-if="price.isCoupon"
+                                                       ng-click="deleteCoupon()">
+
+                                                        <md-tooltip md-direction="top"
+                                                                    class="font12pt">
+                                                            {{'CLICK_TO_REMOVE_COUPON' | translate}}
+                                                        </md-tooltip>
+                                                    </i>
+                                                </span>
+                                        <span ng-class="{'fontWeight400': !$last, 'fontWeight500 verticalPadding5px': $last}">
+                                            {{price.price | ptCurrency | capitalize}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product BOOK NOW -->
+                        <div flex="100"
+                             layout="row"
+                             layout-align="center center"
+                             layout-wrap>
+
+                            <md-button
+                                md-colors="{color:'default-primary-A500',backgroundColor: prices.length > 0 ? 'default-primary-200' : 'default-primary-A400'}"
+                                flex="80"
+                                ng-disabled="prices.length == 0"
+                                class="horizontalPadding20px text-transform-none md-whiteframe-2dp font12pt"
+                                ng-click="bookNow()"
+                                ng-if="!isBuy">
+                                {{'PAYMENT_BOOK_NOW' | translate}}
+                            </md-button>
+                            <md-button
+                                md-colors="{color:'default-primary-A500',backgroundColor: prices.length > 0 ? 'default-primary-200' : 'default-primary-A400'}"
+                                flex="80"
+                                ng-disabled="prices.length == 0"
+                                class="horizontalPadding20px text-transform-none md-whiteframe-2dp font12pt"
+                                ng-click="bookNow()"
+                                ng-if="isBuy">
+                            {{'PAYMENT_BUY_NOW' | translate}}
+                            </md-button>
+                            <span ng-if="statusError"
+                                  flex="80"
+                                  class="font12"
+                                  md-colors="::{color:'default-warn-600'}">
+                                {{statusError | translate}}
+                            </span>
+                            <span class="font10 textCenter md-padding"
+                                  flex="100"
+                                  md-colors="::{color:'default-primary-A300'}"> {{ isBuy ? 'PAYMENT_BUY_NOW_WARNING' : 'PAYMENT_MONEY_CHARGE_AFTER_APPROVAL' | translate}}</span>
+                        </div>
+                    </div>
+                    <div style="height: 20px; position: relative; color: transparent">
+                        CUZ F CSS
+                    </div>
+                    <!-- Tutorial -->
+                    <rental-request-how-to is-buy="isBuy" is-try-and-buy="isTryAndBuy" class="md-margin"></rental-request-how-to>
+                </div>
+            </div>
+
+        </div>
+    </loader-container>
+</div>

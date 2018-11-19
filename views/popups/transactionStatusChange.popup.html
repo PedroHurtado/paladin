@@ -1,0 +1,15 @@
+<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span>{{title | translate}}</span>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="md-padding" layout="row" layout-align="center center">
+        <span ng-if="message">{{message}}</span>
+        <md-progress-circular ng-if="isLoading"></md-progress-circular>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-if="!isLoading" ng-click="closeDialog(true)" class="md-primary">{{'POPUP_OK' | translate}}</md-button>
+    </md-dialog-actions>
+</md-dialog>

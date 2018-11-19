@@ -1,0 +1,46 @@
+<div class="user-bookings md-padding" flex="100" layout="column">
+    <loader-container is-loading="isLoading" flex="100" loader-size="100" layout="row">
+        <!-- Main Container -->
+        <div class="md-padding" layout="row" layout-align="center center" flex="100">
+            <!--Right offset-->
+            <div flex flex-gt-md="15"></div>
+            <!--Middle Content-->
+            <div
+                    flex="100"
+                    flex-gt-md="70"
+                    layout="row"
+                    layout-align="start start" layout-wrap>
+                <!-- Title + tabs -->
+                <div flex="100" layout="row" layout-align="start center">
+                    <md-tabs class="rental-tabs" md-selected="selectedTab" md-border-bottom flex="100" style="overflow: visible">
+                        <md-tab ng-disabled="true" label="{{'MY_RENTAL' | translate}}"></md-tab>
+                        <md-tab ng-repeat="tab in tabs" label="{{tab.title | translate}}">
+                            <md-content>
+                                <md-list>
+                                    <md-list-item ng-repeat="booking in tab.bookings" ng-click="bookingListItemClick(booking)" aria-label="booking item {{booking.Product_Title}}">
+                                    <booking-list-item
+                                            class="md-padding"
+                                            flex="100"
+                                            booking="booking"></booking-list-item>
+                                    <md-divider ng-if="!$last"></md-divider>
+                                    </md-list-item>
+                                    <md-list-item ng-if="tab.bookings.length == 0" layout="column" layout-wrap layout-align="center center">
+                                        <span class="textCenter">{{"NO_LISTINGS_MESSAGE" | translate}}</span>
+                                        <md-button
+                                                class="text-transform-none fontWeight500 font10 solid-border round-corners5px"
+                                                md-colors="::{color:'default-primary-200',backgroundColor:'default-primary-A200',borderColor:'default-primary-200'}"
+                                                ng-click="addNewItem()">
+                                            {{'ADD_NEW_ITEM' | translate}}
+                                        </md-button>
+                                    </md-list-item>
+                                </md-list>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </div>
+            </div>
+            <!--Left offset-->
+            <div flex flex-gt-md="15"></div>
+        </div>
+    </loader-container>
+</div>

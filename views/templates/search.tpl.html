@@ -1,0 +1,51 @@
+<article class="row searchrow">
+
+
+        <div flex="100" flex-xs="100" layout="row" layout-xs="column">
+            
+            <md-autocomplete id="search-bar-browse-page"
+                        flex="80" flex-xs="100"
+                        md-input-name="autocompleteField"
+                        md-no-cache="true"
+                        md-selected-item="$ctrl.selectedItem"
+                        md-items="item in $ctrl.querySearch($ctrl.filter.search.searchStr)"
+                        md-search-text="$ctrl.filter.search.searchStr"
+                        md-search-text-change="$ctrl.onSearchTextChange()"
+                        md-item-text="item.Keyword"
+                        md-selected-item-change="$ctrl.initiateSearch(item.Keyword)"
+                        placeholder="{{'WAYLF' | translate}}"
+                        ng-model-options="{ debounce: 500 }"
+                        ng-keypress="$ctrl.searchBarOnKeyPress($event)">
+                    <md-item-template>
+                        <span md-highlight-text="$ctrl.filter.search.searchStr" md-highlight-flags="^i">{{item.Keyword}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No results matching "{{searchText}}" were found.
+                    </md-not-found>
+                </md-autocomplete>
+                
+            
+                <md-button flex="20" flex-xs="100" class="md-button textColorWhite text-transform-none round-corners5px md-raised fontWeight450" 
+                    md-colors="::{backgroundColor:'default-primary-500'}" ng-click="$ctrl.applySearch()">{{'SRCH' | translate}}</md-button>
+            
+        </div>
+        <div class="location-search-row" layout="row" layout-xs="column" flex="100" ng-if="$ctrl.showLocation()">
+
+                 <md-input-container flex-xs="100" flex="50" class="location-search-bar">
+                                <label>{{'SEARCH_LOC' | translate}}</label>
+                                <input 
+                                    id="search-location-bar-desktop"
+                                    googleplace-autocomplete ng-model="$ctrl.filter.glString"  placeholder="{{'CL' | translate}}" style="padding-right: 25px;"/>
+                </md-input-container>
+                 <md-input-container flex-xs="100" flex="50">
+                                <label>{{'SEARCH_DISTANCE' | translate}}</label>
+                                <md-select flex="100" ng-model="$ctrl.selectedRange" ng-model-options="{trackBy: '$value.l_id'}" ng-change="$ctrl.changeDistanceFilter()">
+                                    <md-option ng-repeat="item in distanceDropDown" ng-value="item">
+                                        {{item.name | translate}}
+                                    </md-option>
+                                </md-select>
+                 </md-input-container>
+
+        </div>
+        
+</article>
