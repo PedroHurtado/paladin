@@ -36,6 +36,7 @@
     "ngmap": "^1.18.4"
   },
   "devDependencies": {
+    "compression-webpack-plugin": "^2.0.0",
     "ng-annotate-webpack-plugin": "^0.3.0",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2"

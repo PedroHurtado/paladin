@@ -381,7 +381,7 @@ app
             $window.fbAsyncInit = function () {
                 FB.init({
                     appId: '1156274361103964',
-                    channelUrl: 'app/channel.html',
+                    channelUrl: 'channel.html',
                     status: true,
                     cookie: true,
                     xfbml: true,

@@ -1,5 +1,6 @@
 const path = require('path');
 const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = {
     mode: 'production',
     entry: {
@@ -16,7 +17,8 @@ module.exports = {
     plugins: [
         new ngAnnotatePlugin({
             add: true,
-        })
+        }),
+        new CompressionPlugin(),
     ],
     devtool: "source-map"
     
